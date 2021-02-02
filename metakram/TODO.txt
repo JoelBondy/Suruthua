@@ -1,4 +1,3 @@
--verfluchte wesen zur hauptseite hinzufuegen
 -umlaute checken
 -tabelle verfluchte wesen
 -stylesheet verschieben und links anpassen
