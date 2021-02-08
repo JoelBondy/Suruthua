@@ -1,4 +1,3 @@
 -umlaute checken
 -tabelle verfluchte wesen
--stylesheet verschieben und links anpassen
 -scans erneuern (avzitil)
