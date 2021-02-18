@@ -94,10 +94,18 @@ table {
 	border-collapse: collapse;
 }
 tr {
-		border-top: 1px solid #a2a9b1;
+		border-top: 1px solid grey;
 }
 th {
 	text-align: left;
+}
+th.table {
+	border: 1px solid grey;
+	text-align: center;
+	background-color: #eaecf0;
+}
+td.table {
+	border: 1px solid grey;
 }
 html {
 	font-family: times;
