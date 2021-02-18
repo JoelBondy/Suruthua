@@ -60,7 +60,7 @@ div#links {
 }
 ul.blank {
 	list-style-type: none;
-  list-style-image: none;
+	list-style-image: none;
 	padding-left: 0px;
 	margin-bottom: 0px;
 	margin-top: 10px;
@@ -94,7 +94,7 @@ table {
 	border-collapse: collapse;
 }
 tr {
-		border-top: 1px solid grey;
+	border-top: 1px solid grey;
 }
 th {
 	text-align: left;
