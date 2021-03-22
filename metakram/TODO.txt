@@ -1,4 +1,7 @@
 -umlaute checken
 -scans erneuern (avzitil)
--religionen Inhaltsverzeichnis überarbeiten+paradies hinzufügen
--paradies ausschreiben
+-religionen überarbeiten:
+    -paradies ausschreiben
+-kulturen ausarbeiten:
+      -avzitil
+      -quork (lebensphasen)
