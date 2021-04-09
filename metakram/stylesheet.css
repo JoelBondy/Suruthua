@@ -68,7 +68,7 @@ div#links {
 #topbar-dummy{
 	height: 5em;
 }
-#label { 
+#label {
 }
 #label_selected {
 	margin-top: 2.8em;
@@ -111,6 +111,10 @@ div.infobox-img {
 table {
 	width: 100%;
 	border-collapse: collapse;
+}
+table.border, th.border, td.border {
+	width: 30%;
+	border: 1px solid grey;
 }
 tr {
 	border-top: 1px solid grey;
