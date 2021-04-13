@@ -8,70 +8,127 @@
 	<body>
 	<div id="content">
 	<h1 id="header">Charakterbogen</h1>
-	<h3>Pers&ouml;nliche Daten</h3>
+
+	<div id="contents">
+		<div class="box-header">Inhaltsverzeichnis</div>
+		<ul class="blank">
+			<li><a href="#persdaten">
+				<span class="contsnum">1</span>
+				 Pers&ouml;nliche Daten
+			 </a></li>
+			<li><a href="#werte">
+				<span class="contsnum">2</span>
+				 Werte
+			 </a></li>
+						<li><a href="#leben">
+							<span class="contsnum" style="margin-left:15px;">2.1</span>
+							 Lebenspunkte
+						 </a></li>
+						<li><a href="#geistigegesundheit">
+							<span class="contsnum" style="margin-left:15px;">2.2</span>
+							 Geistige Gesundheit
+						 </a></li>
+						 <li><a href="#staerke">
+			 				<span class="contsnum" style="margin-left:15px;">2.3</span>
+			 				 St&auml;rke
+			 			 </a></li>
+						 <li><a href="#mana">
+			 				<span class="contsnum" style="margin-left:15px;">2.4</span>
+			 				 Mana
+			 			 </a></li>
+			 <li><a href="#gegenstaende">
+ 				<span class="contsnum">3</span>
+ 				 Gegenst&auml;nde
+ 			 </a></li>
+			 <li><a href="#bogen">
+ 				<span class="contsnum">4</span>
+ 				 B&ouml;gen
+ 			 </a></li>
+		</ul>
+	</div>
+
+	<h3 id="persdaten">Pers&ouml;nliche Daten</h3>
 	<p>Name, Spezies, Beruf, Herkunft, Religion, Eigenschaften, Motivation, Geschlecht, (Sexualtit&auml;t), Gewicht, Alter,
 		Bild/Aussehen: Gr&ouml;&szlig;e, Hautfarbe/Haarfarbe, Augenfarbe; Hintergrundgeschichte
 	</p>
 
-<h3>Werte</h3>
-<p><a href="#leben">Leben</a>, Geistige Gesundheit, St&auml;rke, “Mana”, <a href="./Attribute.html">Attribute</a>, G&ouml;ttersegen/-fl&uuml;che</p>
-	<h4 id="leben">Leben</h4>
-	<p>Die Lebenspunkte eines Charakters errechnen sich mit folgender Formel:
-		<br><br>(<b>&oslash;K</b>)+(<b>&oslash;M/2</b>)+(<b>V</b>)
-		<br><b>K</b>=K&ouml;rperattribute, <b>M</b>=Mentalit&auml;tsattribute, <b>S</b>=Volksspezifischer Modifikator
+	<h3 id="werte">Werte</h3>
+	<p><a href="#leben">Leben</a>, <a href="#geistigegesundheit">Geistige Gesundheit</a>, <a href="#staerke">St&auml;rke</a>, <a href="#mana">“Mana”</a>, <a href="./Attribute.html">Attribute</a>, G&ouml;ttersegen/-fl&uuml;che</p>
+
+		<h4 id="leben">Leben</h4>
+		<p>Die Lebenspunkte eines Charakters errechnen sich mit folgender Formel:
+			<br><br>(<b>&oslash;K</b>)+(<b>&oslash;M/2</b>)+(<b>S</b>)
+			<br><b>K</b>=K&ouml;rperattribute, <b>M</b>=Mentalit&auml;tsattribute, <b>S</b>=Volksspezifischer Modifikator
+		</p>
+		<table class="border" cellspacing="1" cellpadding="4">
+			<tr>
+				<th class="border">Volk</th>
+				<th class="border">S</th>
+			</tr>
+			<tr>
+				<td class="border">Amaka</td>
+				<td>112</td>
+			</tr>
+			<tr>
+				<td class="border">Guqual</td>
+				<td>101</td>
+			</tr>
+			<tr>
+				<td class="border">Avzitil</td>
+				<td>94</td>
+			</tr>
+			<tr>
+				<td class="border">Vadonier</td>
+				<td>87</td>
+			</tr>
+			<tr>
+				<td class="border">Elben</td>
+				<td>81</td>
+			</tr>
+			<tr>
+				<td class="border">Auglinge</td>
+				<td>75</td>
+			</tr>
+			<tr>
+				<td class="border">Quork</td>
+				<td>73</td>
+			</tr>
+			<tr>
+				<td class="border">Drasken</td>
+				<td>70</td>
+			</tr>
+		</table>
+
+	<h4 id="geistigegesundheit">Geitige Gesundheit</h4>
+	<p>Die geistige Gesundheit eines Charakters errechnet sich mit folgender Formel:
+		<br><br>((Willenskraft + Wahrnehmung + Fokus + Vorsicht)/4) * 5
+		<br><br>Der Minimalwert f&uuml;r geistige Gesundheit liegt bei 5, der Maximalwert bei 100. Geistige Gesundheit regeneriert sich über Nacht, je nach Situation.
 	</p>
-	<table class="border" cellspacing="1" cellpadding="4">
-		<tr>
-			<th class="border">Volk</th>
-			<th class="border">S</th>
-		</tr>
-		<tr>
-			<td class="border">Amaka</td>
-			<td>112</td>
-		</tr>
-		<tr>
-			<td class="border">Guqual</td>
-			<td>101</td>
-		</tr>
-		<tr>
-			<td class="border">Avzitil</td>
-			<td>94</td>
-		</tr>
-		<tr>
-			<td class="border">Vadonier</td>
-			<td>87</td>
-		</tr>
-		<tr>
-			<td class="border">Elben</td>
-			<td>81</td>
-		</tr>
-		<tr>
-			<td class="border">Auglinge</td>
-			<td>75</td>
-		</tr>
-		<tr>
-			<td class="border">Quork</td>
-			<td>73</td>
-		</tr>
-		<tr>
-			<td class="border">Drasken</td>
-			<td>70</td>
-		</tr>
-	</table>
 
-<h3>Gegenst&auml;nde</h3>
-<p>Items, Kampf/Waffen/R&uuml;stung</p>
+	<h4 id="staerke">St&auml;rke</h4>
+	<p>Die St&auml;rke eines Charakters errechnet sich mit folgender Formal:
+		<br><br>(Lebenspunkte * 0,05 + ((Beweglichkeit + Gleichgewicht)/4 )) + 3
+		<br><br>Das Ergebnis wird stets auf ganze oder halbe (.5) Zahlen gerundet. Der Minimalwert f&uuml;r St&auml;Draske liegt bei 7, der Maximalwert bei 20.
+	</p>
 
-<h3>B&ouml;gen</h3>
-<ol>
-	<li><a target="_blank" href="./Char1_Idee1.pdf">Char1/Idee1</a></li>
-	<li><a target="_blank" href="./Char1_Idee2.pdf">Char1/Idee2</a></li>
-	<li><a target="_blank" href="./Char1_Idee3.pdf">Char1/Idee3</a></li>
-	<li><a target="_blank" href="./Char2_Idee1.pdf">Char2/Idee1</a></li>
-	<li><a target="_blank" href="./Char2_Idee2.pdf">Char2/Idee2</a></li>
-</ol>
+	<h4 id="mana">Mana</h4>
+	<p>Das Mana eines Charakters errechnet sich mit folgender Formal:
+		<br><br>((Fokus + Magiewissen + Geschicklichkeit)/3) * 10
+		<br><br>Der Minimalwert f&uuml;r Mana liegt bei 10, der Maximalwert bei 200. Mana regeneriert sich sowohl tags als auch nachts.
+	</p>
 
 
+	<h3 id="gegenstaende">Gegenst&auml;nde</h3>
+	<p>Items, Kampf/Waffen/R&uuml;stung</p>
+
+	<h3 id="bogen">B&ouml;gen</h3>
+	<ol>
+		<li><a target="_blank" href="./Char1_Idee1.pdf">Char1/Idee1</a></li>
+		<li><a target="_blank" href="./Char1_Idee2.pdf">Char1/Idee2</a></li>
+		<li><a target="_blank" href="./Char1_Idee3.pdf">Char1/Idee3</a></li>
+		<li><a target="_blank" href="./Char2_Idee1.pdf">Char2/Idee1</a></li>
+		<li><a target="_blank" href="./Char2_Idee2.pdf">Char2/Idee2</a></li>
+	</ol>
 
 	</div>
 	</body>
