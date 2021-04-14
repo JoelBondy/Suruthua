@@ -65,9 +65,6 @@ div#links {
 	background-color: white;
 	width: auto;
 }
-#topbar-dummy{
-	height: 5em;
-}
 #label {
 }
 #label_selected {
@@ -125,6 +122,10 @@ th {
 th.table {
 	border: 1px solid grey;
 	text-align: center;
+	background-color: #eaecf0;
+}
+th.subhead {
+	border: 1px solid grey;
 	background-color: #eaecf0;
 }
 td.table {
