@@ -8,6 +8,7 @@
 	<body>
 	<div id="content">
 	<h1 id="header">Charakterbogen</h1>
+	<p>Der Charakterbogen besteht aus den vier Seiten "Pers&ouml;nliche Daten", "Attribute", "Items/Fl&uuml;che&amp;Segen" und "Kampf".</p>
 
 	<div id="contents">
 		<div class="box-header">Inhaltsverzeichnis</div>
@@ -50,15 +51,33 @@
 		</ul>
 	</div>
 
-	<h3 id="persdaten">Pers&ouml;nliche Daten</h3>
-	<p>Name, Spezies, Beruf, Herkunft, Religion, Eigenschaften, Motivation, Geschlecht, (Sexualtit&auml;t), Gewicht, Alter,
-		Bild/Aussehen: Gr&ouml;&szlig;e, Hautfarbe/Haarfarbe, Augenfarbe; Hintergrundgeschichte
+	<h2 class="header" id="persdaten">Pers&ouml;nliche Daten</h2>
+	<p><img alt="" src="./Bilder/Persoenliche_Daten.png" style="width: 600px; height: 764px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="Pers&ouml;nliche Daten">
+		<br><b>PDF-Datei: </b><a target="_blank" href="./Persoenliche_Daten.pdf">Pers&ouml;nliche Daten</a>
 	</p>
 
-	<h3 id="werte">Werte</h3>
-	<p><a href="#leben">Leben</a>, <a href="#geistigegesundheit">Geistige Gesundheit</a>, <a href="#staerke">St&auml;rke</a>, <a href="#kampfwerte">Kampfwerte</a>, <a href="#mana">“Mana”</a>, <a href="./Attribute.html">Attribute</a>, G&ouml;ttersegen/-fl&uuml;che</p>
 
-		<h4 id="leben">Leben</h4>
+	<h2 class="header" id="attribute">Attribute</h2>
+	<p><img alt="" src="./Bilder/Attribute.png" style="width: 600px; height: 808px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="Attribute">
+		<br><b>PDF-Datei: </b><a target="_blank" href="./Attribute.pdf">Attribute</a>
+	</p>
+
+	<h2 class="header" id="itemssegenflueche">Items, Fl&uuml;che &amp; Segen</h2>
+	<p><img alt="" src="./Bilder/Items_Flueche+Segen.png" style="width: 600px; height: 768px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="Items, Fl&uuml;che &amp; Segen">
+		<br><b>PDF-Datei: </b><a target="_blank" href="./Items_Flueche+Segen.pdf">Items, Fl&uuml;che &amp; Segen</a>
+	</p>
+
+	<h2 class="header" id="kampf">Kampf</h2>
+	<p><img alt="" src="./Bilder/Kampf.png" style="width: 600px; height: 594px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="Kampf">
+		<br><b>PDF-Datei: </b><a target="_blank" href="./Kampf.pdf">Kampf</a>
+	</p>
+
+
+	<h2 class="header" id="werte">Werte</h2>
+	<p>Bei der Charaktererstellung ist es notwendig, den ein oder anderen Wert zu berechnen.
+		Dies sind die ben&ouml;tigten Formeln daf&uuml;r:</p>
+
+		<h3 id="leben">Leben</h3>
 		<p>Die Lebenspunkte eines Charakters errechnen sich mit folgender Formel:
 			<br><br>(<b>&oslash;K</b>)+(<b>&oslash;M/2</b>)+(<b>S</b>)
 			<br><b>K</b>=K&ouml;rperattribute, <b>M</b>=Mentalit&auml;tsattribute, <b>S</b>=Volksspezifischer Modifikator
@@ -102,39 +121,27 @@
 			</tr>
 		</table>
 
-	<h4 id="geistigegesundheit">Geitige Gesundheit</h4>
+	<h3 id="geistigegesundheit">Geitige Gesundheit</h3>
 	<p>Die geistige Gesundheit eines Charakters errechnet sich mit folgender Formel:
 		<br><br>((Willenskraft + Wahrnehmung + Fokus + Vorsicht)/4) * 5
 		<br><br>Der Minimalwert f&uuml;r geistige Gesundheit liegt bei 5, der Maximalwert bei 100. Geistige Gesundheit regeneriert sich über Nacht, je nach Situation.
 	</p>
 
-	<h4 id="staerke">St&auml;rke</h4>
+	<h3 id="staerke">St&auml;rke</h3>
 	<p>Die St&auml;rke eines Charakters errechnet sich mit folgender Formal:
 		<br><br>(Lebenspunkte * 0,05 + ((Beweglichkeit + Gleichgewicht)/4 )) + 3
 		<br><br>Das Ergebnis wird stets auf ganze oder halbe (.5) Zahlen gerundet. Der Minimalwert f&uuml;r St&auml;Draske liegt bei 7, der Maximalwert bei 20.
 	</p>
 
-	<h4 id="kampfwerte">Kampfwerte</h4>
-	<p>Die Kampfwerte unterteilen sich in verschiedene Werte f&uuml;r die sieben <a title="Waffenklassen" href="../Kampf/Waffenklassen">Waffenklassen</a>.
+	<h3 id="kampfwerte">Kampfwerte</h3>
+	<p>Die Kampfwerte unterteilen sich in verschiedene Werte f&uuml;r die sieben <a title="Waffenklassen" href="../Kampf/Waffenklassen.html">Waffenklassen</a>.
 	Jede Waffenklasse hat einen Basiswert von 5. Bei der Charaktererstellung k&ouml;nnen weitere Punkte auf den Wert verteilt werden. Letztlich wird der Bonuswert addiert.</p>
 
-	<h4 id="mana">Mana</h4>
+	<h3 id="mana">Mana</h3>
 	<p>Das Mana eines Charakters errechnet sich mit folgender Formal:
 		<br><br>((Fokus + Magiewissen + Geschicklichkeit)/3) * 10
 		<br><br>Der Minimalwert f&uuml;r Mana liegt bei 10, der Maximalwert bei 200. Mana regeneriert sich sowohl tags als auch nachts.
 	</p>
-
-
-	<h3 id="gegenstaende">Gegenst&auml;nde</h3>
-	<p>Items, Kampf/Waffen/R&uuml;stung</p>
-
-	<h2 class="header" id="bogen">B&ouml;gen</h2>
-	<ol>
-		<li><a target="_blank" href="./Persoenliche_Daten.pdf">Pers&ouml;nliche Daten</a></li>
-		<li><a target="_blank" href="./Attribute.pdf">Attribute</a></li>
-		<li><a target="_blank" href="./Items_Flueche+Segen.pdf">Items, Fl&uuml;che und Segen</a></li>
-		<li><a target="_blank" href="./Kampf.pdf">Kampf</a></li>
-	</ol>
 
 	</div>
 	</body>
