@@ -1,8 +1,7 @@
--umlaute checken
--scans erneuern (avzitil)
+-scans erneuern (avzitil, guqual)
 -religionen überarbeiten:
-    -paradies ausschreiben
 -kulturen ausarbeiten:
       -avzitil
       -quork (lebensphasen)
 -logo überlegen
+-design überarbeiten
