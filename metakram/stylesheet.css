@@ -152,3 +152,20 @@ a.hidden:visited {
 	text-decoration: none;
 	color: white;
 }
+.klappenmenu {
+	position: relative;
+	display: inline-block;
+}
+.klappezu {
+	display: none;
+	position: absolute;
+	background-color:#a2a9b1;
+	
+}
+.klappeauf {
+	display: block;
+}
+.klappe {
+	
+  cursor: pointer;
+}
