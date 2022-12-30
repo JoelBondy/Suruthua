@@ -8,3 +8,17 @@ const dict = {
     "Quork": 73,
     "Draske": 70
 };
+
+function getValue(id) {
+    let input = Number(id.value);
+
+    if (input > 20) {
+        input = 20
+        id.value = input
+    }
+    else if (input < 0) {
+        input = 1
+        id.value = input
+    }
+
+}
