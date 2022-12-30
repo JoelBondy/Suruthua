@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>Charakterbogen</title>
+    <link rel="stylesheet" type="text/css" href="./stylesheet.css">
+</head>
+<body>
+    <div id="content">
+        
+        Rasse:
+        <input id="rasse" type="text"> 
+        <br>
+        
+        Leben:
+        <div id="leben">0</div>
+        Geistige Gesundheit:
+        <div id="geistigegesundheit">0</div>
+        Mana:
+        <div id="mana">0</div>
+        Stärke:
+        <div id="starke">0</div>
+
+        <table style="border: 1px solid grey;width:20%;background-color:aqua">
+            <tr>
+                <th class="table">Soziales</th>
+                <td id="soziales">0</td>
+            </tr>
+            <tr>
+                <td>Menschenkenntnis</td>
+                <td class="border">
+                    <input id="s1" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Lügen</td>
+                <td class="border">
+                    <input id="s2" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Täuschen</td>
+                <td class="border">
+                    <input id="s3" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Überzeugen</td>
+                <td class="border">
+                    <input id="s4" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Feilschen</td>
+                <td class="border">
+                    <input id="s5" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Charisma</td>
+                <td class="border">
+                    <input id="s6" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Betören</td>
+                <td class="border">
+                    <input id="s7" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Einschüchtern</td>
+                <td class="border">
+                    <input id="s8" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+        </table>
+
+        <br>
+        <table style="border: 1px solid grey;width:20%;background-color:darkcyan">
+            <tr>
+                <th class="table">Wissen</th>
+                <td id="wissen">0</td>
+            </tr>
+            <tr>
+                <td>Medizin</td>
+                <td class="border">
+                    <input id="w1" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Tierkunde</td>
+                <td class="border">
+                    <input id="w2" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Pflanzenkunde</td>
+                <td class="border">
+                    <input id="w3" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Religionswissen</td>
+                <td class="border">
+                    <input id="w4" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Kultur</td>
+                <td class="border">
+                    <input id="w5" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Ortskunde</td>
+                <td class="border">
+                    <input id="w6" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Gassenwissen</td>
+                <td class="border">
+                    <input id="w7" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Magie</td>
+                <td class="border">
+                    <input id="w8" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Geschichte</td>
+                <td class="border">
+                    <input id="w9" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Etikette</td>
+                <td class="border">
+                    <input id="w10" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+        </table>
+        <br>
+
+        <table style="border: 1px solid grey;width:20%;background-color:darkgoldenrod">
+            <tr>
+                <th class="table">Körper</th>
+                <td id="korper">0</td>
+            </tr>
+            <tr>
+                <td>Beweglichkeit</td>
+                <td class="border">
+                    <input id="k1" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Reaktion</td>
+                <td class="border">
+                    <input id="k2" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>  
+            <tr>
+                <td>Schnelligkeit</td>
+                <td class="border">
+                    <input id="k3" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Gleichgewicht</td>
+                <td class="border">
+                    <input id="k4" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Schleichen</td>
+                <td class="border">
+                    <input id="k5" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Fingerfertigkeit</td>
+                <td class="border">
+                    <input id="k6" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Umgang mit Werkzeugen</td>
+                <td class="border">
+                    <input id="k7" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Geschicklichkeit</td>
+                <td class="border">
+                    <input id="k8" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+        </table>
+        <br>
+
+        <table style="border: 1px solid grey;width:20%;background-color:darkgreen">
+            <tr>
+                <th class="table">Mentales</th>
+                <td id="mentales">0</td>
+            </tr>
+            <tr>
+                <td>Fokus</th>
+                <td class="border">
+                    <input id="g1" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Geduld</th>
+                <td class="border">
+                    <input id="g2" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Wahrnehmung</th>
+                <td class="border">
+                    <input id="g3" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Untersuchen</th>
+                <td class="border">
+                    <input id="g4" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Erinnerung</th>
+                <td class="border">
+                    <input id="g5" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Vorsicht</th>
+                <td class="border">
+                    <input id="g6" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Orientierung</th>
+                <td class="border">
+                    <input id="g7" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Mut</th>
+                <td class="border">
+                    <input id="g8" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+            <tr>
+                <td>Willenskraft</th>
+                <td class="border">
+                    <input id="g9" type="number" min="1" max="20" maxlength="2" oninput="getValue()">
+                </td>
+            </tr>
+        </table>
+        <br><br>
+
+
+        <table style="border: 1px solid grey;width:20%;background-color:hotpink">
+            <tr>
+                <th class="table">Kombis</th>
+            </tr>
+            <tr>
+                <td>Umgang mit Tieren</td>
+                <td>Tierkunde + Charisma</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Stehlen</td>
+                <td>Fingerfertigkeit + Schleichen</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Fährtenlesen</td>
+                <td>Untersuchen + Tierkunde</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Spurenlesen</td>
+                <td>Untersuchen + Wahrnehmung</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Klettern</td>
+                <td>Beweglichkeit + Gleichgewicht</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Werfen</td>
+                <td>Fokus + Beweglichkeit</td>
+                <td>0</td>
+            </tr>
+        </table>
+
+        <table style="border: 1px solid grey;width:20%;background-color:hotpink">
+            <tr>
+                <th class="table">Feste Fertigkeiten</th>
+            </tr>
+            <tr>
+                <td>Schwimmen</td>
+                <td>Nein</td>
+            </tr>
+            <tr>
+                <td>Reiten</td>
+                <td>Nein</td>
+            </tr>
+            <tr>
+                <td>Lesen</td>
+                <td>Nein</td>
+            </tr>
+            <tr>
+                <td>Schreiben</td>
+                <td>Nein</td>
+            </tr>
+            <tr>
+                <td>Mathematik</td>
+                <td>Nein</td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="Charakterbogen.js"></script>
+</body>
+</html>
