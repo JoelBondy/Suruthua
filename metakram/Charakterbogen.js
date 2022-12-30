@@ -58,6 +58,26 @@ function getValue(id) {
         let aver = m.reduce((a, b) => a+b, 0) / m.length;
         document.getElementById("mentales").innerText = Math.round(aver);
    }
-    
+};
 
-}
+    //Öffne und schließe das Rassenmenü
+    function klappenregler() {
+        document.getElementById("auswahl").classList.toggle("klappeauf");
+    }
+
+    //Schließe Menü wenn woanders hingeklickt wird
+    window.onclick = function(event) {
+        if (!event.target.matches('.klappe')) {
+            document.getElementById("auswahl")
+            let dropdowns = document.getElementsByClassName("klappezu");
+            let i;
+            for (i = 0; i < dropdowns.length; i++) {
+                let openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('klappeauf')) {
+                openDropdown.classList.remove('klappeauf');
+                }
+        }
+        }
+    }
+ 
+
