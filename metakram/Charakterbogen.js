@@ -11,7 +11,7 @@ const race = {
 };
 
 //Erstelle ein dict mit Attribut:id(k1 usw.) zum schnelleren Finden
-const idcorp = {}
+const idcorp = {};
 for (let i=1;i<9;i++) {
     idcorp[getHelp("k"+i).parentNode.parentNode.childNodes[1].innerText] = "k"+i;
 }
@@ -29,20 +29,25 @@ for (let i=1;i<9;i++) {
 //Insgesamt zu vergebene Punkte
 const punkte = 400;
 
-//Array mit den ids aller festen Fähigkeitn
+//Arrays mit den ids aller festen Fähigkeiten Waffenklassen
 const fest = ["schwimm","reit","les","schreib","mathe"];
-const waffenklassen = ["kling", "schlag", "stich", "kunst", "rauf", "wirf","fern"];
+const waffenklassen = ["kling", "schlag", "stich", "kunst", "rauf", "wurf","fern"];
+const bonus = {"kling":["k8","m1","k3"],"schlag":["stark","s8","k1",],"stich":["k4","k6","k1"],
+"kunst":["k4","k2","k1"],"rauf":["m8","s8","k3"],"wurf":["k8","m1","werf"], "fern":["k8","m1","m2"]};
+const kombi = {"tiere":["w2","s6"],"dieb":["k6","k5"],"tierspur":["m4","w2"],"spur":["m4",
+"m3"],"klette":["k1","k4"],"werf":["m1","k1"]};
 
 //Arrays mit allen Werten nach Kategorie seprariert
 let s = Array(8).fill(1);
 let w = Array(10).fill(1);
 let k = Array(8).fill(1);
 let m = Array(9).fill(1);
-
+const v = "v";
+const t = "t";
 
 
 //Action wenn eine Zahl geändert wird
-function getValue(id) {
+function changeNumber(id) {
 
     //Geänderte Zahl
     let input = Number(id.value);
@@ -83,16 +88,35 @@ function getValue(id) {
         getHelp("mentales").innerText = Math.round(aver);
    }
 
+   //Alles auf dem Laufenden halten
    updateWerte();
 };
 
-
+//Kurze Variante;Nimmt ID als input und returned Element mit dieser ID
 function getHelp(id) {
     return document.getElementById(id);
 }
+//Holt den Inhalt eines Elements mit input ID je nach Art
+//type=v,t
+function getVal(type,id) {
+    if (type=="v") return getHelp(id).value;
+    else if (type=="t") return getHelp(id).innerText;
+    return;
+}
+function setVal(type,id,value) {
+    if (type=="v") getHelp(id).value = value;
+    else if (type==t) getHelp(id).innerText = value;
+    return;
+}
+//getVal aber von String zu number umgewandelt
+function getNum(type,id) {
+    if (type=="v"||type=="t") return Number(getVal(type,id));
+    return;
+}
 
 
-//Öffne und schließe das Rassenmenü
+
+//Öffne und schließe das dropdownmenü
 function klappenregler(klappe) {
     getHelp(klappe.id).classList.toggle("klappeauf");
 }
@@ -100,12 +124,12 @@ function klappenregler(klappe) {
 //Schließe Menü wenn woanders hingeklickt wird
 window.onclick = function(event) {
     if (!event.target.matches('.klappe')) {
-        let dropdowns = document.getElementsByClassName("klappezu");
+        let klappen = document.getElementsByClassName("klappezu");
         let i;
-        for (i = 0; i < dropdowns.length; i++) {
-            let openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('klappeauf')) {
-                openDropdown.classList.remove('klappeauf');
+        for (i = 0; i < klappen.length; i++) {
+            let klappeoffen = klappen[i];
+            if (klappeoffen.classList.contains('klappeauf')) {
+                klappeoffen.classList.remove('klappeauf');
             }
         }
     }
@@ -128,7 +152,7 @@ function changeLabel(klasse) {
 //Erhöhe Punkt der Klasse um 1
 function plus(klasse) {
     let plus = Number(getHelp(klasse.id+"punkte").innerText);
-    plus += 1;
+    plus += 5;
     getHelp(klasse.id+"punkte").innerText = plus;
     updateWerte();
 }
@@ -136,7 +160,7 @@ function plus(klasse) {
 //Verringere Punkt der Klasse um 1 sofern p >= 0
 function minus(klasse) {
     let minus = Number(getHelp(klasse.id+"punkte").innerText);
-    if (!minus == 0) minus -= 1;
+    if (!minus == 0) minus -= 5;
     getHelp(klasse.id+"punkte").innerText = minus
     updateWerte();
 }
@@ -200,56 +224,43 @@ function updateWerte() {
     getHelp("stark").innerText = Math.round(stark);
 
     //Kombis
-    let tier = (Number(getHelp("w2").value)+Number(getHelp("s6").value))/2;
-    getHelp("tiere").innerText = Math.round(tier);
-    let dieb = (Number(getHelp("k6").value)+Number(getHelp("k5").value))/2;
-    getHelp("dieb").innerText = Math.round(dieb);
-    let fahrt = (Number(getHelp("m4").value)+Number(getHelp("w2").value))/2;
-    getHelp("tierspur").innerText = Math.round(fahrt);
-    let spur = (Number(getHelp("m4").value)+Number(getHelp("m3").value))/2;
-    getHelp("spur").innerText = Math.round(spur);
-    let klette = (Number(getHelp("k1").value)+Number(getHelp("k4").value))/2;
-    getHelp("klette").innerText = Math.round(klette);
-    let werf = (Number(getHelp("m1").value)+Number(getHelp("k1").value))/2;
-    getHelp("werf").innerText = Math.round(werf);
+    //Iteriere durch alle Kombis und passe die Werte an
+    Object.keys(kombi).forEach(function(item){
+        let endkombi = Math.round((getNum(v,kombi[item][0])+getNum(v,kombi[item][1]))/2);
+        setVal(t,item,endkombi);
+    });
+
 
     //Bonuswerte Kampf
-    let kling = (Number(getHelp("k8").value)+Number(getHelp("m1").value)+Number(getHelp("k3").value))*0.1;
-    getHelp("klingbonus").innerText = Math.round(kling);
-    let schlag = (Number(getHelp("stark").innerText)+Number(getHelp("s8").value)+Number(getHelp("k1").value))*0.1;
-    getHelp("schlagbonus").innerText = Math.round(schlag);
-    let stich = (Number(getHelp("k4").value)+Number(getHelp("k6").value)+Number(getHelp("k1").value))*0.1;
-    getHelp("stichbonus").innerText = Math.round(stich);
-    let kampf = (Number(getHelp("k4").value)+Number(getHelp("k2").value)+Number(getHelp("k1").value))*0.1;
-    getHelp("kunstbonus").innerText = Math.round(kampf);
-    let rauf = (Number(getHelp("m8").value)+Number(getHelp("s8").value)+Number(getHelp("k3").value))*0.1;
-    getHelp("raufbonus").innerText = Math.round(rauf);
-    let worf = (Number(getHelp("k8").value)+Number(getHelp("m1").value)+Number(getHelp("werf").innerText))*0.1;
-    getHelp("wurfbonus").innerText = Math.round(worf);
-    let fern = (Number(getHelp("k8").value)+Number(getHelp("m1").value)+Number(getHelp("m2").value))*0.1;
-    getHelp("fernbonus").innerText = Math.round(fern);
+    //Iteriere durch alle Kampfklassen und passe die Boni an
+    Object.keys(bonus).forEach(function(item){
+        let endbonus;
+        let bonus1,bonus2,bonus3;
+        
+        //catche stärke und werfen, da sie text und kein value enthalten
+        if (bonus[item][0]=="stark") bonus1 = getNum(t,bonus[item][0]);
+        else bonus1 = getNum(v,bonus[item][0]);
+        bonus2 = getNum(v,bonus[item][1]);
+        if (bonus[item][2]=="werf") bonus3 = getNum(t,bonus[item][2]);
+        else bonus3 = getNum(v,bonus[item][2]);
 
+        endbonus = Math.round((bonus1+bonus2+bonus3)*0.1);
+        setVal(t,item+"bonus",endbonus);
+    });
+
+    
 
     //Kampf- und Paradewerte
-    let klong = Number(getHelp("klingbonus").innerText)+Number(getHelp("klingpunkte").innerText)+5;
-    getHelp("klingkampf").innerText = Math.round(klong);
-    getHelp("klingparade").innerText = Math.round(klong/2);
-    let schlog = Number(getHelp("schlagbonus").innerText)+Number(getHelp("schlagpunkte").innerText)+5;
-    getHelp("schlagkampf").innerText = Math.round(schlog);
-    getHelp("schlagparade").innerText = Math.round(schlog/2);
-    let stoch = Number(getHelp("stichbonus").innerText)+Number(getHelp("stichpunkte").innerText)+5;
-    getHelp("stichkampf").innerText = Math.round(stoch);
-    getHelp("stichparade").innerText = Math.round(stoch/2);
-    let konst = Number(getHelp("kunstbonus").innerText)+Number(getHelp("kunstpunkte").innerText)+5;
-    getHelp("kunstkampf").innerText = Math.round(konst);
-    getHelp("kunstparade").innerText = Math.round(konst/2);
-    let rof = Number(getHelp("raufbonus").innerText)+Number(getHelp("raufpunkte").innerText)+5;
-    getHelp("raufkampf").innerText = Math.round(rof);
-    getHelp("raufparade").innerText = Math.round(rof/2);
-    let woorf = Number(getHelp("wurfbonus").innerText)+Number(getHelp("wirfpunkte").innerText)+5;
-    getHelp("wurfkampf").innerText = Math.round(woorf);
-    let forn = Number(getHelp("fernbonus").innerText)+Number(getHelp("fernpunkte").innerText)+5;
-    getHelp("fernkampf").innerText = Math.round(forn);
+    waffenklassen.forEach(function(item) {
+        let neuwert;
+        neuwert = Number(getHelp(item+"bonus").innerText)+(Number(getHelp(item+"punkte").innerText)/5)+5;
+        getHelp(item+"kampf").innerText = Math.round(neuwert);
+        //wurf- und fernwaffen haben keinen paradewert
+        if (!(item == "wurf"||item=="fern")){
+            getHelp(item+"parade").innerText = Math.round(neuwert/2);
+        };
+    });
+   
 
     //Noch zu vergebene Punkte
     let total = (
@@ -264,7 +275,7 @@ function updateWerte() {
     }); 
     //5 Punkte pro Waffenklassenpunkt
     waffenklassen.forEach(function (item) {
-       total= total+(Number(getHelp(item+'punkte').innerText)*5);
+       total= total+Number(getHelp(item+'punkte').innerText);
     })
 
     total = punkte-total;
