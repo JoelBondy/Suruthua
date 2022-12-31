@@ -45,6 +45,31 @@ let m = Array(9).fill(1);
 const v = "v";
 const t = "t";
 
+//Helperfunctions
+
+//Kurze Variante;Nimmt ID als input und returned Element mit dieser ID
+function getHelp(id) {
+    return document.getElementById(id);
+}
+//Holt den Inhalt eines Elements per ID je nach Art
+//type=v,t
+function getVal(type,id) {
+    if (type==v) return getHelp(id).value;
+    else if (type==t) return getHelp(id).innerText;
+    return;
+}
+//Holt Inhalt eines Elements per ID und ersetzt ihn durch inputvalue
+function setVal(type,id,value) {
+    if (type==v) getHelp(id).value = value;
+    else if (type==t) getHelp(id).innerText = value;
+    return;
+}
+//getVal aber von String zu number umgewandelt
+function getNum(type,id) {
+    if (type==v||type==t) return Number(getVal(type,id));
+    return;
+}
+
 
 //Action wenn eine Zahl geändert wird
 function changeNumber(id) {
@@ -69,50 +94,27 @@ function changeNumber(id) {
     //Zahl im entsprechenden Array updaten und dann Durchschnitt der Kategorie gerundet neu berechnen und ändern
     if (section == "s") {
         s[index] = input;
-        let aver = s.reduce((a, b) => a+b, 0) / s.length;
-        getHelp("soziales").innerText = Math.round(aver);
+        let aver = Math.round(s.reduce((a, b) => a+b, 0) / s.length);
+        setVal(t,"soziales",aver);
     }
     else if (section == "w") {
         w[index] = input;
-        let aver = w.reduce((a, b) => a+b, 0) / w.length;
-        getHelp("wissen").innerText = Math.round(aver);
+        let aver =Math.round(w.reduce((a, b) => a+b, 0) / w.length);
+        setVal(t,"wissen",aver);
     }
    else if (section == "k") {
         k[index] = input;
-        let aver = k.reduce((a, b) => a+b, 0) / k.length;
-        getHelp("korper").innerText = Math.round(aver);
+        let aver = Math.round(k.reduce((a, b) => a+b, 0) / k.length);
+        setVal(t,"korper",aver);
    }
    else if (section == "m") {
         m[index] = input;
-        let aver = m.reduce((a, b) => a+b, 0) / m.length;
-        getHelp("mentales").innerText = Math.round(aver);
+        let aver = Math.round(m.reduce((a, b) => a+b, 0) / m.length);
+        setVal(t,"mentales",aver);
    }
-
    //Alles auf dem Laufenden halten
    updateWerte();
 };
-
-//Kurze Variante;Nimmt ID als input und returned Element mit dieser ID
-function getHelp(id) {
-    return document.getElementById(id);
-}
-//Holt den Inhalt eines Elements mit input ID je nach Art
-//type=v,t
-function getVal(type,id) {
-    if (type=="v") return getHelp(id).value;
-    else if (type=="t") return getHelp(id).innerText;
-    return;
-}
-function setVal(type,id,value) {
-    if (type=="v") getHelp(id).value = value;
-    else if (type==t) getHelp(id).innerText = value;
-    return;
-}
-//getVal aber von String zu number umgewandelt
-function getNum(type,id) {
-    if (type=="v"||type=="t") return Number(getVal(type,id));
-    return;
-}
 
 
 
@@ -145,15 +147,15 @@ function namechanger(id, target) {
 
 //Zeige ausgewählte Klasse an
 function changeLabel(klasse) {
-    getHelp("talentart").innerText = klasse.innerText
-    getHelp("talente").innerText = klasse.title
+    setVal(t,"talentart",klasse.innerText);
+    setVal(t,"talente",klasse.title);
 }
 
 //Erhöhe Punkt der Klasse um 1
 function plus(klasse) {
     let plus = Number(getHelp(klasse.id+"punkte").innerText);
     plus += 5;
-    getHelp(klasse.id+"punkte").innerText = plus;
+    setVal(t,klasse.id+"punkte",plus);
     updateWerte();
 }
 
@@ -161,7 +163,7 @@ function plus(klasse) {
 function minus(klasse) {
     let minus = Number(getHelp(klasse.id+"punkte").innerText);
     if (!minus == 0) minus -= 5;
-    getHelp(klasse.id+"punkte").innerText = minus
+    setVal(t,klasse.id+"punkte",minus);
     updateWerte();
 }
 
@@ -170,58 +172,38 @@ function minus(klasse) {
 function updateWerte() {
 
     //Leben; Default bis Rasse gewählt ist
-    if (getHelp("raceselect").innerText == "Auswahl") {
-        getHelp("leben").innerText = "Wähle eine Rasse";
+    if (getVal(t,"raceselect") == "Auswahl") {
+        setVal(t,"leben","Wähle eine Rasse");
     }
     else {
-    let modi = race[getHelp("raceselect").innerText];
-        let vitali = (
-            Number(getHelp("korper").innerText)+
-            (Number(getHelp("mentales").innerText)/2)+
-            modi
-        );
-        //checkerito, dass alles passt
+    let modi = race[getVal(t,"raceselect")];
+        let vitali = Math.round(getNum(t,"korper")+(getNum(t,"mentales")/2)+modi);
         if (vitali<1) vitali = 0;
-        //Wert einfügen
-        getHelp("leben").innerText = Math.round(vitali);
+        setVal(t,"leben",vitali);
     }
 
     //Geistige Gesundheit
     //Attributwerte holen und daraus GG berechnen
-    let gg = (
-        Number(getHelp("m9").value)+Number(getHelp("m3").value)+
-        Number(getHelp("m1").value)+Number(getHelp("m6").value)
-    );
-    gg = (gg/4)*5;
-    //checkerito, dass alles passt
+    let gg = getNum(v,"m9")+getNum(v,"m3")+getNum(v,"m1")+getNum(v,"m6");
+    Math.round((gg/4)*5);
     if (gg<5) gg = 5;
     else if (gg>100) gg=100;
-    //Wert einfügen
-    getHelp("gege").innerText = Math.round(gg);
+    setVal(t,"gege",gg);
 
     //Mana
     //Attributwerte holen und daraus Mana berechnen
-    let mana = (
-        Number(getHelp("m1").value)+
-        Number(getHelp("w8").value)+Number(getHelp("k8").value)
-    );
-    mana = (mana/3)*10;
-    //checkerito, dass alles passt
+    let mana = getNum(v,"m1")+getNum(v,"w8")+getNum(v,"k8");
+    Math.round(mana = (mana/3)*10);
     if (mana<10) mana = 10;
     else if (mana>200) mana = 200;
-    //Wert einfügen
-    getHelp("mana").innerText = Math.round(mana);
+    setVal(t,"mana",mana);
 
     //Stärke
     //Attributwerte holen und daraus Stärke berechnen
-    let stark = (
-        (Number(getHelp("leben").innerText)*0,05)+
-        ((Number(getHelp("k1").value)+Number(getHelp("k4").value))/4)+3
-    );
+    let stark = Math.round(getNum(t,"leben")*0.05+((getNum(v,"k1")+getNum(v,"k4"))/4)+3);
     if (stark<7) stark = 7;
     else if (stark>20) stark = 20;
-    //Wert einfügen
-    getHelp("stark").innerText = Math.round(stark);
+    setVal(t,"stark",stark);
 
     //Kombis
     //Iteriere durch alle Kombis und passe die Werte an
@@ -253,8 +235,8 @@ function updateWerte() {
     //Kampf- und Paradewerte
     waffenklassen.forEach(function(item) {
         let neuwert;
-        neuwert = Number(getHelp(item+"bonus").innerText)+(Number(getHelp(item+"punkte").innerText)/5)+5;
-        getHelp(item+"kampf").innerText = Math.round(neuwert);
+        neuwert = Math.round(getNum(t,item+"bonus")+(getNum(t,item+"punkte")/5)+5);
+        setVal(t,item+"kampf",neuwert);
         //wurf- und fernwaffen haben keinen paradewert
         if (!(item == "wurf"||item=="fern")){
             getHelp(item+"parade").innerText = Math.round(neuwert/2);
@@ -269,15 +251,14 @@ function updateWerte() {
     );
     //5 Punkte pro fester Fähigkeit
     fest.forEach(function (item) {
-        if (getHelp(item).innerText=="Ja") {
+        if (getVal(t,item)=="Ja") {
             total=total+5;
         }
     }); 
     //5 Punkte pro Waffenklassenpunkt
     waffenklassen.forEach(function (item) {
-       total= total+Number(getHelp(item+'punkte').innerText);
+       total = total+getNum(t,item+'punkte');
     })
-
     total = punkte-total;
-    getHelp("total").innerText = total;
+    setVal(t,"total",total);
 }
