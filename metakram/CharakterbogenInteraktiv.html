@@ -11,16 +11,16 @@
         <div id="total">400</div>
         Rasse:
         <div class="klappenmenu">
-            <button id="menuanzeige" onclick="klappenregler()" class="klappe">Auswahl</button>
+            <button id="raceselect" onclick="klappenregler(auswahl)" class="klappe">Auswahl</button>
             <div id="auswahl" class="klappezu">
-                <p id="amaka" onclick="namechanger(amaka)">Amaka</p>
-                <p id="guqual" onclick="namechanger(guqual)">Guqual</p>
-                <p id="avzitil" onclick="namechanger(avzitil)">Avzitil</p>
-                <p id="vadonier" onclick="namechanger(vadonier)">Vadonier</p>
-                <p id="elb" onclick="namechanger(elb)">Elb</p>
-                <p id="augling" onclick="namechanger(augling)">Augling</p>
-                <p id="quork" onclick="namechanger(quork)">Quork</p>
-                <p id="draske" onclick="namechanger(draske)">Draske</p>
+                <p id="amaka" onclick="namechanger(amaka, raceselect)">Amaka</p>
+                <p id="guqual" onclick="namechanger(guqual, raceselect)">Guqual</p>
+                <p id="avzitil" onclick="namechanger(avzitil, raceselect)">Avzitil</p>
+                <p id="vadonier" onclick="namechanger(vadonier, raceselect)">Vadonier</p>
+                <p id="elb" onclick="namechanger(elb, raceselect)">Elb</p>
+                <p id="augling" onclick="namechanger(augling, raceselect)">Augling</p>
+                <p id="quork" onclick="namechanger(quork, raceselect)">Quork</p>
+                <p id="draske" onclick="namechanger(draske, raceselect)">Draske</p>
             </div>
         </div> 
         <br>
@@ -214,9 +214,9 @@
         </table>
         <br>
 
-        <table style="border: 1px solid grey;width:20%;background-color:darkgreen">
+        <table style="border: 1px solid grey;width:20%;background-color:darkgreen;color:aliceblue">
             <tr>
-                <th class="table">Mentales</th>
+                <th class="table" style="color:black">Mentales</th>
                 <td id="mentales">0</td>
             </tr>
             <tr>
@@ -312,30 +312,71 @@
                 <td>0</td>
             </tr>
         </table>
+        <br>
 
-        <table style="border: 1px solid grey;width:20%;background-color:hotpink">
+        <table style="border: 1px solid grey;width:20%;background-color:aliceblue;">
             <tr>
-                <th class="table">Feste Fertigkeiten</th>
+                <th class="table" style="color:black;">Feste Fertigkeiten</th>
             </tr>
             <tr>
-                <td>Schwimmen</td>
-                <td>Nein</td>
+                <td class="border">Schwimmen</td>
+                <td>
+                    <div class="klappenmenu">
+                        <button id="schwimm" onclick="klappenregler(schwimmauswahl)" class="klappe">Nein</button>
+                        <div id="schwimmauswahl" class="klappezu">
+                            <p id="schwimmyes" onclick="namechanger(schwimmyes, schwimm)">Ja</p>
+                            <p id="schwimmno" onclick="namechanger(schwimmno, schwimm)">Nein</p>
+                        </div>
+                    </div>
+                </td>
             </tr>
             <tr>
-                <td>Reiten</td>
-                <td>Nein</td>
+                <td class="border">Reiten</td>
+                <td>
+                    <div class="klappenmenu">
+                        <button id="reit" onclick="klappenregler(reitauswahl)" class="klappe">Nein</button>
+                        <div id="reitauswahl" class="klappezu">
+                            <p id="reityes" onclick="namechanger(reityes, reit)">Ja</p>
+                            <p id="reitno" onclick="namechanger(reitno, reit)">Nein</p>
+                        </div>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td>Lesen</td>
-                <td>Nein</td>
+                <td>
+                    <div class="klappenmenu">
+                        <button id="les" onclick="klappenregler(lesauswahl)" class="klappe">Nein</button>
+                        <div id="lesauswahl" class="klappezu">
+                            <p id="lesyes" onclick="namechanger(lesyes, les)">Ja</p>
+                            <p id="lesno" onclick="namechanger(lesno, les)">Nein</p>
+                        </div>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td>Schreiben</td>
-                <td>Nein</td>
+                <td>
+                    <div class="klappenmenu">
+                        <button id="schreib" onclick="klappenregler(schreibauswahl)" class="klappe">Nein</button>
+                        <div id="schreibauswahl" class="klappezu">
+                            <p id="schreibyes" onclick="namechanger(schreibyes, schreib)">Ja</p>
+                            <p id="schreibno" onclick="namechanger(schreibno, schreib)">Nein</p>
+                        </div>
+                    </div>
+                </tr>
             </tr>
             <tr>
-                <td>Mathematik</td>
-                <td>Nein</td>
+                <td class="border">Mathematik</td>
+                <td>
+                    <div class="klappenmenu">
+                        <button id="mathe" onclick="klappenregler(matheauswahl)" class="klappe">Nein</button>
+                        <div id="matheauswahl" class="klappezu">
+                            <p id="matheyes" onclick="namechanger(matheyes, mathe)">Ja</p>
+                            <p id="matheno" onclick="namechanger(matheno, matheno)">Nein</p>
+                        </div>
+                    </div>
+                </td>
             </tr>
         </table>
     </div>
