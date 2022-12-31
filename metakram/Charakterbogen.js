@@ -46,22 +46,22 @@ function getValue(id) {
     if (section == "s") {
         s[index] = input;
         let aver = s.reduce((a, b) => a+b, 0) / s.length;
-        document.getElementById("soziales").innerText = Math.round(aver);
+        getHelp("soziales").innerText = Math.round(aver);
     }
     else if (section == "w") {
         w[index] = input;
         let aver = w.reduce((a, b) => a+b, 0) / w.length;
-        document.getElementById("wissen").innerText = Math.round(aver);
+        getHelp("wissen").innerText = Math.round(aver);
     }
    else if (section == "k") {
         k[index] = input;
         let aver = k.reduce((a, b) => a+b, 0) / k.length;
-        document.getElementById("korper").innerText = Math.round(aver);
+        getHelp("korper").innerText = Math.round(aver);
    }
    else if (section == "m") {
         m[index] = input;
         let aver = m.reduce((a, b) => a+b, 0) / m.length;
-        document.getElementById("mentales").innerText = Math.round(aver);
+        getHelp("mentales").innerText = Math.round(aver);
    }
 
    updateWerte();
@@ -77,7 +77,7 @@ function getHelp(id) {
 
 //Öffne und schließe das Rassenmenü
 function klappenregler(klappe) {
-    document.getElementById(klappe.id).classList.toggle("klappeauf");
+    getHelp(klappe.id).classList.toggle("klappeauf");
 }
 
 //Schließe Menü wenn woanders hingeklickt wird
@@ -110,13 +110,13 @@ function updateWerte() {
     );
     //5 Punkte pro fester Fähigkeit
     fest.forEach(function (item) {
-        if (document.getElementById(item).innerText=="Ja") {
+        if (getHelp(item).innerText=="Ja") {
             total=total+5;
         }
     }); 
 
     total = punkte-total;
-    document.getElementById("total").innerText = total;
+    getHelp("total").innerText = total;
 
     //Leben; Default bis Rasse gewählt ist
     if (getHelp("raceselect").innerText == "Auswahl") {
@@ -125,52 +125,52 @@ function updateWerte() {
     else {
     let modi = race[getHelp("raceselect").innerText];
         let vitali = (
-            Number(document.getElementById("korper").innerText)+
-            (Number(document.getElementById("mentales").innerText)/2)+
+            Number(getHelp("korper").innerText)+
+            (Number(getHelp("mentales").innerText)/2)+
             modi
         );
         //checkerito, dass alles passt
         if (vitali<1) vitali = 0;
         //Wert einfügen
-        document.getElementById("leben").innerText = vitali;
+        getHelp("leben").innerText = vitali;
     }
 
     //Geistige Gesundheit
     //Attributwerte holen und daraus GG berechnen
     let gg = (
-        Number(document.getElementById("m9").value)+Number(document.getElementById("m3").value)+
-        Number(document.getElementById("m1").value)+Number(document.getElementById("m6").value)
+        Number(getHelp("m9").value)+Number(getHelp("m3").value)+
+        Number(getHelp("m1").value)+Number(getHelp("m6").value)
     );
     gg = (gg/4)*5;
     //checkerito, dass alles passt
     if (gg<5) gg = 5;
     else if (gg>100) gg=100;
     //Wert einfügen
-    document.getElementById("gege").innerText = gg;
+    getHelp("gege").innerText = gg;
 
     //Mana
     //Attributwerte holen und daraus Mana berechnen
     let mana = (
-        Number(document.getElementById("m1").value)+
-        Number(document.getElementById("w8").value)+Number(document.getElementById("k8").value)
+        Number(getHelp("m1").value)+
+        Number(getHelp("w8").value)+Number(getHelp("k8").value)
     );
     mana = (mana/3)*10;
     //checkerito, dass alles passt
     if (mana<10) mana = 10;
     else if (mana>200) mana = 200;
     //Wert einfügen
-    document.getElementById("mana").innerText = mana;
+    getHelp("mana").innerText = mana;
 
     //Stärke
     //Attributwerte holen und daraus Stärke berechnen
     let stark = (
-        (Number(document.getElementById("leben").innerText)*0,05)+
-        ((Number(document.getElementById("k1").value)+Number(document.getElementById("k4").value))/4)+3
+        (Number(getHelp("leben").innerText)*0,05)+
+        ((Number(getHelp("k1").value)+Number(getHelp("k4").value))/4)+3
     );
     if (stark<7) stark = 7;
     else if (stark>20) stark = 20;
     //Wert einfügen
-    document.getElementById("stark").innerText = Math.round(stark);
+    getHelp("stark").innerText = Math.round(stark);
 
     //Kombis
     let tier = (Number(getHelp("w2").value)+Number(getHelp("s6").value))/2;
