@@ -132,7 +132,7 @@ function updateWerte() {
         //checkerito, dass alles passt
         if (vitali<1) vitali = 0;
         //Wert einfügen
-        getHelp("leben").innerText = vitali;
+        getHelp("leben").innerText = Math.round(vitali);
     }
 
     //Geistige Gesundheit
@@ -146,7 +146,7 @@ function updateWerte() {
     if (gg<5) gg = 5;
     else if (gg>100) gg=100;
     //Wert einfügen
-    getHelp("gege").innerText = gg;
+    getHelp("gege").innerText = Math.round(gg);
 
     //Mana
     //Attributwerte holen und daraus Mana berechnen
@@ -159,7 +159,7 @@ function updateWerte() {
     if (mana<10) mana = 10;
     else if (mana>200) mana = 200;
     //Wert einfügen
-    getHelp("mana").innerText = mana;
+    getHelp("mana").innerText = Math.round(mana);
 
     //Stärke
     //Attributwerte holen und daraus Stärke berechnen
