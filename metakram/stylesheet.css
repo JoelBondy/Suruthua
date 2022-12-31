@@ -157,7 +157,6 @@ a.hidden:visited {
 	display: inline-block;
 	cursor: pointer;
 	
-	
 }
 .klappenmenu p:hover {
 	background-color:grey;
@@ -167,6 +166,7 @@ a.hidden:visited {
 	position: absolute;
 	background-color:lightgrey;
 	border:1px solid black;
+	z-index:1;
 	
 }
 .klappeauf {
