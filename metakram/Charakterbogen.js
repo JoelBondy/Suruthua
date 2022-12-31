@@ -9,6 +9,21 @@ const race = {
     "Quork": 73,
     "Draske": 70
 };
+const idcorp = {}
+for (let i=1;i<9;i++) {
+    idcorp[getHelp("k"+i).parentNode.parentNode.childNodes[1].innerText] = "k"+i;
+}
+for (let i=1;i<10;i++) {
+    idcorp[getHelp("m"+i).parentNode.parentNode.childNodes[1].innerText] = "m"+i;
+}
+for (let i=1;i<11;i++) {
+    idcorp[getHelp("w"+i).parentNode.parentNode.childNodes[1].innerText] = "w"+i;
+}
+for (let i=1;i<9;i++) {
+    idcorp[getHelp("s"+i).parentNode.parentNode.childNodes[1].innerText] = "s"+i;
+}
+
+
 //Insgesamt zu vergeben Punkte
 const punkte = 400;
 
@@ -184,5 +199,21 @@ function updateWerte() {
     let klette = (Number(getHelp("k1").value)+Number(getHelp("k4").value))/2;
     getHelp("klette").innerText = Math.round(klette);
     let werf = (Number(getHelp("m1").value)+Number(getHelp("k1").value))/2;
-    getHelp("wurf").innerText = Math.round(werf);
+    getHelp("werf").innerText = Math.round(werf);
+
+    //Bonuswerte Kampf
+    let kling = (Number(getHelp("k8").value)+Number(getHelp("m1").value)+Number(getHelp("k3").value))*0.1;
+    getHelp("klingbonus").innerText = Math.round(kling);
+    let schlag = (Number(getHelp("stark").innerText)+Number(getHelp("s8").value)+Number(getHelp("k1").value))*0.1;
+    getHelp("schlagbonus").innerText = Math.round(schlag);
+    let stich = (Number(getHelp("k4").value)+Number(getHelp("k6").value)+Number(getHelp("k1").value))*0.1;
+    getHelp("stichbonus").innerText = Math.round(stich);
+    let kampf = (Number(getHelp("k4").value)+Number(getHelp("k2").value)+Number(getHelp("k1").value))*0.1;
+    getHelp("kunstbonus").innerText = Math.round(kampf);
+    let rauf = (Number(getHelp("m8").value)+Number(getHelp("s8").value)+Number(getHelp("k3").value))*0.1;
+    getHelp("raufbonus").innerText = Math.round(rauf);
+    let worf = (Number(getHelp("k8").value)+Number(getHelp("m1").value)+Number(getHelp("werf").innerText))*0.1;
+    getHelp("wurfbonus").innerText = Math.round(worf);
+    let fern = (Number(getHelp("k8").value)+Number(getHelp("m1").value)+Number(getHelp("m2").value))*0.1;
+    getHelp("fernbonus").innerText = Math.round(fern);
 }
