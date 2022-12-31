@@ -284,51 +284,51 @@
 
 
         <!-- Kombis -->
-        <table style="border: 1px solid grey;width:30%;background-color:aliceblue">
+        <table style="border: 1px solid grey;width:40%;background-color:aliceblue">
             <tr>
-                <th class="table">Kombis</th>
+                <th class="table" colspan="3">Kombis</th>
             </tr>
             <tr>
-                <td class="border">Umgang mit Tieren</td>
-                <td>Tierkunde + Charisma</td>
-                <td id="tiere">1</td>
+                <td class="center">Umgang mit Tieren</td>
+                <td class="bordercen">Tierkunde + Charisma</td>
+                <td class="center" id="tiere">1</td>
             </tr>
             <tr>
-                <td class="border">Stehlen</td>
-                <td>Fingerfertigkeit + Schleichen</td>
-                <td id="dieb">1</td>
+                <td class="center">Stehlen</td>
+                <td class="bordercen">Fingerfertigkeit + Schleichen</td>
+                <td class="center" id="dieb">1</td>
             </tr>
             <tr>
-                <td class="border">Fährtenlesen</td>
-                <td>Untersuchen + Tierkunde</td>
-                <td id="tierspur">1</td>
+                <td class="center">Fährtenlesen</td>
+                <td class="bordercen">Untersuchen + Tierkunde</td>
+                <td class="center" id="tierspur">1</td>
             </tr>
             <tr>
-                <td class="border">Spurenlesen</td>
-                <td>Untersuchen + Wahrnehmung</td>
-                <td id="spur">1</td>
+                <td class="center">Spurenlesen</td>
+                <td class="bordercen">Untersuchen + Wahrnehmung</td>
+                <td class="center" id="spur">1</td>
             </tr>
             <tr>
-                <td class="border">Klettern</td>
-                <td>Beweglichkeit + Gleichgewicht</td>
-                <td id="klette">1</td>
+                <td class="center">Klettern</td>
+                <td class="bordercen">Beweglichkeit + Gleichgewicht</td>
+                <td class="center" id="klette">1</td>
             </tr>
             <tr>
-                <td class="border">Werfen</td>
-                <td>Fokus + Beweglichkeit</td>
-                <td id="werf">1</td>
+                <td class="center">Werfen</td>
+                <td class="bordercen">Fokus + Beweglichkeit</td>
+                <td class="center" id="werf">1</td>
             </tr>
         </table>
         <br>
 
         <!-- Feste Fähigkeiten -->
-        <table style="border: 1px solid grey;width:20%;background-color:aliceblue;">
+        <table style="border: 1px solid grey;width:15%;background-color:aliceblue;">
             <tr>
-                <th class="table" style="color:black;">Feste Fertigkeiten</th>
+                <th class="table" colspan="2" style="color:black;">Feste Fertigkeiten</th>
             </tr>
             <tr>
-                <td class="border">Schwimmen</td>
-                <td>
+                <td class="center">Schwimmen</td>
+                <td class="right">
                     <div class="klappenmenu">
                         <button id="schwimm" onclick="klappenregler(schwimmauswahl)" class="klappe">Nein</button>
                         <div id="schwimmauswahl" class="klappezu">
@@ -339,8 +339,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="border">Reiten</td>
-                <td>
+                <td class="center">Reiten</td>
+                <td class="right">
                     <div class="klappenmenu">
                         <button id="reit" onclick="klappenregler(reitauswahl)" class="klappe">Nein</button>
                         <div id="reitauswahl" class="klappezu">
@@ -351,8 +351,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="border">Lesen</td>
-                <td>
+                <td class="center">Lesen</td>
+                <td class="right">
                     <div class="klappenmenu">
                         <button id="les" onclick="klappenregler(lesauswahl)" class="klappe">Nein</button>
                         <div id="lesauswahl" class="klappezu">
@@ -363,8 +363,8 @@
                 </td>
             </tr>
             <tr>
-                <td class="border">Schreiben</td>
-                <td>
+                <td class="center">Schreiben</td>
+                <td class="right">
                     <div class="klappenmenu">
                         <button id="schreib" onclick="klappenregler(schreibauswahl)" class="klappe">Nein</button>
                         <div id="schreibauswahl" class="klappezu">
@@ -375,13 +375,13 @@
                 </tr>
             </tr>
             <tr>
-                <td class="border">Mathematik</td>
-                <td>
+                <td class="center">Mathematik</td>
+                <td class="right">
                     <div class="klappenmenu">
                         <button id="mathe" onclick="klappenregler(matheauswahl)" class="klappe">Nein</button>
                         <div id="matheauswahl" class="klappezu">
                             <p id="matheyes" onclick="namechanger(matheyes, mathe)">Ja</p>
-                            <p id="matheno" onclick="namechanger(matheno, matheno)">Nein</p>
+                            <p id="matheno" onclick="namechanger(matheno, mathe)">Nein</p>
                         </div>
                     </div>
                 </td>
@@ -390,82 +390,82 @@
         <br>
 
         <!-- Waffenklasse -->
-        <table style="border: 1px solid grey;width:50%;background-color:honeydew">
+        <table style="border: 1px solid grey;width:20%;background-color:honeydew">
             <tr>
                 <th class="table">Waffenklasse</th>
                 <th class="table">Bonuswerte</th>
-                <th class="table">Investierte Punkte</th>
+                <th class="table">Punkte</th>
                 <th class="table">Kampfwert</th>
                 <th class="table">Paradewert</th>
             </tr>
             <tr>
-                <td class="border">
+                <td class="center">
                     <a onclick="changeLabel(kling)" id="kling" class="hoverbox" title="Geschicklichkeit, Fokus, Schnelligkeit">
                         Klingenwaffen</a>
                 </td>
-                <td class="border" id="klingbonus" >0</td>
-                <td class="border" id="klingpunkte">0</td>
-                <td class="border" id="klingkampf">0</td>
-                <td class="border" id="klingparade">0</td>
+                <td class="bordercen" id="klingbonus">0</td>
+                <td class="bordercen" id="klingpunkte">0</td>
+                <td class="bordercen" id="klingkampf">5</td>
+                <td class="bordercen" id="klingparade">3</td>
             </tr>
             <tr>
-                <td class="border">
+                <td class="center">
                     <a onclick=changeLabel(schlag) id="schlag" class="hoverbox" title="Stärke, Einschüchtern, Beweglichkeit">
                         Schlagwaffen</a>
                 </td>
-                <td class="border" id="schlagbonus">0</td>
-                <td class="border" id="schlagpunkte">0</td>
-                <td class="border" id="schlagkampf">0</td>
-                <td class="border" id="schlagparade">0</td>
+                <td class="bordercen" id="schlagbonus">0</td>
+                <td class="bordercen" id="schlagpunkte">0</td>
+                <td class="bordercen" id="schlagkampf">5</td>
+                <td class="bordercen" id="schlagparade">3</td>
             </tr>
             <tr>
-                <td class="border">
+                <td class="center">
                     <a onclick=changeLabel(stich) id="stich" class="hoverbox" title="Gleichgewicht, Fingerfertigkeit, Beweglichkeit">
                         Stichwaffen</a>
                 </td>
-                <td class="border" id="stichbonus">0</td>
-                <td class="border" id="stichpunkte">0</td>
-                <td class="border" id="stichkampf">0</td>
-                <td class="border" id="stichparade">0</td>
+                <td class="bordercen" id="stichbonus">0</td>
+                <td class="bordercen" id="stichpunkte">0</td>
+                <td class="bordercen" id="stichkampf">5</td>
+                <td class="bordercen" id="stichparade">3</td>
             </tr>
             <tr>
-                <td class="border">
+                <td class="center">
                     <a onclick=changeLabel(kunst) id="kunst" class="hoverbox" title="Gleichgewicht, Reaktion, Beweglichkeit">
                         Kampfkunst</a>
                 </td>
-                <td class="border" id="kunstbonus">0</td>
-                <td class="border" id="kunstpunkte">0</td>
-                <td class="border" id="kunstkampf">0</td>
-                <td class="border" id="kunstparade">0</td>
+                <td class="bordercen" id="kunstbonus">0</td>
+                <td class="bordercen" id="kunstpunkte">0</td>
+                <td class="bordercen" id="kunstkampf">5</td>
+                <td class="bordercen" id="kunstparade">3</td>
             </tr>
             <tr>
-                <td class="border">
+                <td class="center">
                     <a onclick=changeLabel(raufen) id="raufen" class="hoverbox" title="Mut, Einschüchtern, Schnelligkeit">
                         Raufen</a>
                 </td>
-                <td class="border" id="raufbonus">0</td>
-                <td class="border" id="raufpunkte">0</td>
-                <td class="border" id="raufkampd">0</td>
-                <td class="border" id="raufparade">0</td>
+                <td class="bordercen" id="raufbonus">0</td>
+                <td class="bordercen" id="raufpunkte">0</td>
+                <td class="bordercen" id="raufkampf">5</td>
+                <td class="bordercen" id="raufparade">3</td>
             </tr>
             <tr>
-                <td class="border">
+                <td class="center">
                     <a onclick=changeLabel(wirf) id="wirf" class="hoverbox" title="Geschicklichkeit, Fokus, Werfen">
                         Wurfwaffen</a>
                 </td>
-                <td class="border" id="wurfbonus">0</td>
-                <td class="border" id="wurfpunkte">0</td>
-                <td class="border" id="wurfkampd">0</td>
-                <td class="border" id="wurfparade">0</td>
+                <td class="bordercen" id="wurfbonus">0</td>
+                <td class="bordercen" id="wurfpunkte">0</td>
+                <td class="bordercen" id="wurfkampf">5</td>
+                <td class="blocked"></td>
             </tr>
             <tr>
-                <td class="border">
+                <td class="center">
                     <a onclick=changeLabel(fern) id="fern" class="hoverbox" title="Geschicklichkeit, Fokus, Geduld">
                         Fernwaffen</a>
                 </td>
-                <td class="border" id="fernbonus">0</td>
-                <td class="border" id="fernpunkte">0</td>
-                <td class="border" id="fernkampd">0</td>
+                <td class="bordercen" id="fernbonus">0</td>
+                <td class="bordercen" id="fernpunkte">0</td>
+                <td class="bordercen" id="fernkampf">5</td>
                 <td class="blocked"></td>
             </tr>
         </table>
