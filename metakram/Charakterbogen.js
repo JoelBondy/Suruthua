@@ -1,3 +1,4 @@
+import react;
 //Zum Abgleich und den Modifikator zu bekommen
 const race = {
     "Amaka": 112,
