@@ -30,7 +30,8 @@ for (let i=1;i<9;i++) {
 const punkte = 400;
 
 //Array mit den ids aller festen Fähigkeitn
-const fest = ["schwimm","reit","les","schreib","mathe"]
+const fest = ["schwimm","reit","les","schreib","mathe"];
+const waffenklassen = ["kling", "schlag", "stich", "kunst", "rauf", "wirf","fern"];
 
 //Arrays mit allen Werten nach Kategorie seprariert
 let s = Array(8).fill(1);
@@ -124,22 +125,25 @@ function changeLabel(klasse) {
     getHelp("talente").innerText = klasse.title
 }
 
+//Erhöhe Punkt der Klasse um 1
+function plus(klasse) {
+    let plus = Number(getHelp(klasse.id+"punkte").innerText);
+    plus += 1;
+    getHelp(klasse.id+"punkte").innerText = plus;
+    updateWerte();
+}
+
+//Verringere Punkt der Klasse um 1 sofern p >= 0
+function minus(klasse) {
+    let minus = Number(getHelp(klasse.id+"punkte").innerText);
+    if (!minus == 0) minus -= 1;
+    getHelp(klasse.id+"punkte").innerText = minus
+    updateWerte();
+}
+
+
 //Allgemeine Charakterwerte auf dem Laufenden halten
 function updateWerte() {
-    //Noch zu vergebene Punkte
-    let total = (
-        s.reduce((a,b) => a+b, 0) + k.reduce((a,b) => a+b, 0)+
-        w.reduce((a,b) => a+b, 0) + m.reduce((a,b) => a+b, 0)
-    );
-    //5 Punkte pro fester Fähigkeit
-    fest.forEach(function (item) {
-        if (getHelp(item).innerText=="Ja") {
-            total=total+5;
-        }
-    }); 
-
-    total = punkte-total;
-    getHelp("total").innerText = total;
 
     //Leben; Default bis Rasse gewählt ist
     if (getHelp("raceselect").innerText == "Auswahl") {
@@ -225,7 +229,6 @@ function updateWerte() {
     let fern = (Number(getHelp("k8").value)+Number(getHelp("m1").value)+Number(getHelp("m2").value))*0.1;
     getHelp("fernbonus").innerText = Math.round(fern);
 
-    //Investierte Punkte
 
     //Kampf- und Paradewerte
     let klong = Number(getHelp("klingbonus").innerText)+Number(getHelp("klingpunkte").innerText)+5;
@@ -243,8 +246,27 @@ function updateWerte() {
     let rof = Number(getHelp("raufbonus").innerText)+Number(getHelp("raufpunkte").innerText)+5;
     getHelp("raufkampf").innerText = Math.round(rof);
     getHelp("raufparade").innerText = Math.round(rof/2);
-    let woorf = Number(getHelp("wurfbonus").innerText)+Number(getHelp("wurfpunkte").innerText)+5;
+    let woorf = Number(getHelp("wurfbonus").innerText)+Number(getHelp("wirfpunkte").innerText)+5;
     getHelp("wurfkampf").innerText = Math.round(woorf);
     let forn = Number(getHelp("fernbonus").innerText)+Number(getHelp("fernpunkte").innerText)+5;
     getHelp("fernkampf").innerText = Math.round(forn);
+
+    //Noch zu vergebene Punkte
+    let total = (
+        s.reduce((a,b) => a+b, 0) + k.reduce((a,b) => a+b, 0)+
+        w.reduce((a,b) => a+b, 0) + m.reduce((a,b) => a+b, 0)
+    );
+    //5 Punkte pro fester Fähigkeit
+    fest.forEach(function (item) {
+        if (getHelp(item).innerText=="Ja") {
+            total=total+5;
+        }
+    }); 
+    //5 Punkte pro Waffenklassenpunkt
+    waffenklassen.forEach(function (item) {
+       total= total+(Number(getHelp(item+'punkte').innerText)*5);
+    })
+
+    total = punkte-total;
+    getHelp("total").innerText = total;
 }
