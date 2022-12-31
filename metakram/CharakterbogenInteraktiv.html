@@ -390,7 +390,7 @@
         <br>
 
         <!-- Waffenklasse -->
-        <table style="border: 1px solid grey;width:20%;background-color:honeydew">
+        <table style="border: 1px solid grey;width:50%;background-color:honeydew">
             <tr>
                 <th class="table">Waffenklasse</th>
                 <th class="table">Bonuswerte</th>
@@ -404,7 +404,11 @@
                         Klingenwaffen</a>
                 </td>
                 <td class="bordercen" id="klingbonus">0</td>
-                <td class="bordercen" id="klingpunkte">0</td>
+                <td class="bordercen">
+                    <button id="minuskling" onclick=minus(kling)>-</button>
+                    <span id="klingpunkte">0</span>
+                    <button id="pluskling" onclick=plus(kling)>+</button>
+                </td>
                 <td class="bordercen" id="klingkampf">5</td>
                 <td class="bordercen" id="klingparade">3</td>
             </tr>
@@ -414,7 +418,11 @@
                         Schlagwaffen</a>
                 </td>
                 <td class="bordercen" id="schlagbonus">0</td>
-                <td class="bordercen" id="schlagpunkte">0</td>
+                <td class="bordercen">
+                    <button id="minusschlg" onclick=minus(schlag)>-</button>
+                    <span id="schlagpunkte">0</span>
+                    <button id="plusschlag" onclick=plus(schlag)>+</button>
+                </td>
                 <td class="bordercen" id="schlagkampf">5</td>
                 <td class="bordercen" id="schlagparade">3</td>
             </tr>
@@ -424,7 +432,11 @@
                         Stichwaffen</a>
                 </td>
                 <td class="bordercen" id="stichbonus">0</td>
-                <td class="bordercen" id="stichpunkte">0</td>
+                <td class="bordercen">
+                    <button id="minusstich" onclick=minus(stich)>-</button>
+                    <span id="stichpunkte">0</span>
+                    <button id="plusstich" onclick=plus(stich)>+</button>
+                </td>
                 <td class="bordercen" id="stichkampf">5</td>
                 <td class="bordercen" id="stichparade">3</td>
             </tr>
@@ -434,17 +446,25 @@
                         Kampfkunst</a>
                 </td>
                 <td class="bordercen" id="kunstbonus">0</td>
-                <td class="bordercen" id="kunstpunkte">0</td>
+                <td class="bordercen">
+                    <button id="minuskunst" onclick=minus(kunst)>-</button>
+                    <span id="kunstpunkte">0</span>
+                    <button id="pluskunst" onclick=plus(kunst)>+</button>
+                </td>
                 <td class="bordercen" id="kunstkampf">5</td>
                 <td class="bordercen" id="kunstparade">3</td>
             </tr>
             <tr>
                 <td class="center">
-                    <a onclick=changeLabel(raufen) id="raufen" class="hoverbox" title="Mut, Einschüchtern, Schnelligkeit">
+                    <a onclick=changeLabel(rauf) id="rauf" class="hoverbox" title="Mut, Einschüchtern, Schnelligkeit">
                         Raufen</a>
                 </td>
                 <td class="bordercen" id="raufbonus">0</td>
-                <td class="bordercen" id="raufpunkte">0</td>
+                <td class="bordercen">
+                    <button id="minusrauf" onclick=minus(rauf)>-</button>
+                    <span id="raufpunkte">0</span>
+                    <button id="plusrauf" onclick=plus(rauf)>+</button>
+                </td>
                 <td class="bordercen" id="raufkampf">5</td>
                 <td class="bordercen" id="raufparade">3</td>
             </tr>
@@ -454,7 +474,11 @@
                         Wurfwaffen</a>
                 </td>
                 <td class="bordercen" id="wurfbonus">0</td>
-                <td class="bordercen" id="wurfpunkte">0</td>
+                <td class="bordercen">
+                    <button id="minuswurf" onclick=minus(wirf)>-</button>
+                    <span id="wirfpunkte">0</span>
+                    <button id="pluswurf" onclick=plus(wirf)>+</button>
+                </td>
                 <td class="bordercen" id="wurfkampf">5</td>
                 <td class="blocked"></td>
             </tr>
@@ -464,7 +488,11 @@
                         Fernwaffen</a>
                 </td>
                 <td class="bordercen" id="fernbonus">0</td>
-                <td class="bordercen" id="fernpunkte">0</td>
+                <td class="bordercen">
+                    <button id="minusfern" onclick=minus(fern)>-</button>
+                    <span id="fernpunkte">0</span>
+                    <button id=plusfern onclick=plus(fern)>+</button>
+                </td>
                 <td class="bordercen" id="fernkampf">5</td>
                 <td class="blocked"></td>
             </tr>
