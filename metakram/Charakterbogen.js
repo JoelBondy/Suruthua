@@ -224,4 +224,27 @@ function updateWerte() {
     getHelp("wurfbonus").innerText = Math.round(worf);
     let fern = (Number(getHelp("k8").value)+Number(getHelp("m1").value)+Number(getHelp("m2").value))*0.1;
     getHelp("fernbonus").innerText = Math.round(fern);
+
+    //Investierte Punkte
+
+    //Kampf- und Paradewerte
+    let klong = Number(getHelp("klingbonus").innerText)+Number(getHelp("klingpunkte").innerText)+5;
+    getHelp("klingkampf").innerText = Math.round(klong);
+    getHelp("klingparade").innerText = Math.round(klong/2);
+    let schlog = Number(getHelp("schlagbonus").innerText)+Number(getHelp("schlagpunkte").innerText)+5;
+    getHelp("schlagkampf").innerText = Math.round(schlog);
+    getHelp("schlagparade").innerText = Math.round(schlog/2);
+    let stoch = Number(getHelp("stichbonus").innerText)+Number(getHelp("stichpunkte").innerText)+5;
+    getHelp("stichkampf").innerText = Math.round(stoch);
+    getHelp("stichparade").innerText = Math.round(stoch/2);
+    let konst = Number(getHelp("kunstbonus").innerText)+Number(getHelp("kunstpunkte").innerText)+5;
+    getHelp("kunstkampf").innerText = Math.round(konst);
+    getHelp("kunstparade").innerText = Math.round(konst/2);
+    let rof = Number(getHelp("raufbonus").innerText)+Number(getHelp("raufpunkte").innerText)+5;
+    getHelp("raufkampf").innerText = Math.round(rof);
+    getHelp("raufparade").innerText = Math.round(rof/2);
+    let woorf = Number(getHelp("wurfbonus").innerText)+Number(getHelp("wurfpunkte").innerText)+5;
+    getHelp("wurfkampf").innerText = Math.round(woorf);
+    let forn = Number(getHelp("fernbonus").innerText)+Number(getHelp("fernpunkte").innerText)+5;
+    getHelp("fernkampf").innerText = Math.round(forn);
 }
