@@ -12,6 +12,9 @@ const race = {
 //Insgesamt zu vergeben Punkte
 const punkte = 400;
 
+//Array mit den ids aller festen Fähigkeitn
+const fest = ["schwimm","reit","les","schreib","mathe"]
+
 //Arrays mit allen Werten nach Kategorie seprariert
 let s = Array(8).fill(1);
 let w = Array(10).fill(1);
@@ -64,15 +67,18 @@ function getValue(id) {
    updateWerte();
 };
 
+function getText(id) {
+   return id.innerText;
+}
+
 //Öffne und schließe das Rassenmenü
-function klappenregler() {
-    document.getElementById("auswahl").classList.toggle("klappeauf");
+function klappenregler(klappe) {
+    document.getElementById(klappe.id).classList.toggle("klappeauf");
 }
 
 //Schließe Menü wenn woanders hingeklickt wird
 window.onclick = function(event) {
     if (!event.target.matches('.klappe')) {
-        document.getElementById("auswahl");
         let dropdowns = document.getElementsByClassName("klappezu");
         let i;
         for (i = 0; i < dropdowns.length; i++) {
@@ -85,24 +91,32 @@ window.onclick = function(event) {
 }
 
 //Zeige ausgewählte Rasse an
-function namechanger(id) {
-    document.getElementById("menuanzeige").innerText = id.innerText;
+function namechanger(id, target) {
+    if (id == null || target == null) return;
+    target.innerText = id.innerText;
     updateWerte();
 }
 
 //Allgemeine Charakterwerte auf dem Laufenden halten
 function updateWerte() {
-    //Noch zu vergeben Punkte
+    //Noch zu vergebene Punkte
     let total = (
         s.reduce((a,b) => a+b, 0)+k.reduce((a,b) => a+b, 0)+
         w.reduce((a,b) => a+b, 0) + m.reduce((a,b) => a+b, 0)
     );
+    //5 Punkte pro fester Fähigkeit
+    fest.forEach(function (item) {
+        if (document.getElementById(item).innerText=="Ja") {
+            total=total+5;
+        }
+    }); 
+
     total = punkte-total;
     document.getElementById("total").innerText = total;
 
     //Leben
     //Attributwerte holen und daraus Leben berechnen
-    let modi = race[document.getElementById("menuanzeige").innerText];
+    let modi = race[document.getElementById("raceselect").innerText];
     let vitali = (
         Number(document.getElementById("korper").innerText)+
         (Number(document.getElementById("mentales").innerText)/2)+
