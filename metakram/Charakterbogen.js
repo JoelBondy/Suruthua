@@ -58,6 +58,8 @@ function getValue(id) {
         let aver = m.reduce((a, b) => a+b, 0) / m.length;
         document.getElementById("mentales").innerText = Math.round(aver);
    }
+
+   updateWerte();
 };
 
 //Öffne und schließe das Rassenmenü
@@ -83,5 +85,59 @@ window.onclick = function(event) {
 //Zeige ausgewählte Rasse an
 function namechanger(id) {
     document.getElementById("menuanzeige").innerText = id.innerText;
+    updateWerte();
 }
 
+//Allgemeine Charakterwerte auf dem Laufenden halten
+function updateWerte() {
+    //Leben
+    //Attributwerte holen und daraus Leben berechnen
+    let modi = race[document.getElementById("menuanzeige").innerText];
+    let vitali = (
+        Number(document.getElementById("korper").innerText)+
+        (Number(document.getElementById("mentales").innerText)/2)+
+        modi
+    );
+    //checkerito, dass alles passt
+    if (vitali<1) vitali = 0;
+    //Wert einfügen
+    document.getElementById("leben").innerText = vitali;
+  
+
+    //Geistige Gesundheit
+    //Attributwerte holen und daraus GG berechnen
+    let gg = (
+        Number(document.getElementById("m9").value)+Number(document.getElementById("m3").value)+
+        Number(document.getElementById("m1").value)+Number(document.getElementById("m6").value)
+    );
+    gg = (gg/4)*5;
+    //checkerito, dass alles passt
+    if (gg<5) gg = 5;
+    else if (gg>100) gg=100;
+    //Wert einfügen
+    document.getElementById("gege").innerText = gg;
+
+    //Mana
+    //Attributwerte holen und daraus Mana berechnen
+    let mana = (
+        Number(document.getElementById("m1").value)+
+        Number(document.getElementById("w8").value)+Number(document.getElementById("k8").value)
+    );
+    mana = (mana/3)*10;
+    //checkerito, dass alles passt
+    if (mana<10) mana = 10;
+    else if (mana>200) mana = 200;
+    //Wert einfügen
+    document.getElementById("mana").innerText = mana;
+
+    //Stärke
+    //Attributwerte holen und daraus Stärke berechnen
+    let stark = (
+        (Number(document.getElementById("leben").innerText)*0,05)+
+        ((Number(document.getElementById("k1").value)+Number(document.getElementById("k4").value))/4)+3
+    )
+    if (stark<7) stark = 7;
+    else if (stark>20) stark = 20;
+    //Wert einfügen
+    document.getElementById("stark").innerText = stark;
+}
