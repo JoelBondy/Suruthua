@@ -71,6 +71,10 @@ function getText(id) {
    return id.innerText;
 }
 
+function getHelp(id) {
+    return document.getElementById(id);
+}
+
 //Öffne und schließe das Rassenmenü
 function klappenregler(klappe) {
     document.getElementById(klappe.id).classList.toggle("klappeauf");
@@ -101,7 +105,7 @@ function namechanger(id, target) {
 function updateWerte() {
     //Noch zu vergebene Punkte
     let total = (
-        s.reduce((a,b) => a+b, 0)+k.reduce((a,b) => a+b, 0)+
+        s.reduce((a,b) => a+b, 0) + k.reduce((a,b) => a+b, 0)+
         w.reduce((a,b) => a+b, 0) + m.reduce((a,b) => a+b, 0)
     );
     //5 Punkte pro fester Fähigkeit
@@ -114,19 +118,22 @@ function updateWerte() {
     total = punkte-total;
     document.getElementById("total").innerText = total;
 
-    //Leben
-    //Attributwerte holen und daraus Leben berechnen
-    let modi = race[document.getElementById("raceselect").innerText];
-    let vitali = (
-        Number(document.getElementById("korper").innerText)+
-        (Number(document.getElementById("mentales").innerText)/2)+
-        modi
-    );
-    //checkerito, dass alles passt
-    if (vitali<1) vitali = 0;
-    //Wert einfügen
-    document.getElementById("leben").innerText = vitali;
-  
+    //Leben; Default bis Rasse gewählt ist
+    if (getHelp("raceselect").innerText == "Auswahl") {
+        getHelp("leben").innerText = "Wähle eine Rasse";
+    }
+    else {
+    let modi = race[getHelp("raceselect").innerText];
+        let vitali = (
+            Number(document.getElementById("korper").innerText)+
+            (Number(document.getElementById("mentales").innerText)/2)+
+            modi
+        );
+        //checkerito, dass alles passt
+        if (vitali<1) vitali = 0;
+        //Wert einfügen
+        document.getElementById("leben").innerText = vitali;
+    }
 
     //Geistige Gesundheit
     //Attributwerte holen und daraus GG berechnen
@@ -163,5 +170,19 @@ function updateWerte() {
     if (stark<7) stark = 7;
     else if (stark>20) stark = 20;
     //Wert einfügen
-    document.getElementById("stark").innerText = stark;
+    document.getElementById("stark").innerText = Math.round(stark);
+
+    //Kombis
+    let tier = (Number(getHelp("w2").value)+Number(getHelp("s6").value))/2;
+    getHelp("tiere").innerText = Math.round(tier);
+    let dieb = (Number(getHelp("k6").value)+Number(getHelp("k5").value))/2;
+    getHelp("dieb").innerText = Math.round(dieb);
+    let fahrt = (Number(getHelp("m4").value)+Number(getHelp("w2").value))/2;
+    getHelp("tierspur").innerText = Math.round(fahrt);
+    let spur = (Number(getHelp("m4").value)+Number(getHelp("m3").value))/2;
+    getHelp("spur").innerText = Math.round(spur);
+    let klette = (Number(getHelp("k1").value)+Number(getHelp("k4").value))/2;
+    getHelp("klette").innerText = Math.round(klette);
+    let werf = (Number(getHelp("m1").value)+Number(getHelp("k1").value))/2;
+    getHelp("wurf").innerText = Math.round(werf);
 }
