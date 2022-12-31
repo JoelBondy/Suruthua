@@ -111,7 +111,7 @@ table.border, th.border, td.border {
 	width: 30%;
 	border: 1px solid grey;
 }
-td.bordercen {
+.bordercen {
 	border: 1px solid grey;
 	text-align:center;
 }
@@ -139,7 +139,7 @@ td.blocked {
 td.right {
 	text-align:right;
 }
-td.center {
+.center {
 	text-align:center;
 }
 html {
