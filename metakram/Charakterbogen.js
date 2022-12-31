@@ -9,6 +9,8 @@ const race = {
     "Quork": 73,
     "Draske": 70
 };
+
+//Erstelle ein dict mit Attribut:id(k1 usw.) zum schnelleren Finden
 const idcorp = {}
 for (let i=1;i<9;i++) {
     idcorp[getHelp("k"+i).parentNode.parentNode.childNodes[1].innerText] = "k"+i;
@@ -24,7 +26,7 @@ for (let i=1;i<9;i++) {
 }
 
 
-//Insgesamt zu vergeben Punkte
+//Insgesamt zu vergebene Punkte
 const punkte = 400;
 
 //Array mit den ids aller festen Fähigkeitn
@@ -35,6 +37,7 @@ let s = Array(8).fill(1);
 let w = Array(10).fill(1);
 let k = Array(8).fill(1);
 let m = Array(9).fill(1);
+
 
 
 //Action wenn eine Zahl geändert wird
@@ -82,13 +85,11 @@ function getValue(id) {
    updateWerte();
 };
 
-function getText(id) {
-   return id.innerText;
-}
 
 function getHelp(id) {
     return document.getElementById(id);
 }
+
 
 //Öffne und schließe das Rassenmenü
 function klappenregler(klappe) {
@@ -109,11 +110,18 @@ window.onclick = function(event) {
     }
 }
 
+
 //Zeige ausgewählte Rasse an
 function namechanger(id, target) {
     if (id == null || target == null) return;
     target.innerText = id.innerText;
     updateWerte();
+}
+
+//Zeige ausgewählte Klasse an
+function changeLabel(klasse) {
+    getHelp("talentart").innerText = klasse.innerText
+    getHelp("talente").innerText = klasse.title
 }
 
 //Allgemeine Charakterwerte auf dem Laufenden halten
