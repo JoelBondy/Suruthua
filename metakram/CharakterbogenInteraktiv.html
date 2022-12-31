@@ -400,7 +400,8 @@
             </tr>
             <tr>
                 <td class="border">
-                    <a href="#" class="hoverbox" title="Geschicklichkeit, Fokus, Schnelligkeit">Klingenwaffen</a>
+                    <a onclick="changeLabel(kling)" id="kling" class="hoverbox" title="Geschicklichkeit, Fokus, Schnelligkeit">
+                        Klingenwaffen</a>
                 </td>
                 <td class="border" id="klingbonus" >0</td>
                 <td class="border" id="klingpunkte">0</td>
@@ -409,7 +410,8 @@
             </tr>
             <tr>
                 <td class="border">
-                    <a href="" class="hoverbox" title="Stärke, Einschüchtern, Beweglichkeit">Schlagwaffen</a>
+                    <a onclick=changeLabel(schlag) id="schlag" class="hoverbox" title="Stärke, Einschüchtern, Beweglichkeit">
+                        Schlagwaffen</a>
                 </td>
                 <td class="border" id="schlagbonus">0</td>
                 <td class="border" id="schlagpunkte">0</td>
@@ -418,7 +420,8 @@
             </tr>
             <tr>
                 <td class="border">
-                    <a href="" class="hoverbox" title="Gleichgewicht, Fingerfertigkeit, Beweglichkeit">Stichwaffen</a>
+                    <a onclick=changeLabel(stich) id="stich" class="hoverbox" title="Gleichgewicht, Fingerfertigkeit, Beweglichkeit">
+                        Stichwaffen</a>
                 </td>
                 <td class="border" id="stichbonus">0</td>
                 <td class="border" id="stichpunkte">0</td>
@@ -427,7 +430,8 @@
             </tr>
             <tr>
                 <td class="border">
-                    <a href="" class="hoverbox" title="Gleichgewicht, Reaktion, Beweglichkeit">Kampfkunst</a>
+                    <a onclick=changeLabel(kunst) id="kunst" class="hoverbox" title="Gleichgewicht, Reaktion, Beweglichkeit">
+                        Kampfkunst</a>
                 </td>
                 <td class="border" id="kunstbonus">0</td>
                 <td class="border" id="kunstpunkte">0</td>
@@ -436,7 +440,8 @@
             </tr>
             <tr>
                 <td class="border">
-                    <a href="" class="hoverbox" title="Mut, Einschüchtern, Schnelligkeit">Raufen</a>
+                    <a onclick=changeLabel(raufen) id="raufen" class="hoverbox" title="Mut, Einschüchtern, Schnelligkeit">
+                        Raufen</a>
                 </td>
                 <td class="border" id="raufbonus">0</td>
                 <td class="border" id="raufpunkte">0</td>
@@ -445,7 +450,8 @@
             </tr>
             <tr>
                 <td class="border">
-                    <a href="" class="hoverbox" title="Geschicklichkeit, Fokus, Werfen">Wurfwaffen</a>
+                    <a onclick=changeLabel(wirf) id="wirf" class="hoverbox" title="Geschicklichkeit, Fokus, Werfen">
+                        Wurfwaffen</a>
                 </td>
                 <td class="border" id="wurfbonus">0</td>
                 <td class="border" id="wurfpunkte">0</td>
@@ -454,15 +460,19 @@
             </tr>
             <tr>
                 <td class="border">
-                    <a href="" class="hoverbox" title="Geschicklichkeit, Fokus, Geduld">Fernwaffen</a>
+                    <a onclick=changeLabel(fern) id="fern" class="hoverbox" title="Geschicklichkeit, Fokus, Geduld">
+                        Fernwaffen</a>
                 </td>
                 <td class="border" id="fernbonus">0</td>
                 <td class="border" id="fernpunkte">0</td>
                 <td class="border" id="fernkampd">0</td>
                 <td class="blocked"></td>
             </tr>
-        </table>        
-
+        </table>
+        <p>Die Klassentalente für <b id="talentart">Klingenwaffen</b> lauten:
+            <span id="talente">Geschicklichkeit, Fokus, Schnelligkeit</span>.</p>
+    
+    
     </div>
 
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
