@@ -5,11 +5,13 @@
     <link rel="stylesheet" type="text/css" href="./stylesheet.css">
 </head>
 <body>
+    <b><a href="../Regelwerk/Hauptseite_Regelwerk.html" style="margin-left: 5em; margin-top:1em;position:absolute;">Hauptseite</a></b>
     <div id="content">
         
         Punkte übrig:
         <div id="total">400</div>
         Rasse:
+        <!-- Rassenklappe -->
         <div class="klappenmenu">
             <button id="raceselect" onclick="klappenregler(auswahl)" class="klappe">Auswahl</button>
             <div id="auswahl" class="klappezu">
@@ -34,6 +36,7 @@
         Stärke:
         <div id="stark">0</div>
 
+        <!-- Soziales -->
         <table style="border: 1px solid grey;width:20%;background-color:aqua">
             <tr>
                 <th class="table">Soziales</th>
@@ -88,9 +91,10 @@
                 </td>
             </tr>
         </table>
-
         <br>
-        <table style="border: 1px solid grey;width:20%;background-color:darkcyan">
+
+        <!-- Wissen -->
+        <table style="border: 1px solid grey;width:20%;background-color:darkseagreen;">
             <tr>
                 <th class="table">Wissen</th>
                 <td id="wissen">0</td>
@@ -158,7 +162,8 @@
         </table>
         <br>
 
-        <table style="border: 1px solid grey;width:20%;background-color:darkgoldenrod">
+        <!-- Körper -->
+        <table style="border: 1px solid grey;width:20%;background-color:darkgoldenrod;">
             <tr>
                 <th class="table">Körper</th>
                 <td id="korper">0</td>
@@ -214,6 +219,7 @@
         </table>
         <br>
 
+        <!-- Mentales -->
         <table style="border: 1px solid grey;width:20%;background-color:darkgreen;color:aliceblue">
             <tr>
                 <th class="table" style="color:black">Mentales</th>
@@ -277,7 +283,8 @@
         <br><br>
 
 
-        <table style="border: 1px solid grey;width:100%;background-color:aliceblue">
+        <!-- Kombis -->
+        <table style="border: 1px solid grey;width:30%;background-color:aliceblue">
             <tr>
                 <th class="table">Kombis</th>
             </tr>
@@ -314,6 +321,7 @@
         </table>
         <br>
 
+        <!-- Feste Fähigkeiten -->
         <table style="border: 1px solid grey;width:20%;background-color:aliceblue;">
             <tr>
                 <th class="table" style="color:black;">Feste Fertigkeiten</th>
@@ -343,7 +351,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Lesen</td>
+                <td class="border">Lesen</td>
                 <td>
                     <div class="klappenmenu">
                         <button id="les" onclick="klappenregler(lesauswahl)" class="klappe">Nein</button>
@@ -355,7 +363,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Schreiben</td>
+                <td class="border">Schreiben</td>
                 <td>
                     <div class="klappenmenu">
                         <button id="schreib" onclick="klappenregler(schreibauswahl)" class="klappe">Nein</button>
