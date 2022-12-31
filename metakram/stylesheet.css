@@ -129,6 +129,9 @@ th.subhead {
 td.table {
 	border: 1px solid grey;
 }
+td.blocked {
+	background-color: grey;
+}
 html {
 	font-family: times;
 }
@@ -151,6 +154,16 @@ a.hidden:hover{
 a.hidden:visited {
 	text-decoration: none;
 	color: white;
+}
+a.hoverbox {
+	color:initial;
+	text-decoration: none;
+	
+}
+a.hoverbox:hover {
+	color:initial;
+	text-decoration: none;
+	cursor:pointer;
 }
 .klappenmenu {
 	position: relative;
