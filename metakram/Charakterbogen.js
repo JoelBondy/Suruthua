@@ -9,8 +9,10 @@ const race = {
     "Quork": 73,
     "Draske": 70
 };
+//Insgesamt zu vergeben Punkte
+const punkte = 400;
 
-//leere Arrays um den Durchschnitt der Kategorie zu errechnen
+//Arrays mit allen Werten nach Kategorie seprariert
 let s = Array(8).fill(1);
 let w = Array(10).fill(1);
 let k = Array(8).fill(1);
@@ -90,6 +92,14 @@ function namechanger(id) {
 
 //Allgemeine Charakterwerte auf dem Laufenden halten
 function updateWerte() {
+    //Noch zu vergeben Punkte
+    let total = (
+        s.reduce((a,b) => a+b, 0)+k.reduce((a,b) => a+b, 0)+
+        w.reduce((a,b) => a+b, 0) + m.reduce((a,b) => a+b, 0)
+    );
+    total = punkte-total;
+    document.getElementById("total").innerText = total;
+
     //Leben
     //Attributwerte holen und daraus Leben berechnen
     let modi = race[document.getElementById("menuanzeige").innerText];
@@ -135,7 +145,7 @@ function updateWerte() {
     let stark = (
         (Number(document.getElementById("leben").innerText)*0,05)+
         ((Number(document.getElementById("k1").value)+Number(document.getElementById("k4").value))/4)+3
-    )
+    );
     if (stark<7) stark = 7;
     else if (stark>20) stark = 20;
     //Wert einfügen
