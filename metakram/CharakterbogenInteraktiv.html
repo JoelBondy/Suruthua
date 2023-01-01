@@ -319,7 +319,7 @@
         </table>
 
         <!-- Feste Fertigkeiten -->
-        <table style="float:left;margin-top:30px;margin-left:200px;border: 1px solid grey;width:15%;background-color:aliceblue;">
+        <table style="float:left;margin-top:25px;margin-left:200px;border: 1px solid grey;width:15%;background-color:aliceblue;">
             <tr>
                 <th class="table" colspan="2" style="color:black;">Feste Fertigkeiten</th>
             </tr>
@@ -386,6 +386,8 @@
         </table>
         </div>
         <br><br>
+
+
         <!-- Waffenklasse -->
         <table style="position:relative;margin-top:200px;border: 1px solid grey;width:50%;background-color:honeydew">
             <tr>
@@ -494,14 +496,15 @@
                 <td class="blocked"></td>
             </tr>
         </table>
-
         <div style="position: relative;">
         <p>Die Klassentalente für <b id="talentart">Klingenwaffen</b> lauten:
             <span id="talente">Geschicklichkeit, Fokus, Schnelligkeit</span>.</p>
         </div>
         
+
+        <div>
         <!-- Magie -->
-        <table style="margin-top:50px;border :1px solid grey;width:50%;background-color:aquamarine">
+        <table style="float:left;margin-right:34px;border:1px solid grey;width:50%;background-color:aquamarine">
             <tr>
                 <th class="table" colspan="2">Zauberklasse</th>
                 <th class="table">investierte Punkte</th>
@@ -583,7 +586,209 @@
             </tr>
         </table>
 
+        <!-- Zauber -->
+        <table style="margin-top:30px;border:1px solid grey;width:40%;background-color: aquamarine;">
+            <tr>
+                <th class="table">Zauber</th>
+                <th class="table">Zauberklasse</th>
+                <th class="table">Stufe</th>
+            </tr>
+            <tr>
+                <td class="bordercen"><input type="text" id="zauber1" style="background-color:transparent;border:none;text-align:center"></td>
+                <td style="text-align:center">
+                    <div class="klappenmenu">
+                        <button id="klasse1" onclick=klappenregler(zklasse1) class="klappe">Klasse</button>
+                        <div id="zklasse1" class="klappezu">
+                            <p id="default1" onclick=namechanger(default1,klasse1)>Klasse</p>
+                            <p id="feuer1" onclick=namechanger(feuer1,klasse1)>Zerstörung (Feuer)</p>
+                            <p id="wasser1" onclick=namechanger(wasser1,klasse1)>Zerstörung (Wasser)</p>
+                            <p id="erde1" onclick=namechanger(erde1,klasse1)>Zerstörung (Erde)</p>
+                            <p id="luft1" onclick=namechanger(luft1,klasse1)>Zerstörung (Luft)</p>
+                            <p id="beschwer1" onclick=namechanger(beschwer1,klasse1)>Beschwörung</p>
+                            <p id="verstark1" onclick=namechanger(verstark1,klasse1)>Verstärkung</p>
+                            <p id="phys1" onclick=namechanger(phys1,klasse1)>Veränderung (phys.)</p>
+                            <p id="psych1" onclick=namechanger(psych1,klasse1)>Veränderung (psych.)</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="bordercen">
+                    <button id="minuszauber1" onclick=minus(zauber1,1)>-</button>
+                    <span id="zauber1punkte">0</span>
+                    <button id="pluszauber1" onclick=plus(zauber1,1,4)>+</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="bordercen"><input type="text" id="zauber2" style="background-color:transparent;border:none;text-align:center"></td>
+                <td style="text-align:center">
+                    <div class="klappenmenu">
+                        <button id="klasse2" onclick=klappenregler(zklasse2) class="klappe">Klasse</button>
+                        <div id="zklasse2" class="klappezu">
+                            <p id="default2" onclick=namechanger(default1,klasse1)>Klasse</p>
+                            <p id="feuer2" onclick=namechanger(feuer2,klasse2)>Zerstörung (Feuer)</p>
+                            <p id="wasser2" onclick=namechanger(wasser2,klasse2)>Zerstörung (Wasser)</p>
+                            <p id="erde2" onclick=namechanger(erde2,klasse2)>Zerstörung (Erde)</p>
+                            <p id="luft2" onclick=namechanger(luft2,klasse2)>Zerstörung (Luft)</p>
+                            <p id="beschwer2" onclick=namechanger(beschwer2,klasse2)>Beschwörung</p>
+                            <p id="verstark2" onclick=namechanger(verstark2,klasse2)>Verstärkung</p>
+                            <p id="phys2" onclick=namechanger(phys2,klasse2)>Veränderung (phys.)</p>
+                            <p id="psych2" onclick=namechanger(psych2,klasse2)>Veränderung (psych.)</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="bordercen">
+                    <button id="minuszauber2" onclick=minus(zauber2,1)>-</button>
+                    <span id="zauber2punkte">0</span>
+                    <button id="pluszauber2" onclick=plus(zauber2,1,4)>+</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="bordercen"><input type="text" id="zauber3" style="background-color:transparent;border:none;text-align:center"></td>
+                <td style="text-align:center">
+                    <div class="klappenmenu">
+                        <button id="klasse3" onclick=klappenregler(zklasse3) class="klappe">Klasse</button>
+                        <div id="zklasse3" class="klappezu">
+                            <p id="default3" onclick=namechanger(default3,klasse3)>Klasse</p>
+                            <p id="feuer3" onclick=namechanger(feuer3,klasse3)>Zerstörung (Feuer)</p>
+                            <p id="wasser3" onclick=namechanger(wasser3,klasse3)>Zerstörung (Wasser)</p>
+                            <p id="erde3" onclick=namechanger(erde3,klasse3)>Zerstörung (Erde)</p>
+                            <p id="luft3" onclick=namechanger(luft3,klasse3)>Zerstörung (Luft)</p>
+                            <p id="beschwer3" onclick=namechanger(beschwer3,klasse3)>Beschwörung</p>
+                            <p id="verstark3" onclick=namechanger(verstark3,klasse3)>Verstärkung</p>
+                            <p id="phys3" onclick=namechanger(phys3,klasse3)>Veränderung (phys.)</p>
+                            <p id="psych3" onclick=namechanger(psych3,klasse3)>Veränderung (psych.)</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="bordercen">
+                    <button id="minuszauber3" onclick=minus(zauber3,1)>-</button>
+                    <span id="zauber3punkte">0</span>
+                    <button id="pluszauber3" onclick=plus(zauber3,1,4)>+</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="bordercen"><input type="text" id="zauber4" style="background-color:transparent;border:none;text-align:center"></td>
+                <td style="text-align:center">
+                    <div class="klappenmenu">
+                        <button id="klasse4" onclick=klappenregler(zklasse4) class="klappe">Klasse</button>
+                        <div id="zklasse4" class="klappezu">
+                            <p id="default4" onclick=namechanger(default4,klasse4)>Klasse</p>
+                            <p id="feuer4" onclick=namechanger(feuer4,klasse4)>Zerstörung (Feuer)</p>
+                            <p id="wasser4" onclick=namechanger(wasser4,klasse4)>Zerstörung (Wasser)</p>
+                            <p id="erde4" onclick=namechanger(erde4,klasse4)>Zerstörung (Erde)</p>
+                            <p id="luft4" onclick=namechanger(luft4,klasse4)>Zerstörung (Luft)</p>
+                            <p id="beschwer4" onclick=namechanger(beschwer4,klasse4)>Beschwörung</p>
+                            <p id="verstark4" onclick=namechanger(verstark4,klasse4)>Verstärkung</p>
+                            <p id="phys4" onclick=namechanger(phys4,klasse4)>Veränderung (phys.)</p>
+                            <p id="psych4" onclick=namechanger(psych4,klasse4)>Veränderung (psych.)</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="bordercen">
+                    <button id="minuszauber4" onclick=minus(zauber4,1)>-</button>
+                    <span id="zauber4punkte">0</span>
+                    <button id="pluszauber4" onclick=plus(zauber4,1,4)>+</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="bordercen"><input type="text" id="zauber5" style="background-color:transparent;border:none;text-align:center"></td>
+                <td style="text-align:center">
+                    <div class="klappenmenu">
+                        <button id="klasse5" onclick=klappenregler(zklasse5) class="klappe">Klasse</button>
+                        <div id="zklasse5" class="klappezu">
+                            <p id="default5" onclick=namechanger(default5,klasse5)>Klasse</p>
+                            <p id="feuer5" onclick=namechanger(feuer5,klasse5)>Zerstörung (Feuer)</p>
+                            <p id="wasser5" onclick=namechanger(wasser5,klasse5)>Zerstörung (Wasser)</p>
+                            <p id="erde5" onclick=namechanger(erde5,klasse5)>Zerstörung (Erde)</p>
+                            <p id="luft5" onclick=namechanger(luft5,klasse5)>Zerstörung (Luft)</p>
+                            <p id="beschwer5" onclick=namechanger(beschwer5,klasse5)>Beschwörung</p>
+                            <p id="verstark5" onclick=namechanger(verstark5,klasse5)>Verstärkung</p>
+                            <p id="phys5" onclick=namechanger(phys5,klasse5)>Veränderung (phys.)</p>
+                            <p id="psych5" onclick=namechanger(psych5,klasse5)>Veränderung (psych.)</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="bordercen">
+                    <button id="minuszauber5" onclick=minus(zauber5,1)>-</button>
+                    <span id="zauber5punkte">0</span>
+                    <button id="pluszauber5" onclick=plus(zauber5,1,4)>+</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="bordercen"><input type="text" id="zauber6" style="background-color:transparent;border:none;text-align:center"></td>
+                <td style="text-align:center">
+                    <div class="klappenmenu">
+                        <button id="klasse6" onclick=klappenregler(zklasse6) class="klappe">Klasse</button>
+                        <div id="zklasse6" class="klappezu">
+                            <p id="default6" onclick=namechanger(default6,klasse6)>Klasse</p>
+                            <p id="feuer6" onclick=namechanger(feuer6,klasse6)>Zerstörung (Feuer)</p>
+                            <p id="wasser6" onclick=namechanger(wasser6,klasse6)>Zerstörung (Wasser)</p>
+                            <p id="erde6" onclick=namechanger(erde6,klasse6)>Zerstörung (Erde)</p>
+                            <p id="luft6" onclick=namechanger(luft6,klasse6)>Zerstörung (Luft)</p>
+                            <p id="beschwer6" onclick=namechanger(beschwer6,klasse6)>Beschwörung</p>
+                            <p id="verstark6" onclick=namechanger(verstark6,klasse6)>Verstärkung</p>
+                            <p id="phys6" onclick=namechanger(phys6,klasse6)>Veränderung (phys.)</p>
+                            <p id="psych6" onclick=namechanger(psych6,klasse6)>Veränderung (psych.)</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="bordercen">
+                    <button id="minuszauber6" onclick=minus(zauber6,1)>-</button>
+                    <span id="zauber6punkte">0</span>
+                    <button id="pluszauber6" onclick=plus(zauber6,1,4)>+</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="bordercen"><input type="text" id="zauber7" style="background-color:transparent;border:none;text-align:center"></td>
+                <td style="text-align:center">
+                    <div class="klappenmenu">
+                        <button id="klasse7" onclick=klappenregler(zklasse7) class="klappe">Klasse</button>
+                        <div id="zklasse7" class="klappezu">
+                            <p id="default7" onclick=namechanger(default7,klasse7)>Klasse</p>
+                            <p id="feuer7" onclick=namechanger(feuer7,klasse7)>Zerstörung (Feuer)</p>
+                            <p id="wasser7" onclick=namechanger(wasser7,klasse7)>Zerstörung (Wasser)</p>
+                            <p id="erde7" onclick=namechanger(erde7,klasse7)>Zerstörung (Erde)</p>
+                            <p id="luft7" onclick=namechanger(luft7,klasse7)>Zerstörung (Luft)</p>
+                            <p id="beschwer7" onclick=namechanger(beschwer7,klasse7)>Beschwörung</p>
+                            <p id="verstark7" onclick=namechanger(verstark7,klasse7)>Verstärkung</p>
+                            <p id="phys7" onclick=namechanger(phys7,klasse7)>Veränderung (phys.)</p>
+                            <p id="psych7" onclick=namechanger(psych7,klasse7)>Veränderung (psych.)</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="bordercen">
+                    <button id="minuszauber7" onclick=minus(zauber7,1)>-</button>
+                    <span id="zauber7punkte">0</span>
+                    <button id="pluszauber7" onclick=plus(zauber7,1,4)>+</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="bordercen"><input type="text" id="zauber8" style="background-color:transparent;border:none;text-align:center"></td>
+                <td style="text-align:center">
+                    <div class="klappenmenu">
+                        <button id="klasse8" onclick=klappenregler(zklasse8) class="klappe">Klasse</button>
+                        <div id="zklasse8" class="klappezu">
+                            <p id="default8" onclick=namechanger(default8,klasse8)>Klasse</p>
+                            <p id="feuer8" onclick=namechanger(feuer8,klasse8)>Zerstörung (Feuer)</p>
+                            <p id="wasser8" onclick=namechanger(wasser8,klasse8)>Zerstörung (Wasser)</p>
+                            <p id="erde8" onclick=namechanger(erde8,klasse8)>Zerstörung (Erde)</p>
+                            <p id="luft8" onclick=namechanger(luft8,klasse8)>Zerstörung (Luft)</p>
+                            <p id="beschwer8" onclick=namechanger(beschwer8,klasse8)>Beschwörung</p>
+                            <p id="verstark8" onclick=namechanger(verstark8,klasse8)>Verstärkung</p>
+                            <p id="phys8" onclick=namechanger(phys8,klasse8)>Veränderung (phys.)</p>
+                            <p id="psych8" onclick=namechanger(psych8,klasse8)>Veränderung (psych.)</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="bordercen">
+                    <button id="minuszauber8" onclick=minus(zauber8,1)>-</button>
+                    <span id="zauber8punkte">0</span>
+                    <button id="pluszauber8" onclick=plus(zauber8,1,4)>+</button>
+                </td>
+            </tr>
+        </table>
+        </div>
 
+        <div style="position:relative;margin-top:15em"></div>
     </div>
 
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
