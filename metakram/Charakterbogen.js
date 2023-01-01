@@ -283,6 +283,10 @@ function updateWerte() {
     magie.forEach(function(item) {
         total = total+getNum(t,item+"punkte");
     });
+    //Ausgegebene Punkte Zauber
+    for (let i=1;i<9;i++) {
+        total = total+getNum(t,"zauber"+i+"punkte");
+    }
     //Alle Punkte - total ausgegebene
     total = punkte-total;
     setVal(t,"total",total);
