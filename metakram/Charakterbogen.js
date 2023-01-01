@@ -151,7 +151,7 @@ function changeLabel(klasse) {
     setVal(t,"talente",klasse.title);
 }
 
-//Erhöhe Punkt der Klasse um 1
+//Erhöhe Punkt der Klasse um Intervall
 function plus(klasse,intervall) {
     let plus = getNum(t,klasse.id+"punkte");
     plus += intervall;
@@ -159,7 +159,7 @@ function plus(klasse,intervall) {
     updateWerte();
 }
 
-//Verringere Punkt der Klasse um 1 sofern p >= 0
+//Verringere Punkt der Klasse um Intervall sofern p >= 0
 function minus(klasse,intervall) {
     let minus = getNum(t,klasse.id+"punkte");
     if (!minus == 0) minus -= intervall;
