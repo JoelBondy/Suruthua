@@ -152,17 +152,17 @@ function changeLabel(klasse) {
 }
 
 //Erhöhe Punkt der Klasse um 1
-function plus(klasse) {
-    let plus = Number(getHelp(klasse.id+"punkte").innerText);
-    plus += 5;
+function plus(klasse,intervall) {
+    let plus = getNum(t,klasse.id+"punkte");
+    plus += intervall;
     setVal(t,klasse.id+"punkte",plus);
     updateWerte();
 }
 
 //Verringere Punkt der Klasse um 1 sofern p >= 0
-function minus(klasse) {
-    let minus = Number(getHelp(klasse.id+"punkte").innerText);
-    if (!minus == 0) minus -= 5;
+function minus(klasse,intervall) {
+    let minus = getNum(t,klasse.id+"punkte");
+    if (!minus == 0) minus -= intervall;
     setVal(t,klasse.id+"punkte",minus);
     updateWerte();
 }
