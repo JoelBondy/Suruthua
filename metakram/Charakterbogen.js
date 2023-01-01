@@ -32,6 +32,7 @@ const punkte = 400;
 //Arrays mit den ids aller festen Fähigkeiten Waffenklassen
 const fest = ["schwimm","reit","les","schreib","mathe"];
 const waffenklassen = ["kling", "schlag", "stich", "kunst", "rauf", "wurf","fern"];
+const magie =["feuer","wasser","erde","luft","beschwer","verstark","phys","psych"];
 const bonus = {"kling":["k8","m1","k3"],"schlag":["stark","s8","k1",],"stich":["k4","k6","k1"],
 "kunst":["k4","k2","k1"],"rauf":["m8","s8","k3"],"wurf":["k8","m1","werf"], "fern":["k8","m1","m2"]};
 const kombi = {"tiere":["w2","s6"],"dieb":["k6","k5"],"tierspur":["m4","w2"],"spur":["m4",
@@ -152,35 +153,53 @@ function changeLabel(klasse) {
 }
 
 //Erhöhe Punkt der Klasse um Intervall
-function plus(klasse,intervall) {
+function plus(klasse,intervall,grenze) {
     let plus = getNum(t,klasse.id+"punkte");
-    plus += intervall;
-    setVal(t,klasse.id+"punkte",plus);
-    updateWerte();
+    if (!((plus+intervall)>grenze)) {
+        plus += intervall;
+        setVal(t,klasse.id+"punkte",plus);
+        updateWerte();
+    }
 }
 
-//Verringere Punkt der Klasse um Intervall sofern p >= 0
-function minus(klasse,intervall) {
+//Verringere Punkt der Klasse um Intervall sofern !(p < grenze), Default grenze = 0
+function minus(klasse,intervall,grenze) {
+    if (grenze == undefined) grenze = 0;
     let minus = getNum(t,klasse.id+"punkte");
-    if (!minus == 0) minus -= intervall;
-    setVal(t,klasse.id+"punkte",minus);
-    updateWerte();
+    if (!((minus-intervall)<grenze)) {
+        minus -= intervall;
+        setVal(t,klasse.id+"punkte",minus);
+        updateWerte();
+    }
 }
 
 
 //Allgemeine Charakterwerte auf dem Laufenden halten
 function updateWerte() {
 
-    //Leben; Default bis Rasse gewählt ist
+    //setze leben variable um fehler bei der stärkeberechnung zu verhindern,
+    //wenn noch keine Rasse ausgewählt ist
+    let leben;
+    //Leben
+    //Default bis Rasse gewählt ist
     if (getVal(t,"raceselect") == "Auswahl") {
         setVal(t,"leben","Wähle eine Rasse");
+        leben=0;
     }
     else {
     let modi = race[getVal(t,"raceselect")];
         let vitali = Math.round(getNum(t,"korper")+(getNum(t,"mentales")/2)+modi);
         if (vitali<1) vitali = 0;
         setVal(t,"leben",vitali);
+        leben = vitali;
     }
+
+    //Stärke
+    //Attributwerte holen und daraus Stärke berechnen
+    let stark = Math.round(leben*0.05+((getNum(v,"k1")+getNum(v,"k4"))/4)+3);
+    if (stark<7) stark = 7;
+    else if (stark>20) stark = 20;
+    setVal(t,"stark",stark);
 
     //Geistige Gesundheit
     //Attributwerte holen und daraus GG berechnen
@@ -198,12 +217,6 @@ function updateWerte() {
     else if (mana>200) mana = 200;
     setVal(t,"mana",mana);
 
-    //Stärke
-    //Attributwerte holen und daraus Stärke berechnen
-    let stark = Math.round(getNum(t,"leben")*0.05+((getNum(v,"k1")+getNum(v,"k4"))/4)+3);
-    if (stark<7) stark = 7;
-    else if (stark>20) stark = 20;
-    setVal(t,"stark",stark);
 
     //Kombis
     //Iteriere durch alle Kombis und passe die Werte an
@@ -239,26 +252,38 @@ function updateWerte() {
         setVal(t,item+"kampf",neuwert);
         //wurf- und fernwaffen haben keinen paradewert
         if (!(item == "wurf"||item=="fern")){
-            getHelp(item+"parade").innerText = Math.round(neuwert/2);
+            neuwert = Math.round(neuwert/2)
+            setVal(t,item+"parade",neuwert);
         };
     });
    
+    magie.forEach(function(item) {
+        let neuzauber;
+        neuzauber = getNum(t,item+"punkte")/2;
+        setVal(t,item+"wert",neuzauber);
+    });
 
     //Noch zu vergebene Punkte
+    //Ausgegebene Attributspunkte
     let total = (
         s.reduce((a,b) => a+b, 0) + k.reduce((a,b) => a+b, 0)+
         w.reduce((a,b) => a+b, 0) + m.reduce((a,b) => a+b, 0)
     );
-    //5 Punkte pro fester Fähigkeit
+    //Ausgebene Punkte fest Fertigkeiten (5:1)
     fest.forEach(function (item) {
         if (getVal(t,item)=="Ja") {
             total=total+5;
         }
     }); 
-    //5 Punkte pro Waffenklassenpunkt
+    //Ausgegebene Punkte Waffenklassen (5:1), Wert kommt schon als vielfaches von 5
     waffenklassen.forEach(function (item) {
        total = total+getNum(t,item+'punkte');
-    })
+    });
+    //Ausgebene Punkte Magie (2:1), Wert kommt schon als vielfaches von 2
+    magie.forEach(function(item) {
+        total = total+getNum(t,item+"punkte");
+    });
+    //Alle Punkte - total ausgegebene
     total = punkte-total;
     setVal(t,"total",total);
 }
