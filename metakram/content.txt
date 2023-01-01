@@ -1,0 +1,7 @@
+{
+    "augling":"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Augling/Augling.html",
+    "amaka":"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Amaka/Amaka.html",
+    "Religion Regelwerk":"https://joelbondy.github.io/Suruthua/Kulturen/Religion/Goetter_Religion_Regelwerk.html",
+    "Religionen und Götter":"https://joelbondy.github.io/Suruthua/Kulturen/Religion/Goetter_Religion.html",
+    "Schreiender Triesel":"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Flora/Schreiender_Triesel/Schreiender_Triesel.html"
+}
