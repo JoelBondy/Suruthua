@@ -9,21 +9,48 @@ const race = {
     "Quork": 73,
     "Draske": 70
 };
+const v = "v";
+const t = "t";
 
-//Erstelle ein dict mit Attribut:id(k1 usw.) zum schnelleren Finden
-const idcorp = {};
-for (let i=1;i<9;i++) {
-    idcorp[getHelp("k"+i).parentNode.parentNode.childNodes[1].innerText] = "k"+i;
+//dict mit Attribut:Attributsid
+const idcorp = {
+"Beweglichkeit":"k1",
+"Reaktion":"k2",
+"Schnelligkeit":"k3",
+"Gleichgewicht":"k4",
+"Schleichen":"k5",
+"Fingerfertigkeit":"k6",
+"Umgang mit Werkzeugen":"k7",
+"Geschicklichkeit":"k8",
+"Fokus":"m1",
+"Geduld":"m2",
+"Wahrnehmung":"m3",
+"Untersuchen":"m4",
+"Erinnerung":"m5",
+"Vorsicht":"m6",
+"Orientierung":"m7",
+"Mut":"m8",
+"Willenskraft":"m9",
+"Medizin":"w1",
+"Tierkunde":"w2",
+"Pflanzenkunde":"w3",
+"Religionswissen":"w4",
+"Kultur":"w5",
+"Ortskunde":"w6",
+"Gassenwissen":"w7",
+"Magie":"w8",
+"Geschichte":"w9",
+"Etikette":"w10",
+"Menschenkenntnis":"s1",
+"Lügen":"s2",
+"Täuschen":"s3",
+"Überzeugen":"s4",
+"Feilschen":"s5",
+"Charisma":"s6",
+"Betören":"s7",
+"Einschüchtern":"s8"
 }
-for (let i=1;i<10;i++) {
-    idcorp[getHelp("m"+i).parentNode.parentNode.childNodes[1].innerText] = "m"+i;
-}
-for (let i=1;i<11;i++) {
-    idcorp[getHelp("w"+i).parentNode.parentNode.childNodes[1].innerText] = "w"+i;
-}
-for (let i=1;i<9;i++) {
-    idcorp[getHelp("s"+i).parentNode.parentNode.childNodes[1].innerText] = "s"+i;
-}
+    
 
 
 //Insgesamt zu vergebene Punkte
@@ -43,8 +70,7 @@ let s = Array(8).fill(1);
 let w = Array(10).fill(1);
 let k = Array(8).fill(1);
 let m = Array(9).fill(1);
-const v = "v";
-const t = "t";
+
 
 //Helperfunctions
 
