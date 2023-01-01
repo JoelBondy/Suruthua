@@ -8,8 +8,8 @@
     <b><a href="../Regelwerk/Hauptseite_Regelwerk.html" style="margin-left: 5em; margin-top:1em;position:absolute;">Hauptseite</a></b>
     <div id="content">
 
-        Punkte übrig:
-        <div id="total">400</div>
+        <div>Punkte übrig: <span id="total">400</span></div>
+        <br>
         Rasse:
         <!-- Rassenklappe -->
         <div class="klappenmenu">
@@ -27,18 +27,16 @@
         </div> 
         <br>
         
-        Leben:
-        <div id="leben">0</div>
-        Geistige Gesundheit:
-        <div id="gege">0</div>
-        Mana:
-        <div id="mana">0</div>
-        Stärke:
-        <div id="stark">0</div>
+        <div>Leben: <span id="leben">0</span></div>
+        <div>Geistige Gesundheit: <span id="gege">0</span></div>
+        <div>Mana: <span id="mana">0</span></div>
+        <div>Stärke: <span id="stark">0</span></div>
         <br>
 
+
+        <div>
         <!-- Soziales -->
-        <table style="border: 1px solid grey;width:20%;background-color:aqua">
+        <table style="float:left;margin-left:25px;border: 1px solid grey;width:20%;background-color:aqua">
             <tr>
                 <th class="table">Soziales</th>
                 <td id="soziales">1</td>
@@ -92,10 +90,9 @@
                 </td>
             </tr>
         </table>
-        <br>
 
         <!-- Wissen -->
-        <table style="border: 1px solid grey;width:20%;display:in-block;background-color:darkseagreen;">
+        <table style="display:inline-block;margin-left:25px;border: 1px solid grey;width:20%;display:in-block;background-color:darkseagreen;">
             <tr>
                 <th class="table">Wissen</th>
                 <td id="wissen">1</td>
@@ -161,10 +158,9 @@
                 </td>
             </tr>
         </table>
-        <br>
 
         <!-- Körper -->
-        <table style="border: 1px solid grey;width:20%;background-color:darkgoldenrod;">
+        <table style="display:inline-block;position:absolute;margin-left:25px;border: 1px solid grey;width:15%;background-color:darkgoldenrod;">
             <tr>
                 <th class="table">Körper</th>
                 <td id="korper">1</td>
@@ -218,10 +214,9 @@
                 </td>
             </tr>
         </table>
-        <br>
 
         <!-- Mentales -->
-        <table style="border: 1px solid grey;width:20%;background-color:darkgreen;color:aliceblue"> 
+        <table style="float:right;margin-right:140px;border: 1px solid grey;width:20%;background-color:darkgreen;color:aliceblue"> 
             <tr>
                 <th class="table" style="color:black">Mentales</th>
                 <td id="mentales">1</td>
@@ -282,10 +277,12 @@
             </tr>
         </table>
         <br><br>
+        </div>
 
 
+        <div>
         <!-- Kombis -->
-        <table style="border: 1px solid grey;width:40%;background-color:aliceblue">
+        <table style="float:left;margin-top:30px;margin-left:30px;border: 1px solid grey;width:40%;background-color:aliceblue">
             <tr>
                 <th class="table" colspan="3">Kombis</th>
             </tr>
@@ -320,10 +317,9 @@
                 <td class="center" id="werf">1</td>
             </tr>
         </table>
-        <br>
 
-        <!-- Feste Fähigkeiten -->
-        <table style="border: 1px solid grey;width:15%;background-color:aliceblue;">
+        <!-- Feste Fertigkeiten -->
+        <table style="float:left;margin-top:30px;margin-left:200px;border: 1px solid grey;width:15%;background-color:aliceblue;">
             <tr>
                 <th class="table" colspan="2" style="color:black;">Feste Fertigkeiten</th>
             </tr>
@@ -388,10 +384,10 @@
                 </td>
             </tr>
         </table>
-        <br>
-
+        </div>
+        <br><br>
         <!-- Waffenklasse -->
-        <table style="border: 1px solid grey;width:50%;background-color:honeydew">
+        <table style="position:relative;margin-top:200px;border: 1px solid grey;width:50%;background-color:honeydew">
             <tr>
                 <th class="table">Waffenklasse</th>
                 <th class="table">Bonuswerte</th>
@@ -498,12 +494,14 @@
                 <td class="blocked"></td>
             </tr>
         </table>
+
+        <div style="position: relative;">
         <p>Die Klassentalente für <b id="talentart">Klingenwaffen</b> lauten:
             <span id="talente">Geschicklichkeit, Fokus, Schnelligkeit</span>.</p>
-        <br>
+        </div>
         
         <!-- Magie -->
-        <table style="border :1px solid grey;width:50%;background-color:aquamarine">
+        <table style="margin-top:50px;border :1px solid grey;width:50%;background-color:aquamarine">
             <tr>
                 <th class="table" colspan="2">Zauberklasse</th>
                 <th class="table">investierte Punkte</th>
