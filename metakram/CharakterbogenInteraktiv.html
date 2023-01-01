@@ -406,9 +406,9 @@
                 </td>
                 <td class="bordercen" id="klingbonus">0</td>
                 <td class="bordercen">
-                    <button id="minuskling" onclick=minus(kling)>-</button>
+                    <button id="minuskling" onclick=minus(kling,5)>-</button>
                     <span id="klingpunkte">0</span>
-                    <button id="pluskling" onclick=plus(kling)>+</button>
+                    <button id="pluskling" onclick=plus(kling,5)>+</button>
                 </td>
                 <td class="bordercen" id="klingkampf">5</td>
                 <td class="bordercen" id="klingparade">3</td>
@@ -420,9 +420,9 @@
                 </td>
                 <td class="bordercen" id="schlagbonus">0</td>
                 <td class="bordercen">
-                    <button id="minusschlg" onclick=minus(schlag)>-</button>
+                    <button id="minusschlg" onclick=minus(schlag,5)>-</button>
                     <span id="schlagpunkte">0</span>
-                    <button id="plusschlag" onclick=plus(schlag)>+</button>
+                    <button id="plusschlag" onclick=plus(schlag,5)>+</button>
                 </td>
                 <td class="bordercen" id="schlagkampf">5</td>
                 <td class="bordercen" id="schlagparade">3</td>
@@ -434,9 +434,9 @@
                 </td>
                 <td class="bordercen" id="stichbonus">0</td>
                 <td class="bordercen">
-                    <button id="minusstich" onclick=minus(stich)>-</button>
+                    <button id="minusstich" onclick=minus(stich,5)>-</button>
                     <span id="stichpunkte">0</span>
-                    <button id="plusstich" onclick=plus(stich)>+</button>
+                    <button id="plusstich" onclick=plus(stich,5)>+</button>
                 </td>
                 <td class="bordercen" id="stichkampf">5</td>
                 <td class="bordercen" id="stichparade">3</td>
@@ -448,9 +448,9 @@
                 </td>
                 <td class="bordercen" id="kunstbonus">0</td>
                 <td class="bordercen">
-                    <button id="minuskunst" onclick=minus(kunst)>-</button>
+                    <button id="minuskunst" onclick=minus(kunst,5)>-</button>
                     <span id="kunstpunkte">0</span>
-                    <button id="pluskunst" onclick=plus(kunst)>+</button>
+                    <button id="pluskunst" onclick=plus(kunst,5)>+</button>
                 </td>
                 <td class="bordercen" id="kunstkampf">5</td>
                 <td class="bordercen" id="kunstparade">3</td>
@@ -462,9 +462,9 @@
                 </td>
                 <td class="bordercen" id="raufbonus">0</td>
                 <td class="bordercen">
-                    <button id="minusrauf" onclick=minus(rauf)>-</button>
+                    <button id="minusrauf" onclick=minus(rauf,5)>-</button>
                     <span id="raufpunkte">0</span>
-                    <button id="plusrauf" onclick=plus(rauf)>+</button>
+                    <button id="plusrauf" onclick=plus(rauf,5)>+</button>
                 </td>
                 <td class="bordercen" id="raufkampf">5</td>
                 <td class="bordercen" id="raufparade">3</td>
@@ -476,9 +476,9 @@
                 </td>
                 <td class="bordercen" id="wurfbonus">0</td>
                 <td class="bordercen">
-                    <button id="minuswurf" onclick=minus(wurf)>-</button>
+                    <button id="minuswurf" onclick=minus(wurf,5)>-</button>
                     <span id="wurfpunkte">0</span>
-                    <button id="pluswurf" onclick=plus(wurf)>+</button>
+                    <button id="pluswurf" onclick=plus(wurf,5)>+</button>
                 </td>
                 <td class="bordercen" id="wurfkampf">5</td>
                 <td class="blocked"></td>
@@ -490,9 +490,9 @@
                 </td>
                 <td class="bordercen" id="fernbonus">0</td>
                 <td class="bordercen">
-                    <button id="minusfern" onclick=minus(fern)>-</button>
+                    <button id="minusfern" onclick=minus(fern,5)>-</button>
                     <span id="fernpunkte">0</span>
-                    <button id=plusfern onclick=plus(fern)>+</button>
+                    <button id=plusfern onclick=plus(fern,5)>+</button>
                 </td>
                 <td class="bordercen" id="fernkampf">5</td>
                 <td class="blocked"></td>
@@ -511,44 +511,76 @@
             </tr>
             <tr>
                 <td class="bordercen" rowspan="4">Zerstörung</td>
-                <td class="center">Feuer</td>
-                <td class="bordercen" id="feuerpunkte">0</td>
+                <td class="center" id="feuer">Feuer</td>
+                <td class="bordercen">
+                    <button id="minusfeuer" onclick=minus(feuer,2)>-</button>
+                    <span id="feuerpunkte">0</span>
+                    <button id="plusfeuer" onclick=plus(feuer,2)>+</button>
+                </td>
                 <td class="center" id="feuerwert">1</td>
             </tr>
             <tr>
-                <td class="center">Wasser</td>
-                <td class="bordercen" id="wasserpunkte">0</td>
+                <td class="center" id="wasser">Wasser</td>
+                <td class="bordercen">
+                    <button id="minuswasser" onclick=minus(wasser,2)>-</button>
+                    <span id="wasserpunkte">0</span>
+                    <button id="pluswasser" onclick=plus(wasser,2)>+</button>
+                </td>
                 <td class="center" id="wasserwert">1</td>
             </tr>
             <tr>
-                <td class="center">Erde</td>
-                <td class="bordercen" id="erdepunkte">0</td>
+                <td class="center" id="erde">Erde</td>
+                <td class="bordercen">
+                    <button id="minuserde" onclick=minus(erde,2)>-</button>
+                    <span id="erdepunkte">0</span>
+                    <button id="pluserde" onclick=plus(erde,2)>+</button>
+                </td>
                 <td class="center" id="erdewert">1</td>
             </tr>
             <tr>
-                <td class="center">Luft</td>
-                <td class="bordercen" id="luftpunkte">0</td>
+                <td class="center" id="luft">Luft</td>
+                <td class="bordercen">
+                    <button id="minusluft" onclick=minus(luft,2)>-</button>
+                    <span id="luftpunkte">0</span>
+                    <button id="plusluft" onclick=plus(luft,2)>+</button>
+                </td>
                 <td class="center" id="luftwert">1</td>
             </tr>
             <tr>
-                <td class="center" colspan="2">Beschwörung</td>
-                <td class="bordercen" id="schwerpunkte">0</td>
+                <td class="center" colspan="2" id="schwer">Beschwörung</td>
+                <td class="bordercen">
+                    <button id="minusschwer" onclick=minus(schwer,2)>-</button>
+                    <span id="schwerpunkte">0</span>
+                    <button id="plusschwer" onclick=plus(schwer,2)>+</button>
+                </td>
                 <td class="center" id="schwerwert">1</td>
             </tr>
             <tr>
-                <td class="center" colspan="2">Verstärkung</td>
-                <td class="bordercen" id="starkpunkte">0</td>
+                <td class="center" colspan="2" id="verstark">Verstärkung</td>
+                <td class="bordercen">
+                    <button id="minusverstark" onclick=minus(verstark,2)>-</button>
+                    <span id="verstarkpunkte">0</span>
+                    <button id="plusverstark" onclick=plus(verstark,2)>+</button>
+                </td>
                 <td class="center" id="starkwert">1</td>
             </tr>
             <tr>
                 <td class="center" rowspan="2">Veränderung</td>
-                <td class="bordercen">physisch</td>
-                <td class="center" id="physpunkte">0</td>
+                <td class="bordercen" id="phy">physisch</td>
+                <td class="center">
+                    <button id="minusphys" onclick=minus(phys,2)>-</button>
+                    <span id="physpunkte">0</span>
+                    <button id="plusphys" onclick=plus(phys,2)>+</button>
+                </td>
                 <td class="bordercen" id="physwert">1</td>
             </tr>
             <tr>
-                <td class="bordercen">psychisch</td>
-                <td class="center" id="psychpunkte">0</td>
+                <td class="bordercen" id="psych">psychisch</td>
+                <td class="center">
+                    <button id="minuspsych" onclick=minus(psych,2)>-</button>
+                    <span id="psychpunkte">0</span>
+                    <button id="pluspsych" onclick=plus(psych,2)>+</button>
+                </td>
                 <td class="bordercen" id="psychwert">1</td>
             </tr>
         </table>
