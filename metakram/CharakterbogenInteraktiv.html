@@ -512,7 +512,7 @@
             </tr>
             <tr>
                 <td class="bordercen" rowspan="4">Zerstörung</td>
-                <td class="center" id="feuer">Feuer</td>
+                <td class="center" id="feuer" name="Zerstörung (Feuer)">Feuer</td>
                 <td class="bordercen">
                     <button id="minusfeuer" onclick=minus(feuer,2)>-</button>
                     <span id="feuerpunkte">0</span>
@@ -521,7 +521,7 @@
                 <td class="center" id="feuerwert">0</td>
             </tr>
             <tr>
-                <td class="center" id="wasser">Wasser</td>
+                <td class="center" id="wasser" name="Zerstörung (Wasser)">Wasser</td>
                 <td class="bordercen">
                     <button id="minuswasser" onclick=minus(wasser,2)>-</button>
                     <span id="wasserpunkte">0</span>
@@ -530,7 +530,7 @@
                 <td class="center" id="wasserwert">0</td>
             </tr>
             <tr>
-                <td class="center" id="erde">Erde</td>
+                <td class="center" id="erde" name="Zerstörung (Erde)">Erde</td>
                 <td class="bordercen">
                     <button id="minuserde" onclick=minus(erde,2)>-</button>
                     <span id="erdepunkte">0</span>
@@ -539,7 +539,7 @@
                 <td class="center" id="erdewert">0</td>
             </tr>
             <tr>
-                <td class="center" id="luft">Luft</td>
+                <td class="center" id="luft" name="Zerstörung (Luft)">Luft</td>
                 <td class="bordercen">
                     <button id="minusluft" onclick=minus(luft,2)>-</button>
                     <span id="luftpunkte">0</span>
@@ -548,7 +548,7 @@
                 <td class="center" id="luftwert">0</td>
             </tr>
             <tr>
-                <td class="center" colspan="2" id="beschwer">Beschwörung</td>
+                <td class="center" colspan="2" id="beschwer" name="Beschwörung">Beschwörung</td>
                 <td class="bordercen">
                     <button id="minusbeschwer" onclick=minus(beschwer,2)>-</button>
                     <span id="beschwerpunkte">0</span>
@@ -557,7 +557,7 @@
                 <td class="center" id="beschwerwert">0</td>
             </tr>
             <tr>
-                <td class="center" colspan="2" id="verstark">Verstärkung</td>
+                <td class="center" colspan="2" id="verstark" name="Verstärkung">Verstärkung</td>
                 <td class="bordercen">
                     <button id="minusverstark" onclick=minus(verstark,2)>-</button>
                     <span id="verstarkpunkte">0</span>
@@ -566,7 +566,7 @@
                 <td class="center" id="verstarkwert">0</td>
             </tr>
             <tr>
-                <td class="center" rowspan="2">Veränderung</td>
+                <td class="center" rowspan="2" name="Veränderung (phys.)">Veränderung</td>
                 <td class="bordercen" id="phys">physisch</td>
                 <td class="center">
                     <button id="minusphys" onclick=minus(phys,2)>-</button>
@@ -576,7 +576,7 @@
                 <td class="bordercen" id="physwert">0</td>
             </tr>
             <tr>
-                <td class="bordercen" id="psych">psychisch</td>
+                <td class="bordercen" id="psych" name="Veränderung (psych.)">psychisch</td>
                 <td class="center">
                     <button id="minuspsych" onclick=minus(psych,2)>-</button>
                     <span id="psychpunkte">0</span>
@@ -615,7 +615,7 @@
                 <td class="bordercen">
                     <button id="minuszauber1" onclick=minus(zauber1,1)>-</button>
                     <span id="zauber1punkte">0</span>
-                    <button id="pluszauber1" onclick=plus(zauber1,1,4)>+</button>
+                    <button id="pluszauber1" onclick=zauberplus(1)>+</button>
                 </td>
             </tr>
             <tr>
@@ -639,7 +639,7 @@
                 <td class="bordercen">
                     <button id="minuszauber2" onclick=minus(zauber2,1)>-</button>
                     <span id="zauber2punkte">0</span>
-                    <button id="pluszauber2" onclick=plus(zauber2,1,4)>+</button>
+                    <button id="pluszauber2" onclick=zauberplus(2)>+</button>
                 </td>
             </tr>
             <tr>
@@ -663,7 +663,7 @@
                 <td class="bordercen">
                     <button id="minuszauber3" onclick=minus(zauber3,1)>-</button>
                     <span id="zauber3punkte">0</span>
-                    <button id="pluszauber3" onclick=plus(zauber3,1,4)>+</button>
+                    <button id="pluszauber3" onclick=zauberplus(3)>+</button>
                 </td>
             </tr>
             <tr>
@@ -687,7 +687,7 @@
                 <td class="bordercen">
                     <button id="minuszauber4" onclick=minus(zauber4,1)>-</button>
                     <span id="zauber4punkte">0</span>
-                    <button id="pluszauber4" onclick=plus(zauber4,1,4)>+</button>
+                    <button id="pluszauber4" onclick=zauberplus(4)>+</button>
                 </td>
             </tr>
             <tr>
@@ -711,7 +711,7 @@
                 <td class="bordercen">
                     <button id="minuszauber5" onclick=minus(zauber5,1)>-</button>
                     <span id="zauber5punkte">0</span>
-                    <button id="pluszauber5" onclick=plus(zauber5,1,4)>+</button>
+                    <button id="pluszauber5" onclick=zauberplus(5)>+</button>
                 </td>
             </tr>
             <tr>
@@ -735,7 +735,7 @@
                 <td class="bordercen">
                     <button id="minuszauber6" onclick=minus(zauber6,1)>-</button>
                     <span id="zauber6punkte">0</span>
-                    <button id="pluszauber6" onclick=plus(zauber6,1,4)>+</button>
+                    <button id="pluszauber6" onclick=zauberplus(6)>+</button>
                 </td>
             </tr>
             <tr>
@@ -759,7 +759,7 @@
                 <td class="bordercen">
                     <button id="minuszauber7" onclick=minus(zauber7,1)>-</button>
                     <span id="zauber7punkte">0</span>
-                    <button id="pluszauber7" onclick=plus(zauber7,1,4)>+</button>
+                    <button id="pluszauber7" onclick=zauberplus(7)>+</button>
                 </td>
             </tr>
             <tr>
@@ -783,7 +783,7 @@
                 <td class="bordercen">
                     <button id="minuszauber8" onclick=minus(zauber8,1)>-</button>
                     <span id="zauber8punkte">0</span>
-                    <button id="pluszauber8" onclick=plus(zauber8,1,4)>+</button>
+                    <button id="pluszauber8" onclick=zauberplus(8)>+</button>
                 </td>
             </tr>
         </table>
