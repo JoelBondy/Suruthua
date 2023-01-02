@@ -56,14 +56,19 @@ const idcorp = {
 //Insgesamt zu vergebene Punkte
 const punkte = 400;
 
-//Arrays mit den ids aller festen Fähigkeiten Waffenklassen
+//Arrays mit den ids aller festen Fähigkeiten, Waffenklassen, Zauberklassen
 const fest = ["schwimm","reit","les","schreib","mathe"];
 const waffenklassen = ["kling", "schlag", "stich", "kunst", "rauf", "wurf","fern"];
 const magie =["feuer","wasser","erde","luft","beschwer","verstark","phys","psych"];
+//bonus=bonuswert.id:[3 attribute.id zum berechnen];kombi=kombis.id:[attribut1.id,attribut2.id];selected=klappe.id:[auswahl.id,auswahl.value]
 const bonus = {"kling":["k8","m1","k3"],"schlag":["stark","s8","k1",],"stich":["k4","k6","k1"],
 "kunst":["k4","k2","k1"],"rauf":["m8","s8","k3"],"wurf":["k8","m1","werf"], "fern":["k8","m1","m2"]};
 const kombi = {"tiere":["w2","s6"],"dieb":["k6","k5"],"tierspur":["m4","w2"],"spur":["m4",
 "m3"],"klette":["k1","k4"],"werf":["m1","k1"]};
+const selected = {"raceselect":["raceselect","Auswahl"],"schwimm":["schwimmno","Nein"],"reit":["reitno","Nein"],"les":["lesno","Nein"],
+"schreib":["schreibno","Nein"],"mathe":["matheno","Nein"],"klasse1":["default1","Klasse"],"klasse2":["default2","Klasse"],
+"klasse3":["default3","Klasse"],"klasse4":["default4","Klasse"],"klasse5":["default5","Klasse"],"klasse6":["default6","Klasse"],
+"klasse7":["default7","Klasse"],"klasse8":["default8","Klasse"]}
 
 //Arrays mit allen Werten nach Kategorie seprariert
 let s = Array(8).fill(1);
@@ -165,12 +170,17 @@ window.onclick = function(event) {
 }
 
 
-//Zeige ausgewählte Rasse an
+//Zeige ausgewähltes Element an
 function namechanger(id, target) {
     if (id == null || target == null) return;
     target.innerText = id.innerText;
+    //Änder Wert im dict selected
+    console.log(selected[target.id])
+    selected[target.id] = [id.id,id.innerText];
+    console.log(selected[target.id])
     updateWerte();
 }
+
 
 //Zeige ausgewählte Klasse an
 function changeLabel(klasse) {
@@ -186,6 +196,22 @@ function plus(klasse,intervall,grenze) {
         setVal(t,klasse.id+"punkte",plus);
         updateWerte();
     }
+}
+
+//Erlaube Stufenerhöhung der Zauber je nach Zaubertwert der Zauberklasse
+function zauberplus(zauberid) {
+    let zauberplus = getNum(t,"zauber"+zauberid+"punkte"); //Ausgangswert
+    let zauberklasse = selected["klasse"+zauberid][0].slice(0,-1); //Ausgewählte Klasse
+    //Stoppe wenn noch keine Klasse ausgewählt ist
+    if (zauberklasse == "default") return;
+    let klassenwert = getNum(t,zauberklasse+"wert"); //Wert in der auswaählten Zauberklasse
+    if (zauberplus==0&&klassenwert!=0) zauberplus+=1;
+    else if (zauberplus==1&&klassenwert>4) zauberplus+=1;
+    else if (zauberplus==2&&klassenwert>8) zauberplus+=1;
+    else if (zauberplus==3&&klassenwert>12) zauberplus+=1;
+
+    setVal(t,"zauber"+zauberid+"punkte",zauberplus);
+    updateWerte()
 }
 
 //Verringere Punkt der Klasse um Intervall sofern !(p < grenze), Default grenze = 0
