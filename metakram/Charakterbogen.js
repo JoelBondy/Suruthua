@@ -1,4 +1,4 @@
-//Zum Abgleich und den Modifikator zu bekommen
+//Rasse:Lebensmodifikator
 const race = {
     "Amaka": 112,
     "Guqual": 101,
@@ -12,49 +12,12 @@ const race = {
 const v = "v";
 const t = "t";
 
-//dict mit Attribut:Attributsid
-const idcorp = {
-"Beweglichkeit":"k1",
-"Reaktion":"k2",
-"Schnelligkeit":"k3",
-"Gleichgewicht":"k4",
-"Schleichen":"k5",
-"Fingerfertigkeit":"k6",
-"Umgang mit Werkzeugen":"k7",
-"Geschicklichkeit":"k8",
-"Fokus":"m1",
-"Geduld":"m2",
-"Wahrnehmung":"m3",
-"Untersuchen":"m4",
-"Erinnerung":"m5",
-"Vorsicht":"m6",
-"Orientierung":"m7",
-"Mut":"m8",
-"Willenskraft":"m9",
-"Medizin":"w1",
-"Tierkunde":"w2",
-"Pflanzenkunde":"w3",
-"Religionswissen":"w4",
-"Kultur":"w5",
-"Ortskunde":"w6",
-"Gassenwissen":"w7",
-"Magie":"w8",
-"Geschichte":"w9",
-"Etikette":"w10",
-"Menschenkenntnis":"s1",
-"Lügen":"s2",
-"Täuschen":"s3",
-"Überzeugen":"s4",
-"Feilschen":"s5",
-"Charisma":"s6",
-"Betören":"s7",
-"Einschüchtern":"s8"
-}
-    
-
 
 //Insgesamt zu vergebene Punkte
 const punkte = 400;
+setVal(t,"total",punkte);
+
+
 
 //Arrays mit den ids aller festen Fähigkeiten, Waffenklassen, Zauberklassen
 const fest = ["schwimm","reit","les","schreib","mathe"];
@@ -69,8 +32,47 @@ const selected = {"raceselect":["raceselect","Auswahl"],"schwimm":["schwimmno","
 "schreib":["schreibno","Nein"],"mathe":["matheno","Nein"],"klasse1":["default1","Klasse"],"klasse2":["default2","Klasse"],
 "klasse3":["default3","Klasse"],"klasse4":["default4","Klasse"],"klasse5":["default5","Klasse"],"klasse6":["default6","Klasse"],
 "klasse7":["default7","Klasse"],"klasse8":["default8","Klasse"]}
+//dict mit Attribut:Attributsid für alle Attribute
+const idcorp = {
+    "Beweglichkeit":"k1",
+    "Reaktion":"k2",
+    "Schnelligkeit":"k3",
+    "Gleichgewicht":"k4",
+    "Schleichen":"k5",
+    "Fingerfertigkeit":"k6",
+    "Umgang mit Werkzeugen":"k7",
+    "Geschicklichkeit":"k8",
+    "Fokus":"m1",
+    "Geduld":"m2",
+    "Wahrnehmung":"m3",
+    "Untersuchen":"m4",
+    "Erinnerung":"m5",
+    "Vorsicht":"m6",
+    "Orientierung":"m7",
+    "Mut":"m8",
+    "Willenskraft":"m9",
+    "Medizin":"w1",
+    "Tierkunde":"w2",
+    "Pflanzenkunde":"w3",
+    "Religionswissen":"w4",
+    "Kultur":"w5",
+    "Ortskunde":"w6",
+    "Gassenwissen":"w7",
+    "Magie":"w8",
+    "Geschichte":"w9",
+    "Etikette":"w10",
+    "Menschenkenntnis":"s1",
+    "Lügen":"s2",
+    "Täuschen":"s3",
+    "Überzeugen":"s4",
+    "Feilschen":"s5",
+    "Charisma":"s6",
+    "Betören":"s7",
+    "Einschüchtern":"s8"
+    }
 
-//Arrays mit allen Werten nach Kategorie seprariert
+
+//Blank Arrays mit allen Werten nach Kategorie seprariert
 let s = Array(8).fill(1);
 let w = Array(10).fill(1);
 let k = Array(8).fill(1);
@@ -78,23 +80,21 @@ let m = Array(9).fill(1);
 
 
 //Helperfunctions
-
 //Kurze Variante;Nimmt ID als input und returned Element mit dieser ID
 function getHelp(id) {
     return document.getElementById(id);
 }
 //Holt den Inhalt eines Elements per ID je nach Art
-//type=v,t
+//type= v(=value),t(=innerText)
 function getVal(type,id) {
     if (type==v) return getHelp(id).value;
     else if (type==t) return getHelp(id).innerText;
     return;
 }
-//Holt Inhalt eines Elements per ID und ersetzt ihn durch inputvalue
+//Holt Inhalt eines Elements per ID und ersetzt ihn durch value
 function setVal(type,id,value) {
     if (type==v) getHelp(id).value = value;
     else if (type==t) getHelp(id).innerText = value;
-    return;
 }
 //getVal aber von String zu number umgewandelt
 function getNum(type,id) {
@@ -104,24 +104,24 @@ function getNum(type,id) {
 
 
 //Action wenn eine Zahl geändert wird
-function changeNumber(id) {
+function changeNumber(element) {
 
     //Geänderte Zahl
-    let input = Number(id.value);
+    let input = Number(element.value);
     
     //Zahl zurücksetzen falls nicht zwischen 1 und 20
     if (input > 20) {
         input = 20;
-        id.value = input;
+        element.value = input;
     }
     else if (input < 0) {
         input = 1;
-        id.value = input;
+        element.value = input;
     }
  
     //Welches Attribut in welcher Kategorie geändert wurde
-    let section = id.id[0];
-    let index = id.id[1]-1;
+    let section = element.id[0];
+    let index = element.id[1]-1;
 
     //Zahl im entsprechenden Array updaten und dann Durchschnitt der Kategorie gerundet neu berechnen und ändern
     if (section == "s") {
@@ -144,8 +144,8 @@ function changeNumber(id) {
         let aver = Math.round(m.reduce((a, b) => a+b, 0) / m.length);
         setVal(t,"mentales",aver);
    }
-   //Alles auf dem Laufenden halten
-   updateWerte();
+   //Alles auf dem Laufenden halten und Element mit geändertem value weitergeben
+   updateWerte(element);
 };
 
 
@@ -189,9 +189,13 @@ function changeLabel(klasse) {
 }
 
 //Erhöhe Punkt der Klasse um Intervall
+//klass=;intervall=um wie viel der wert erhöht werden soll;grenze=bis zu welchem wert maximal erhöht werden soll
 function plus(klasse,intervall,grenze) {
     let plus = getNum(t,klasse.id+"punkte");
-    if (!((plus+intervall)>grenze)) {
+    let total = getNum(t,"total");
+    //checke, dass nicht über das gesetzte limit erhöht wird
+    //und die verfügbaren punkte nicht überschrittenw werden
+    if (!((plus+intervall)>grenze)&&(total-intervall>=0)) {
         plus += intervall;
         setVal(t,klasse.id+"punkte",plus);
         updateWerte();
@@ -202,14 +206,15 @@ function plus(klasse,intervall,grenze) {
 function zauberplus(zauberid) {
     let zauberplus = getNum(t,"zauber"+zauberid+"punkte"); //Ausgangswert
     let zauberklasse = selected["klasse"+zauberid][0].slice(0,-1); //Ausgewählte Klasse
+    let total = getNum(t,"total"); //Verfügbare Punkte
     //Stoppe wenn noch keine Klasse ausgewählt ist
-    if (zauberklasse == "default") return;
-    let klassenwert = getNum(t,zauberklasse+"wert"); //Wert in der auswaählten Zauberklasse
-    if (zauberplus==0&&klassenwert!=0) zauberplus+=1;
-    else if (zauberplus==1&&klassenwert>4) zauberplus+=1;
-    else if (zauberplus==2&&klassenwert>8) zauberplus+=1;
-    else if (zauberplus==3&&klassenwert>12) zauberplus+=1;
-
+    if (zauberklasse != "default"&&(total!=0)) {
+        let klassenwert = getNum(t,zauberklasse+"wert"); //Wert in der auswaählten Zauberklasse
+        if (zauberplus==0&&klassenwert!=0) zauberplus+=1;
+        else if (zauberplus==1&&klassenwert>4) zauberplus+=1;
+        else if (zauberplus==2&&klassenwert>8) zauberplus+=1;
+        else if (zauberplus==3&&klassenwert>12) zauberplus+=1;
+    }
     setVal(t,"zauber"+zauberid+"punkte",zauberplus);
     updateWerte()
 }
@@ -227,8 +232,8 @@ function minus(klasse,intervall,grenze) {
 
 
 //Allgemeine Charakterwerte auf dem Laufenden halten
-function updateWerte() {
-
+function updateWerte(element) {
+    
     //setze leben variable um fehler bei der stärkeberechnung zu verhindern,
     //wenn noch keine Rasse ausgewählt ist
     let leben;
@@ -279,7 +284,7 @@ function updateWerte() {
 
 
     //Bonuswerte Kampf
-    //Iteriere durch alle Kampfklassen und passe die Boni an
+    //Iteriere durch alle Kampfklassen und passe die Bonuswerte an
     Object.keys(bonus).forEach(function(item){
         let endbonus;
         let bonus1,bonus2,bonus3;
@@ -308,7 +313,7 @@ function updateWerte() {
             setVal(t,item+"parade",neuwert);
         };
     });
-   
+
     magie.forEach(function(item) {
         let neuzauber;
         neuzauber = getNum(t,item+"punkte")/2;
@@ -321,16 +326,18 @@ function updateWerte() {
         s.reduce((a,b) => a+b, 0) + k.reduce((a,b) => a+b, 0)+
         w.reduce((a,b) => a+b, 0) + m.reduce((a,b) => a+b, 0)
     );
-    //Ausgebene Punkte fest Fertigkeiten (5:1)
+    //Ausgebene Punkte feste Fertigkeiten (5:1)
     fest.forEach(function (item) {
         if (getVal(t,item)=="Ja") {
             total=total+5;
         }
     }); 
+    console.log(total)
     //Ausgegebene Punkte Waffenklassen (5:1), Wert kommt schon als vielfaches von 5
     waffenklassen.forEach(function (item) {
-       total = total+getNum(t,item+'punkte');
+    total = total+getNum(t,item+'punkte');
     });
+    console.log(total)
     //Ausgebene Punkte Magie (2:1), Wert kommt schon als vielfaches von 2
     magie.forEach(function(item) {
         total = total+getNum(t,item+"punkte");
@@ -339,7 +346,14 @@ function updateWerte() {
     for (let i=1;i<9;i++) {
         total = total+getNum(t,"zauber"+i+"punkte");
     }
-    //Alle Punkte - total ausgegebene
+
+    if (total>punkte) {
+        element.value=element.value-(total-punkte); 
+        total=punkte;
+    } 
+    console.log(total);
+    //(alle_Punkte - total_ausgegebene)
     total = punkte-total;
     setVal(t,"total",total);
+    //};
 }
