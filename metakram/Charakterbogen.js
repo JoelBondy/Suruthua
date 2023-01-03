@@ -175,9 +175,7 @@ function namechanger(id, target) {
     if (id == null || target == null) return;
     target.innerText = id.innerText;
     //Änder Wert im dict selected
-    console.log(selected[target.id])
     selected[target.id] = [id.id,id.innerText];
-    console.log(selected[target.id])
     updateWerte();
 }
 
@@ -332,12 +330,12 @@ function updateWerte(element) {
             total=total+5;
         }
     }); 
-    console.log(total)
+
     //Ausgegebene Punkte Waffenklassen (5:1), Wert kommt schon als vielfaches von 5
     waffenklassen.forEach(function (item) {
     total = total+getNum(t,item+'punkte');
     });
-    console.log(total)
+    
     //Ausgebene Punkte Magie (2:1), Wert kommt schon als vielfaches von 2
     magie.forEach(function(item) {
         total = total+getNum(t,item+"punkte");
@@ -350,8 +348,7 @@ function updateWerte(element) {
     if (total>punkte) {
         element.value=element.value-(total-punkte); 
         total=punkte;
-    } 
-    console.log(total);
+    }
     //(alle_Punkte - total_ausgegebene)
     total = punkte-total;
     setVal(t,"total",total);
