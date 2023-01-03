@@ -14,7 +14,7 @@ const t = "t";
 
 
 //Insgesamt zu vergebene Punkte
-const punkte = 400;
+const punkte = 50;
 setVal(t,"total",punkte);
 
 
@@ -176,7 +176,7 @@ function namechanger(id, target) {
     target.innerText = id.innerText;
     //Änder Wert im dict selected
     selected[target.id] = [id.id,id.innerText];
-    updateWerte();
+    updateWerte(target);
 }
 
 
@@ -242,7 +242,7 @@ function updateWerte(element) {
         leben=0;
     }
     else {
-    let modi = race[getVal(t,"raceselect")];
+        let modi = race[getVal(t,"raceselect")];
         let vitali = Math.round(getNum(t,"korper")+(getNum(t,"mentales")/2)+modi);
         if (vitali<1) vitali = 0;
         setVal(t,"leben",vitali);
@@ -346,11 +346,17 @@ function updateWerte(element) {
     }
 
     if (total>punkte) {
-        element.value=element.value-(total-punkte); 
-        total=punkte;
+        if (element.innerText==0){
+            element.value=element.value-(total-punkte); 
+            total=punkte;
+        }
+        else {
+            element.innerText="Nein";
+            total -= 5
+        }
     }
+
     //(alle_Punkte - total_ausgegebene)
     total = punkte-total;
     setVal(t,"total",total);
-    //};
 }
