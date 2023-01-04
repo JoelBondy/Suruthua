@@ -14,9 +14,19 @@ const t = "t";
 
 
 //Insgesamt zu vergebene Punkte
-const punkte = 50;
+let punkte = 400;
 setVal(t,"total",punkte);
-
+function setTotal() {
+    console.log("ich bin da"+punkte);
+    let number = getVal(v,"settotal");
+    console.log(number);
+    if (number>=35) {
+        punkte=number;
+    }
+    console.log(punkte);
+    setVal(t,"total",punkte);
+    console.log(getVal(t,"total"))
+}
 
 
 //Arrays mit den ids aller festen Fähigkeiten, Waffenklassen, Zauberklassen
