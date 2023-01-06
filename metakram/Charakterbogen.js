@@ -13,22 +13,6 @@ const v = "v";
 const t = "t";
 
 
-//Insgesamt zu vergebene Punkte
-let punkte = 400;
-setVal(t,"total",punkte);
-function setTotal() {
-    console.log("ich bin da"+punkte);
-    let number = getVal(v,"settotal");
-    console.log(number);
-    if (number>=35) {
-        punkte=number;
-    }
-    console.log(punkte);
-    setVal(t,"total",punkte);
-    console.log(getVal(t,"total"))
-}
-
-
 //Arrays mit den ids aller festen Fähigkeiten, Waffenklassen, Zauberklassen
 const fest = ["schwimm","reit","les","schreib","mathe"];
 const waffenklassen = ["kling", "schlag", "stich", "kunst", "rauf", "wurf","fern"];
@@ -112,6 +96,38 @@ function getNum(type,id) {
     return;
 }
 
+checkInput
+//Insgesamt zu vergebene Punkte
+let punkte = 400;
+setVal(t,"pointstotal",punkte);
+setVal(t,"pointsleft",punkte);
+
+//NUR AUF ENTER FUNKTIONIEREN??
+function setTotal() {
+    getHelp("settotal").addEventListener("keydown",(e)=> {
+        if (e.key==="Enter") {
+            let number = getVal(v,"settotal");
+            let pointsspent = getVal(t,"pointstotal")-getVal(t,"pointsleft")
+     
+            if (number>=pointsspent) {
+            setVal(t,"pointstotal",number);
+            setVal(t,"pointsleft",number-pointsspent);
+            punkte=number;
+            }
+            //else setVal(v,"settotal",NaN);
+        }
+    });
+}
+
+
+function checkInput() {
+    let inputnumber = getVal(v,"settotal").toString();
+    if (inputnumber.length>3) {
+        inputnumber = inputnumber.substring(0,3);
+        setVal(v,"settotal",Number(inputnumber));
+    }
+    
+}
 
 //Action wenn eine Zahl geändert wird
 function changeNumber(element) {
@@ -183,9 +199,16 @@ window.onclick = function(event) {
 //Zeige ausgewähltes Element an
 function namechanger(id, target) {
     if (id == null || target == null) return;
-    target.innerText = id.innerText;
-    //Änder Wert im dict selected
-    selected[target.id] = [id.id,id.innerText];
+    //reset
+    if (id == "default") {
+        target.innerText = "Nein";
+        selected[target.id] = [(target.id+"no"),"Nein"]
+    }
+    else {
+        target.innerText = id.innerText;
+        //Änder Wert im dict selected
+        selected[target.id] = [id.id,id.innerText];
+    }
     updateWerte(target);
 }
 
@@ -197,10 +220,10 @@ function changeLabel(klasse) {
 }
 
 //Erhöhe Punkt der Klasse um Intervall
-//klass=;intervall=um wie viel der wert erhöht werden soll;grenze=bis zu welchem wert maximal erhöht werden soll
+//klass=;intervall=um wie viel der wert erhöht werden soll;grenze=bis zu welchem wert maximal erhöht werden darf
 function plus(klasse,intervall,grenze) {
     let plus = getNum(t,klasse.id+"punkte");
-    let total = getNum(t,"total");
+    let total = getNum(t,"pointsleft");
     //checke, dass nicht über das gesetzte limit erhöht wird
     //und die verfügbaren punkte nicht überschrittenw werden
     if (!((plus+intervall)>grenze)&&(total-intervall>=0)) {
@@ -214,7 +237,7 @@ function plus(klasse,intervall,grenze) {
 function zauberplus(zauberid) {
     let zauberplus = getNum(t,"zauber"+zauberid+"punkte"); //Ausgangswert
     let zauberklasse = selected["klasse"+zauberid][0].slice(0,-1); //Ausgewählte Klasse
-    let total = getNum(t,"total"); //Verfügbare Punkte
+    let total = getNum(t,"pointsleft"); //Verfügbare Punkte
     //Stoppe wenn noch keine Klasse ausgewählt ist
     if (zauberklasse != "default"&&(total!=0)) {
         let klassenwert = getNum(t,zauberklasse+"wert"); //Wert in der auswaählten Zauberklasse
@@ -255,6 +278,7 @@ function updateWerte(element) {
         let modi = race[getVal(t,"raceselect")];
         let vitali = Math.round(getNum(t,"korper")+(getNum(t,"mentales")/2)+modi);
         if (vitali<1) vitali = 0;
+
         setVal(t,"leben",vitali);
         leben = vitali;
     }
@@ -337,9 +361,12 @@ function updateWerte(element) {
     //Ausgebene Punkte feste Fertigkeiten (5:1)
     fest.forEach(function (item) {
         if (getVal(t,item)=="Ja") {
-            total=total+5;
+           total=total+5;
         }
     }); 
+
+        //RESET;
+
 
     //Ausgegebene Punkte Waffenklassen (5:1), Wert kommt schon als vielfaches von 5
     waffenklassen.forEach(function (item) {
@@ -368,5 +395,5 @@ function updateWerte(element) {
 
     //(alle_Punkte - total_ausgegebene)
     total = punkte-total;
-    setVal(t,"total",total);
+    setVal(t,"pointsleft",total);
 }
