@@ -9,10 +9,11 @@
     <div id="content">
 
         <div>Wie viele Punkte sollen vergeben werden dürfen?</div>
-        <input type="number" min="35" placeholder="min. 35 Punkte" id="settotal" oninput="setTotal()">
-        
+        <input type="number" min="35" placeholder="400" id="settotal" oninput="checkInput()"onkeydown="setTotal()" >
+        <br>Drücke 'Enter' zum Bestätigen
         <br><br>
-        <div>Punkte übrig: <span id="total"></span></div>
+        <div>Punkte total: <span id="pointstotal"></span></div>
+        <div>Punkte übrig: <span id="pointsleft"></span></div>
         <br>
         Rasse:
         <!-- Rassenklappe -->
