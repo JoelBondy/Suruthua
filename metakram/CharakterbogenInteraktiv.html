@@ -8,15 +8,21 @@
     <b><a href="../Regelwerk/Hauptseite_Regelwerk.html" style="margin-left: 5em; margin-top:1em;position:absolute;">Hauptseite</a></b>
     <div id="content">
 
+        <!-- Punkte -->
+        <h1 class="header">Punkte</h1>
         <div>Wie viele Punkte sollen vergeben werden dürfen?</div>
         <input type="number" min="35" placeholder="400" id="settotal" oninput="checkInput()"onkeydown="setTotal()" >
         <br>Drücke 'Enter' zum Bestätigen
         <br><br>
         <div>Punkte total: <span id="pointstotal"></span></div>
         <div>Punkte übrig: <span id="pointsleft"></span></div>
+        <div>Reset</div>
         <br>
+        
+        <!-- Persönliche Daten -->
+        <h1 class="header">Persönliche Daten</h1>
         Rasse:
-        <!-- Rassenklappe -->
+                <!-- Rassenklappe -->
         <div class="klappenmenu">
             <button id="raceselect" onclick="klappenregler(auswahl)" class="klappe">Auswahl</button>
             <div id="auswahl" class="klappezu">
@@ -39,8 +45,9 @@
         <br>
 
 
-        
-        <!-- Soziales -->
+        <!-- Attribute -->
+        <h1 class="header">Attribute</h1>
+                <!-- Soziales -->
         <table style="border: 1px solid grey;width:20%;background-color:aqua">
             <tr>
                 <th class="table">Soziales</th>
@@ -97,7 +104,7 @@
         </table>
         <br>
 
-        <!-- Wissen -->
+                <!-- Wissen -->
         <table style="border: 1px solid grey;width:20%;display:in-block;background-color:darkseagreen;">
             <tr>
                 <th class="table">Wissen</th>
@@ -166,7 +173,7 @@
         </table>
         <br>
 
-        <!-- Körper -->
+                <!-- Körper -->
         <table style="border: 1px solid grey;width:20%;background-color:darkgoldenrod;">
             <tr>
                 <th class="table">Körper</th>
@@ -223,7 +230,7 @@
         </table>
         <br>
 
-        <!-- Mentales -->
+                <!-- Mentales -->
         <table style="border: 1px solid grey;width:20%;background-color:darkgreen;color:aliceblue"> 
             <tr>
                 <th class="table" style="color:black">Mentales</th>
@@ -287,7 +294,7 @@
         <br><br>
         
 
-        <!-- Kombis -->
+                <!-- Kombis -->
         <table style="border: 1px solid grey;width:40%;background-color:aliceblue">
             <tr>
                 <th class="table" colspan="3">Kombis</th>
@@ -325,7 +332,7 @@
         </table>
         <br>
 
-        <!-- Feste Fertigkeiten -->
+                <!-- Feste Fertigkeiten -->
         <table style="border: 1px solid grey;width:15%;background-color:aliceblue;">
             <tr>
                 <th class="table" colspan="2" style="color:black;">Feste Fertigkeiten</th>
@@ -393,8 +400,9 @@
         </table>
         <br>
 
-
-        <!-- Waffenklasse -->
+        <!-- Kampf -->
+        <h1 class="header">Kampfwerte</h1>
+                <!-- Waffenklasse -->
         <table style="border: 1px solid grey;width:50%;background-color:honeydew">
             <tr>
                 <th class="table">Waffenklasse</th>
@@ -509,6 +517,7 @@
 
 
         <!-- Magie -->
+        <h1 class="header">Magie</h1>
         <table style="border:1px solid grey;width:50%;background-color:aquamarine">
             <tr>
                 <th class="table" colspan="2">Zauberklasse</th>
@@ -592,7 +601,7 @@
         </table>
 
         <br>
-        <!-- Zauber -->
+                <!-- Zauber -->
         <table style="border:1px solid grey;width:40%;background-color: aquamarine;">
             <tr>
                 <th class="table">Zauber</th>
