@@ -128,6 +128,10 @@ function checkInput() {
     
 }
 
+function reset() {
+    //RESET SCHREIBEN
+}
+
 //Action wenn eine Zahl geändert wird
 function changeNumber(element) {
 
