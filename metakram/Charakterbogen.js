@@ -96,30 +96,29 @@ function getNum(type,id) {
     return;
 }
 
-checkInput
-//Insgesamt zu vergebene Punkte
-let punkte = 400;
-setVal(t,"pointstotal",punkte);
-setVal(t,"pointsleft",punkte);
+//Punkte
+let punkte = 400; //default 400
+setVal(t,"pointstotal",punkte); //insgesamt
+setVal(t,"pointsleft",punkte);  //noch übrig
 
-//NUR AUF ENTER FUNKTIONIEREN??
+//setzt die insgesamt Punkte auf die Eingabe nach Enter drücken
 function setTotal() {
     getHelp("settotal").addEventListener("keydown",(e)=> {
-        if (e.key==="Enter") {
-            let number = getVal(v,"settotal");
-            let pointsspent = getVal(t,"pointstotal")-getVal(t,"pointsleft")
+        if (e.key==="Enter") { //ändere nummer wenn Enter gedrückt wurde
+            let number = getVal(v,"settotal"); //Eingegebene Zahl
+            let pointsspent = getVal(t,"pointstotal")-getVal(t,"pointsleft"); //totalpunkte-restliche_punkte=bisher ausgegebene punkte
      
-            if (number>=pointsspent) {
-            setVal(t,"pointstotal",number);
-            setVal(t,"pointsleft",number-pointsspent);
-            punkte=number;
+            //Eingabe darf nicht weniger als insgesamt ausgegeben sein und muss mind. 35 sein (jedes Attribut auf 1)
+            if (number>=pointsspent&&number>=35) {
+            setVal(t,"pointstotal",number); //Neue total punkte
+            setVal(t,"pointsleft",number-pointsspent); //Neue noch übrige Punkte
+            punkte=number; //update variable für spätere berechnungen
             }
-            //else setVal(v,"settotal",NaN);
         }
     });
 }
 
-
+//begrenze punkteeingabe auf max. 3 Stellen
 function checkInput() {
     let inputnumber = getVal(v,"settotal").toString();
     if (inputnumber.length>3) {
@@ -170,7 +169,7 @@ function changeNumber(element) {
         let aver = Math.round(m.reduce((a, b) => a+b, 0) / m.length);
         setVal(t,"mentales",aver);
    }
-   //Alles auf dem Laufenden halten und Element mit geändertem value weitergeben
+   //Alles auf dem Laufenden halten und geändertes Element
    updateWerte(element);
 };
 
@@ -200,20 +199,15 @@ window.onclick = function(event) {
 function namechanger(id, target) {
     if (id == null || target == null) return;
     //reset
-    if (id == "default") {
-        target.innerText = "Nein";
-        selected[target.id] = [(target.id+"no"),"Nein"]
-    }
-    else {
-        target.innerText = id.innerText;
-        //Änder Wert im dict selected
-        selected[target.id] = [id.id,id.innerText];
-    }
+    target.innerText = id.innerText;
+    //Änder Wert im dict selected
+    selected[target.id] = [id.id,id.innerText];
+    
     updateWerte(target);
 }
 
 
-//Zeige ausgewählte Klasse an
+//Zeige neu ausgewählte Klasse an
 function changeLabel(klasse) {
     setVal(t,"talentart",klasse.innerText);
     setVal(t,"talente",klasse.title);
@@ -241,10 +235,10 @@ function zauberplus(zauberid) {
     //Stoppe wenn noch keine Klasse ausgewählt ist
     if (zauberklasse != "default"&&(total!=0)) {
         let klassenwert = getNum(t,zauberklasse+"wert"); //Wert in der auswaählten Zauberklasse
-        if (zauberplus==0&&klassenwert!=0) zauberplus+=1;
-        else if (zauberplus==1&&klassenwert>4) zauberplus+=1;
-        else if (zauberplus==2&&klassenwert>8) zauberplus+=1;
-        else if (zauberplus==3&&klassenwert>12) zauberplus+=1;
+        if (zauberplus==0&&klassenwert!=0) zauberplus+=1;       //Stufe 1
+        else if (zauberplus==1&&klassenwert>4) zauberplus+=1;   //Stufe 2
+        else if (zauberplus==2&&klassenwert>8) zauberplus+=1;   //Stufe 3
+        else if (zauberplus==3&&klassenwert>12) zauberplus+=1;  //Stufe 4
     }
     setVal(t,"zauber"+zauberid+"punkte",zauberplus);
     updateWerte()
@@ -346,6 +340,7 @@ function updateWerte(element) {
         };
     });
 
+    //Zauberwerte
     magie.forEach(function(item) {
         let neuzauber;
         neuzauber = getNum(t,item+"punkte")/2;
@@ -364,9 +359,6 @@ function updateWerte(element) {
            total=total+5;
         }
     }); 
-
-        //RESET;
-
 
     //Ausgegebene Punkte Waffenklassen (5:1), Wert kommt schon als vielfaches von 5
     waffenklassen.forEach(function (item) {
