@@ -63,7 +63,7 @@ const idcorp = {
     "Charisma":"s6",
     "Betören":"s7",
     "Einschüchtern":"s8"
-    }
+}
 
 
 //Blank Arrays mit allen Werten nach Kategorie seprariert
@@ -129,7 +129,23 @@ function checkInput() {
 }
 
 function reset() {
-    //RESET SCHREIBEN
+    Object.values(idcorp).forEach(function(item) {
+        if (getVal(v,item)>1) setVal(v,item,1);
+    })
+    fest.forEach(function(item) {
+        if(getVal(t,item)=="Ja") setVal(t,item,"Nein");
+    });
+    waffenklassen.forEach(function(item) {
+        if(getVal(t,item+"punkte")>0) setVal(t,item+"punkte",0);
+    });
+    magie.forEach(function(item) {
+        if (getVal(t,item+"punkte")>0) setVal(t,item+"punkte",0);
+    });
+    for (let i=1;i<9;i++) {
+        if (getVal(t,"zauber"+i+"punkte")>0) setVal(t,"zauber"+i+"punkte",0);
+    }
+    setVal(t,"pointsleft",getVal(t,"pointstotal"));
+    updateWerte();
 }
 
 //Action wenn eine Zahl geändert wird
@@ -299,7 +315,7 @@ function updateWerte(element) {
     //Mana
     //Attributwerte holen und daraus Mana berechnen
     let mana = getNum(v,"m1")+getNum(v,"w8")+getNum(v,"k8");
-    Math.round(mana = (mana/3)*10);
+    mana=Math.round((mana/3)*10);
     if (mana<10) mana = 10;
     else if (mana>200) mana = 200;
     setVal(t,"mana",mana);
