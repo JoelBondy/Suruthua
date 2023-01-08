@@ -15,17 +15,18 @@
         <br>Drücke 'Enter' zum Bestätigen
         <br><br>
         <div>Punkte total: <span id="pointstotal"></span></div>
-        <div>Punkte übrig: <span id="pointsleft"></span></div>
-        <div>Reset</div>
+        <div>Punkte übrig: <span id="pointsleft"></span>
+            <button id="reset" onclick="reset()">Reset</button></div>
         <br>
         
         <!-- Persönliche Daten -->
         <h1 class="header">Persönliche Daten</h1>
-        Rasse:
+        <b>Rasse:</b>
                 <!-- Rassenklappe -->
         <div class="klappenmenu">
             <button id="raceselect" onclick="klappenregler(auswahl)" class="klappe">Auswahl</button>
             <div id="auswahl" class="klappezu">
+                <!-- <p id="defaultrace" onclick="namechanger(defaultrace, raceselect)">Auswahl</p> -->
                 <p id="amaka" onclick="namechanger(amaka, raceselect)">Amaka</p>
                 <p id="guqual" onclick="namechanger(guqual, raceselect)">Guqual</p>
                 <p id="avzitil" onclick="namechanger(avzitil, raceselect)">Avzitil</p>
@@ -35,13 +36,27 @@
                 <p id="quork" onclick="namechanger(quork, raceselect)">Quork</p>
                 <p id="draske" onclick="namechanger(draske, raceselect)">Draske</p>
             </div>
-        </div> 
+        </div>
+        <br><br>
+        <input type="text" placeholder="Name" id="name"><br>
+        <input type="text" placeholder="Alter" id="alter"><br>
+        <input type="text" placeholder="Größe" id="gross"><br>
+        <input type="text" placeholder="Gewicht" id="gewicht"><br>
+        <input type="text" placeholder="Haut-/Schuppenfarbe" id="haut"><br>
+        <input type="text" placeholder="Haar-/Fellfarbe" id="haar"><br>
+        <input type="text" placeholder="Augenfarbe" id="auge"><br>
+        <input type="text" placeholder="Geschlecht" id="geschlecht"><br>
+        <input type="text" placeholder="Sexualität" id="sex"><br>
+        <input type="text" placeholder="Herkunft" id="herkunft"><br>
+        <input type="text" placeholder="Religion" id="religion"><br>
+        <input type="text" placeholder="Beruf" id="beruf"><br>
         <br>
         
-        <div>Leben: <span id="leben">0</span></div>
-        <div>Geistige Gesundheit: <span id="gege">0</span></div>
-        <div>Mana: <span id="mana">0</span></div>
-        <div>Stärke: <span id="stark">0</span></div>
+        <div><b>Leben:</b> <span id="leben">0</span>
+            <b>Geistige Gesundheit:</b> <span id="gege">0</span>
+            <b>Mana:</b> <span id="mana">0</span>
+            <b>Stärke:</b> <span id="stark">0</span>
+        </div>
         <br>
 
 
