@@ -125,12 +125,14 @@ function checkInput() {
         inputnumber = inputnumber.substring(0,3);
         setVal(v,"settotal",Number(inputnumber));
     }
-    
 }
 
 function reset() {
     Object.values(idcorp).forEach(function(item) {
-        if (getVal(v,item)>1) setVal(v,item,1);
+        if (getVal(v,item)>1) {
+            setVal(v,item,1);
+            updateWerte(getHelp(item))
+        }
     })
     fest.forEach(function(item) {
         if(getVal(t,item)=="Ja") setVal(t,item,"Nein");
@@ -164,32 +166,7 @@ function changeNumber(element) {
         element.value = input;
     }
  
-    //Welches Attribut in welcher Kategorie geändert wurde
-    let section = element.id[0];
-    let index = element.id[1]-1;
-
-    //Zahl im entsprechenden Array updaten und dann Durchschnitt der Kategorie gerundet neu berechnen und ändern
-    if (section == "s") {
-        s[index] = input;
-        let aver = Math.round(s.reduce((a, b) => a+b, 0) / s.length);
-        setVal(t,"soziales",aver);
-    }
-    else if (section == "w") {
-        w[index] = input;
-        let aver =Math.round(w.reduce((a, b) => a+b, 0) / w.length);
-        setVal(t,"wissen",aver);
-    }
-   else if (section == "k") {
-        k[index] = input;
-        let aver = Math.round(k.reduce((a, b) => a+b, 0) / k.length);
-        setVal(t,"korper",aver);
-   }
-   else if (section == "m") {
-        m[index] = input;
-        let aver = Math.round(m.reduce((a, b) => a+b, 0) / m.length);
-        setVal(t,"mentales",aver);
-   }
-   //Alles auf dem Laufenden halten und geändertes Element
+   //Alles auf dem Laufenden halten und geändertes Element weitergeben
    updateWerte(element);
 };
 
@@ -279,12 +256,42 @@ function minus(klasse,intervall,grenze) {
 //Allgemeine Charakterwerte auf dem Laufenden halten
 function updateWerte(element) {
     
+    if (!(typeof element === 'undefined')) {
+        //Attributswerte
+        //Welches Attribut in welcher Kategorie geändert wurde
+        let section = element.id[0];
+        let index = element.id[1]-1;
+        let input = Number(element.value);
+
+        //Attributskategorie (Durchschnitt aller Attributswert der Klasse s/w/k/m)
+        if (section == "s") {
+            s[index] = input;
+            let aver = Math.round(s.reduce((a, b) => a+b, 0) / s.length);
+            setVal(t,"soziales",aver);
+        }
+        else if (section == "w") {
+            w[index] = input;
+            let aver =Math.round(w.reduce((a, b) => a+b, 0) / w.length);
+            setVal(t,"wissen",aver);
+        }
+        else if (section == "k") {
+            k[index] = input;
+            let aver = Math.round(k.reduce((a, b) => a+b, 0) / k.length);
+            setVal(t,"korper",aver);
+        }
+        else if (section == "m") {
+            m[index] = input;
+            let aver = Math.round(m.reduce((a, b) => a+b, 0) / m.length);
+            setVal(t,"mentales",aver);
+        }
+    }
+
     //setze leben variable um fehler bei der stärkeberechnung zu verhindern,
     //wenn noch keine Rasse ausgewählt ist
     let leben;
+    
     //Leben
-    //Default bis Rasse gewählt ist
-    if (getVal(t,"raceselect") == "Auswahl") {
+    if (getVal(t,"raceselect") == "Auswahl") { //Default bis Rasse gewählt ist
         setVal(t,"leben","Wähle eine Rasse");
         leben=0;
     }
