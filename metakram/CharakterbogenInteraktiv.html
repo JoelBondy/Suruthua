@@ -617,11 +617,14 @@
 
         <br>
                 <!-- Zauber -->
-        <table style="border:1px solid grey;width:40%;background-color: aquamarine;">
+        <table style="border:1px solid grey;width:75%;background-color: aquamarine;">
             <tr>
                 <th class="table">Zauber</th>
                 <th class="table">Zauberklasse</th>
                 <th class="table">Stufe</th>
+                <th class="table">Zauberwert</th>
+                <th class="table">Mana</th>
+                <th class="table">Effekt</th>
             </tr>
             <tr>
                 <td class="bordercen"><input type="text" id="zauber1" style="background-color:transparent;border:none;text-align:center"></td>
@@ -646,6 +649,9 @@
                     <span id="zauber1punkte">0</span>
                     <button id="pluszauber1" onclick=zauberplus(1)>+</button>
                 </td>
+                <td class="bordercen" id="zauberwert1"></td>
+                <td class="bordercen"><input type="number" id="mana1"></td>
+                <td><input type="text" id="effekt1"></td>
             </tr>
             <tr>
                 <td class="bordercen"><input type="text" id="zauber2" style="background-color:transparent;border:none;text-align:center"></td>
@@ -670,6 +676,9 @@
                     <span id="zauber2punkte">0</span>
                     <button id="pluszauber2" onclick=zauberplus(2)>+</button>
                 </td>
+                <td class="bordercen" id="zauberwert2"></td>
+                <td class="bordercen"><input type="number" id="mana2"></td>
+                <td><input type="text" id="effekt2"></td>
             </tr>
             <tr>
                 <td class="bordercen"><input type="text" id="zauber3" style="background-color:transparent;border:none;text-align:center"></td>
@@ -694,6 +703,9 @@
                     <span id="zauber3punkte">0</span>
                     <button id="pluszauber3" onclick=zauberplus(3)>+</button>
                 </td>
+                <td class="bordercen" id="zauberwert3"></td>
+                <td class="bordercen"><input type="number" id="mana3"></td>
+                <td><input type="text" id="effekt3"></td>
             </tr>
             <tr>
                 <td class="bordercen"><input type="text" id="zauber4" style="background-color:transparent;border:none;text-align:center"></td>
@@ -718,6 +730,9 @@
                     <span id="zauber4punkte">0</span>
                     <button id="pluszauber4" onclick=zauberplus(4)>+</button>
                 </td>
+                <td class="bordercen" id="zauberwert4"></td>
+                <td class="bordercen"><input type="number" id="mana4"></td>
+                <td><input type="text" id="effekt4"></td>
             </tr>
             <tr>
                 <td class="bordercen"><input type="text" id="zauber5" style="background-color:transparent;border:none;text-align:center"></td>
@@ -742,6 +757,9 @@
                     <span id="zauber5punkte">0</span>
                     <button id="pluszauber5" onclick=zauberplus(5)>+</button>
                 </td>
+                <td class="bordercen" id="zauberwert5"></td>
+                <td class="bordercen"><input type="number" id="mana5"></td>
+                <td><input type="text" id="effekt5"></td>
             </tr>
             <tr>
                 <td class="bordercen"><input type="text" id="zauber6" style="background-color:transparent;border:none;text-align:center"></td>
@@ -766,6 +784,9 @@
                     <span id="zauber6punkte">0</span>
                     <button id="pluszauber6" onclick=zauberplus(6)>+</button>
                 </td>
+                <td class="bordercen" id="zauberwert6"></td>
+                <td class="bordercen"><input type="number" id="mana6"></td>
+                <td><input type="text" id="effek6"></td>
             </tr>
             <tr>
                 <td class="bordercen"><input type="text" id="zauber7" style="background-color:transparent;border:none;text-align:center"></td>
@@ -790,6 +811,9 @@
                     <span id="zauber7punkte">0</span>
                     <button id="pluszauber7" onclick=zauberplus(7)>+</button>
                 </td>
+                <td class="bordercen" id="zauberwert7"></td>
+                <td class="bordercen"><input type="number" id="mana7"></td>
+                <td><input type="text" id="effekt7"></td>
             </tr>
             <tr>
                 <td class="bordercen"><input type="text" id="zauber8" style="background-color:transparent;border:none;text-align:center"></td>
@@ -814,6 +838,9 @@
                     <span id="zauber8punkte">0</span>
                     <button id="pluszauber8" onclick=zauberplus(8)>+</button>
                 </td>
+                <td class="bordercen" id="zauberwert8"></td>
+                <td class="bordercen"><input type="number" id="mana8"></td>
+                <td><input type="text" id="effekt8"></td>
             </tr>
         </table>
 
