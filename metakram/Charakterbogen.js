@@ -129,7 +129,7 @@ function checkInput() {
 
 function reset() {
     Object.values(idcorp).forEach(function(item) {
-        if (getVal(v,item)>1) {
+        if (getVal(v,item)!=1) {
             setVal(v,item,1);
             updateWerte(getHelp(item))
         }
@@ -155,7 +155,7 @@ function changeNumber(element) {
 
     //Geänderte Zahl
     let input = Number(element.value);
-    
+
     //Zahl zurücksetzen falls nicht zwischen 1 und 20
     if (input > 20) {
         input = 20;
@@ -165,7 +165,31 @@ function changeNumber(element) {
         input = 1;
         element.value = input;
     }
- 
+
+    let section = element.id[0];
+    let index = element.id[1]-1;
+
+    //Attributskategorie (Durchschnitt aller Attributswert der Klasse s/w/k/m)
+    if (section == "s") {
+        s[index] = input;
+        let aver = Math.round(s.reduce((a, b) => a+b, 0) / s.length);
+        setVal(t,"soziales",aver);
+    }
+    else if (section == "w") {
+        w[index] = input;
+        let aver =Math.round(w.reduce((a, b) => a+b, 0) / w.length);
+        setVal(t,"wissen",aver);
+    }
+    else if (section == "k") {
+        k[index] = input;
+        let aver = Math.round(k.reduce((a, b) => a+b, 0) / k.length);
+        setVal(t,"korper",aver);
+    }
+    else if (section == "m") {
+        m[index] = input;
+        let aver = Math.round(m.reduce((a, b) => a+b, 0) / m.length);
+        setVal(t,"mentales",aver);
+    }
    //Alles auf dem Laufenden halten und geändertes Element weitergeben
    updateWerte(element);
 };
@@ -255,125 +279,6 @@ function minus(klasse,intervall,grenze) {
 
 //Allgemeine Charakterwerte auf dem Laufenden halten
 function updateWerte(element) {
-    
-    if (!(typeof element === 'undefined')) {
-        //Attributswerte
-        //Welches Attribut in welcher Kategorie geändert wurde
-        let section = element.id[0];
-        let index = element.id[1]-1;
-        let input = Number(element.value);
-
-        //Attributskategorie (Durchschnitt aller Attributswert der Klasse s/w/k/m)
-        if (section == "s") {
-            s[index] = input;
-            let aver = Math.round(s.reduce((a, b) => a+b, 0) / s.length);
-            setVal(t,"soziales",aver);
-        }
-        else if (section == "w") {
-            w[index] = input;
-            let aver =Math.round(w.reduce((a, b) => a+b, 0) / w.length);
-            setVal(t,"wissen",aver);
-        }
-        else if (section == "k") {
-            k[index] = input;
-            let aver = Math.round(k.reduce((a, b) => a+b, 0) / k.length);
-            setVal(t,"korper",aver);
-        }
-        else if (section == "m") {
-            m[index] = input;
-            let aver = Math.round(m.reduce((a, b) => a+b, 0) / m.length);
-            setVal(t,"mentales",aver);
-        }
-    }
-
-    //setze leben variable um fehler bei der stärkeberechnung zu verhindern,
-    //wenn noch keine Rasse ausgewählt ist
-    let leben;
-    
-    //Leben
-    if (getVal(t,"raceselect") == "Auswahl") { //Default bis Rasse gewählt ist
-        setVal(t,"leben","Wähle eine Rasse");
-        leben=0;
-    }
-    else {
-        let modi = race[getVal(t,"raceselect")];
-        let vitali = Math.round(getNum(t,"korper")+(getNum(t,"mentales")/2)+modi);
-        if (vitali<1) vitali = 0;
-
-        setVal(t,"leben",vitali);
-        leben = vitali;
-    }
-
-    //Stärke
-    //Attributwerte holen und daraus Stärke berechnen
-    let stark = Math.round(leben*0.05+((getNum(v,"k1")+getNum(v,"k4"))/4)+3);
-    if (stark<7) stark = 7;
-    else if (stark>20) stark = 20;
-    setVal(t,"stark",stark);
-
-    //Geistige Gesundheit
-    //Attributwerte holen und daraus GG berechnen
-    let gg = getNum(v,"m9")+getNum(v,"m3")+getNum(v,"m1")+getNum(v,"m6");
-    Math.round((gg/4)*5);
-    if (gg<5) gg = 5;
-    else if (gg>100) gg=100;
-    setVal(t,"gege",gg);
-
-    //Mana
-    //Attributwerte holen und daraus Mana berechnen
-    let mana = getNum(v,"m1")+getNum(v,"w8")+getNum(v,"k8");
-    mana=Math.round((mana/3)*10);
-    if (mana<10) mana = 10;
-    else if (mana>200) mana = 200;
-    setVal(t,"mana",mana);
-
-
-    //Kombis
-    //Iteriere durch alle Kombis und passe die Werte an
-    Object.keys(kombi).forEach(function(item){
-        let endkombi = Math.round((getNum(v,kombi[item][0])+getNum(v,kombi[item][1]))/2);
-        setVal(t,item,endkombi);
-    });
-
-
-    //Bonuswerte Kampf
-    //Iteriere durch alle Kampfklassen und passe die Bonuswerte an
-    Object.keys(bonus).forEach(function(item){
-        let endbonus;
-        let bonus1,bonus2,bonus3;
-        
-        //catche stärke und werfen, da sie text und kein value enthalten
-        if (bonus[item][0]=="stark") bonus1 = getNum(t,bonus[item][0]);
-        else bonus1 = getNum(v,bonus[item][0]);
-        bonus2 = getNum(v,bonus[item][1]);
-        if (bonus[item][2]=="werf") bonus3 = getNum(t,bonus[item][2]);
-        else bonus3 = getNum(v,bonus[item][2]);
-
-        endbonus = Math.round((bonus1+bonus2+bonus3)*0.1);
-        setVal(t,item+"bonus",endbonus);
-    });
-
-    
-
-    //Kampf- und Paradewerte
-    waffenklassen.forEach(function(item) {
-        let neuwert;
-        neuwert = Math.round(getNum(t,item+"bonus")+(getNum(t,item+"punkte")/5)+5);
-        setVal(t,item+"kampf",neuwert);
-        //wurf- und fernwaffen haben keinen paradewert
-        if (!(item == "wurf"||item=="fern")){
-            neuwert = Math.round(neuwert/2)
-            setVal(t,item+"parade",neuwert);
-        };
-    });
-
-    //Zauberwerte
-    magie.forEach(function(item) {
-        let neuzauber;
-        neuzauber = getNum(t,item+"punkte")/2;
-        setVal(t,item+"wert",neuzauber);
-    });
-
     //Noch zu vergebene Punkte
     //Ausgegebene Attributspunkte
     let total = (
@@ -401,18 +306,114 @@ function updateWerte(element) {
         total = total+getNum(t,"zauber"+i+"punkte");
     }
 
-    if (total>punkte) {
-        if (element.innerText==0){
+
+
+    //zurücksetzen wenn mehr punkte ausgegeben wurden, als zur Verfügung standen und neu berechnen
+    if (total>punkte) { 
+        if (element.innerText==0){  //Attribut wurde geändert
             element.value=element.value-(total-punkte); 
             total=punkte;
+            changeNumber(element); //element weitergeben damit es auch im array geändert wird (triggert danach wieder updateWerte mit jetzt richtigem Wert)
         }
-        else {
+        else {  //feste Fähigkeit wurde geändert
             element.innerText="Nein";
             total -= 5
         }
+        //(alle_Punkte - total_ausgegebene)=noch übrig
+        total = punkte-total;
+        setVal(t,"pointsleft",total);
     }
+    //wenn bei der punktevergabe alles ok war, berechne andere werte neu
+    else { 
 
-    //(alle_Punkte - total_ausgegebene)
-    total = punkte-total;
-    setVal(t,"pointsleft",total);
+        //setze leben variable um fehler bei der stärkeberechnung zu verhindern,
+        //wenn noch keine Rasse ausgewählt ist
+        let leben;
+        
+        //Leben
+        if (getVal(t,"raceselect") == "Auswahl") { //Default bis Rasse gewählt ist
+            setVal(t,"leben","Wähle eine Rasse");
+            leben=0;
+        }
+        else {
+            let modi = race[getVal(t,"raceselect")];
+            let vitali = Math.round(getNum(t,"korper")+(getNum(t,"mentales")/2)+modi);
+            if (vitali<1) vitali = 0;
+
+            setVal(t,"leben",vitali);
+            leben = vitali;
+        }
+
+        //Stärke
+        let stark = Math.round(leben*0.05+((getNum(v,"k1")+getNum(v,"k4"))/4)+3); //Stärke = (Leben*0.05) + ((Beweglichkeit+Gleichgewicht)/4)+3
+        if (stark<7) stark = 7; //Minwert 7
+        else if (stark>20) stark = 20; //Maxwert 20
+        setVal(t,"stark",stark);
+
+        //Geistige Gesundheit
+        let gg = getNum(v,"m9")+getNum(v,"m3")+getNum(v,"m1")+getNum(v,"m6"); //Geistige Gesundheit = Durchschnitt(Willenskraft+Wahrnehmung+Fokus+Vorsicht)*5
+        Math.round((gg/4)*5); 
+        if (gg<5) gg = 5; //Minwert 5
+        else if (gg>100) gg=100; //Maxwert 100
+        setVal(t,"gege",gg);
+
+        //Mana
+        let mana = getNum(v,"m1")+getNum(v,"w8")+getNum(v,"k8"); //Mana = Durchschnitt(Fokus+Magie+Geschicklichkeit)*10
+        mana=Math.round((mana/3)*10);
+        if (mana<10) mana = 10; //Minwert 10
+        else if (mana>200) mana = 200; //Maxwert 200
+        setVal(t,"mana",mana);
+
+
+        //Kombis
+        //Iteriere durch alle Kombis und passe die Werte an
+        Object.keys(kombi).forEach(function(item){
+            let endkombi = Math.round((getNum(v,kombi[item][0])+getNum(v,kombi[item][1]))/2); //Kombiwerte = Durchschnitt(Attribut1+Attribut2)
+            setVal(t,item,endkombi);
+        });
+
+
+        //Bonuswerte Kampf
+        //Iteriere durch alle Kampfklassen und passe die Bonuswerte an
+        Object.keys(bonus).forEach(function(item){
+            let endbonus;
+            let bonus1,bonus2,bonus3;
+            
+            //catche stärke und werfen, da sie text und kein value enthalten
+            if (bonus[item][0]=="stark") bonus1 = getNum(t,bonus[item][0]);
+            else bonus1 = getNum(v,bonus[item][0]);                        //Bonuswert1
+            bonus2 = getNum(v,bonus[item][1]);                             //Bonuswert2
+            if (bonus[item][2]=="werf") bonus3 = getNum(t,bonus[item][2]);
+            else bonus3 = getNum(v,bonus[item][2]);                        //Bonuswert3
+
+            endbonus = Math.round((bonus1+bonus2+bonus3)*0.1);  //(B1+B2+B3)*0.01
+            setVal(t,item+"bonus",endbonus);
+        });
+
+        //Kampf- und Paradewerte
+        waffenklassen.forEach(function(item) {
+            //Kampfwert
+            let neuwert;
+            neuwert = Math.round(getNum(t,item+"bonus")+(getNum(t,item+"punkte")/5)+5); //Kampfwert = Bonuswert+PunkteWaffenklasse; Kosten 5:1, Grundwert 5
+            setVal(t,item+"kampf",neuwert);
+
+            //Paradewert
+            if (!(item == "wurf"||item=="fern")){       //wurf- und Fernwaffen haben keinen Paradewert
+                neuwert = Math.round(neuwert/2)     //Paradewert entspricht der Hälfte des Kampfwertes der entsprechenden Waffenklasse
+                setVal(t,item+"parade",neuwert);
+            };
+        });
+
+
+        //Zauberwerte
+        magie.forEach(function(item) {
+            let neuzauber;
+            neuzauber = getNum(t,item+"punkte")/2; //Kosten 2:1
+            setVal(t,item+"wert",neuzauber);
+        });
+    
+        //Ausgegebene Punkte
+        total = punkte-total;         //(alle_Punkte - total_ausgegebene)=noch übrig
+        setVal(t,"pointsleft",total);
+    }
 }
