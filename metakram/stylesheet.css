@@ -180,13 +180,14 @@ a.hoverbox:hover {
 	cursor: pointer;
 }
 .klappenmenu p:hover {
-	background-color:grey;
+	background-color:lightgrey;
 }
 .klappezu {
 	display: none;
 	position: absolute;
-	background-color:lightgrey;
-	border:1px solid black;
+	min-width:100px;
+	background-color:whitesmoke;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	z-index:1;
 }
 .klappeauf {
@@ -194,6 +195,5 @@ a.hoverbox:hover {
 	text-align: center;
 }
 .klappe {
-	
-  cursor: pointer;
+  	cursor: pointer;
 }
