@@ -9,6 +9,7 @@ const race = {
     "Quork": 73,
     "Draske": 70
 };
+//Faulheit
 const v = "v";
 const t = "t";
 
@@ -107,7 +108,7 @@ function setTotal() {
         if (e.key==="Enter") { //ändere nummer wenn Enter gedrückt wurde
             let number = getVal(v,"settotal"); //Eingegebene Zahl
             let pointsspent = getVal(t,"pointstotal")-getVal(t,"pointsleft"); //totalpunkte-restliche_punkte=bisher ausgegebene punkte
-     
+
             //Eingabe darf nicht weniger als insgesamt ausgegeben sein und muss mind. 35 sein (jedes Attribut auf 1)
             if (number>=pointsspent&&number>=35) {
             setVal(t,"pointstotal",number); //Neue total punkte
@@ -133,7 +134,15 @@ function reset() {
             setVal(v,item,1);
             updateWerte(getHelp(item))
         }
-    })
+    });
+    s.fill(1);
+    setVal(t,"soziales",1);
+    w.fill(1);
+    setVal(t,"wissen",1);
+    k.fill(1);
+    setVal(t,"korper",1);
+    m.fill(1);
+    setVal(t,"mentales",1);
     fest.forEach(function(item) {
         if(getVal(t,item)=="Ja") setVal(t,item,"Nein");
     });
@@ -223,7 +232,7 @@ function namechanger(id, target) {
     target.innerText = id.innerText;
     //Änder Wert im dict selected
     selected[target.id] = [id.id,id.innerText];
-    
+
     updateWerte(target);
 }
 
@@ -290,14 +299,14 @@ function updateWerte(element) {
         if (getVal(t,item)=="Ja") {
            total=total+5;
         }
-    }); 
+    });
 
-    //Ausgegebene Punkte Waffenklassen (5:1), Wert kommt schon als vielfaches von 5
+    //Ausgegebene Punkte Waffenklassen (5:1), Wert kommt schon als Vielfaches von 5
     waffenklassen.forEach(function (item) {
     total = total+getNum(t,item+'punkte');
     });
-    
-    //Ausgebene Punkte Magie (2:1), Wert kommt schon als vielfaches von 2
+
+    //Ausgebene Punkte Magie (2:1), Wert kommt schon als Vielfaches von 2
     magie.forEach(function(item) {
         total = total+getNum(t,item+"punkte");
     });
@@ -308,10 +317,10 @@ function updateWerte(element) {
 
 
 
-    //zurücksetzen wenn mehr punkte ausgegeben wurden, als zur Verfügung standen und neu berechnen
-    if (total>punkte) { 
+    //zurücksetzen wenn mehr Punkte ausgegeben wurden als zur Verfügung standen und neu berechnen
+    if (total>punkte) {
         if (element.innerText==0){  //Attribut wurde geändert
-            element.value=element.value-(total-punkte); 
+            element.value=element.value-(total-punkte);
             total=punkte;
             changeNumber(element); //element weitergeben damit es auch im array geändert wird (triggert danach wieder updateWerte mit jetzt richtigem Wert)
         }
@@ -324,12 +333,12 @@ function updateWerte(element) {
         setVal(t,"pointsleft",total);
     }
     //wenn bei der punktevergabe alles ok war, berechne andere werte neu
-    else { 
+    else {
 
         //setze leben variable um fehler bei der stärkeberechnung zu verhindern,
         //wenn noch keine Rasse ausgewählt ist
         let leben;
-        
+
         //Leben
         if (getVal(t,"raceselect") == "Auswahl") { //Default bis Rasse gewählt ist
             setVal(t,"leben","Wähle eine Rasse");
@@ -352,7 +361,7 @@ function updateWerte(element) {
 
         //Geistige Gesundheit
         let gg = getNum(v,"m9")+getNum(v,"m3")+getNum(v,"m1")+getNum(v,"m6"); //Geistige Gesundheit = Durchschnitt(Willenskraft+Wahrnehmung+Fokus+Vorsicht)*5
-        Math.round((gg/4)*5); 
+        Math.round((gg/4)*5);
         if (gg<5) gg = 5; //Minwert 5
         else if (gg>100) gg=100; //Maxwert 100
         setVal(t,"gege",gg);
@@ -378,13 +387,13 @@ function updateWerte(element) {
         Object.keys(bonus).forEach(function(item){
             let endbonus;
             let bonus1,bonus2,bonus3;
-            
+
             //catche stärke und werfen, da sie text und kein value enthalten
-            if (bonus[item][0]=="stark") bonus1 = getNum(t,bonus[item][0]);
-            else bonus1 = getNum(v,bonus[item][0]);                        //Bonuswert1
+            if (bonus[item][0]=="stark") bonus1 = getNum(t,bonus[item][0]); //Bonuswert1
+            else bonus1 = getNum(v,bonus[item][0]);                        
             bonus2 = getNum(v,bonus[item][1]);                             //Bonuswert2
-            if (bonus[item][2]=="werf") bonus3 = getNum(t,bonus[item][2]);
-            else bonus3 = getNum(v,bonus[item][2]);                        //Bonuswert3
+            if (bonus[item][2]=="werf") bonus3 = getNum(t,bonus[item][2]); //Bonuswert3
+            else bonus3 = getNum(v,bonus[item][2]);
 
             endbonus = Math.round((bonus1+bonus2+bonus3)*0.1);  //(B1+B2+B3)*0.01
             setVal(t,item+"bonus",endbonus);
