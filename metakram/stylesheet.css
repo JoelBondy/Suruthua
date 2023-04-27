@@ -197,3 +197,32 @@ a.hoverbox:hover {
 .klappe {
   	cursor: pointer;
 }
+.container {
+    display: flex;
+	flex-direction: column;
+	float:right;
+    color: #202C39;
+	height:50px;
+}
+#searchbar {
+    padding: 15px;
+    border-radius: 5px;
+}
+#results {
+    border: 1px solid lightgrey;
+	border-radius: 5px;
+	background-color: white;
+    display: none;
+	z-index: 1;
+}
+.resultItem {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    padding: 5px 20px;
+    color: black;
+}
+.resultItem:hover {
+    background-color:#e6dede;
+	text-decoration: none;
+}
