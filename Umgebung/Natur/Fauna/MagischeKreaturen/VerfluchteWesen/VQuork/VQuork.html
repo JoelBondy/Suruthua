@@ -8,78 +8,85 @@
 	<body>
 		<b><a href="../../../../../../Hauptseite.html" style="margin-left: 5em; margin-top:1em;position:absolute;">Hauptseite</a></b>
 		
+		<div class="container">
+			<input type="text" id="searchbar" onkeyup="search()" placeholder="Such was...">
+			<div id="results"></div>
+		</div>
+
 		<div id="content">
-		<h1 id="header">Verfluchter Quork</h1>
-		<div class="infobox">
-			<div class="infobox-header">Verfluchter Quork</div>
-			<div class="infobox-img">
-				<a href="./Bilder/Bildnachweis.html">
-					<img>
-				</a>
+			<h1 id="header">Verfluchter Quork</h1>
+			<div class="infobox">
+				<div class="infobox-header">Verfluchter Quork</div>
+				<div class="infobox-img">
+					<a href="./Bilder/Bildnachweis.html">
+						<img>
+					</a>
+				</div>
+				<table cellspacing="1" cellpadding="4">
+					<tr>
+						<th>Aussprache:</th>
+						<td></td>
+					</tr>
+				</table>
 			</div>
-			<table cellspacing="1" cellpadding="4">
-				<tr>
-					<th>Aussprache:</th>
-					<td></td>
-				</tr>
-			</table>
+
+			<div id="contents">
+				<div class="box-header">Inhaltsverzeichnis</div>
+				<ul class="blank">
+					<li><a href="#aussehen">
+						<span class="contsnum">1</span>
+						Aussehen
+					</a></li>
+					<li><a href="#vorkommen">
+						<span class="contsnum">2</span>
+						Vorkommen
+					</a></li>
+					<li><a href="#verhalten">
+						<span class="contsnum">3</span>
+						Verhalten
+					</a></li>
+					<li><a href="#faehigkeiten">
+						<span class="contsnum">4</span>
+						F&auml;higkeiten
+					</a></li>
+					<li><a href="#herkunft">
+						<span class="contsnum">5</span>
+						Herkunft
+					</a></li>
+					<li><a href="#namensherkunft">
+						<span class="contsnum">6</span>
+						Namensherkunft
+					</a></li>
+			</ul>
 		</div>
 
-		<div id="contents">
-			<div class="box-header">Inhaltsverzeichnis</div>
-			<ul class="blank">
-				<li><a href="#aussehen">
-					<span class="contsnum">1</span>
-					Aussehen
-				</a></li>
-				<li><a href="#vorkommen">
-					<span class="contsnum">2</span>
-					Vorkommen
-				</a></li>
-				<li><a href="#verhalten">
-					<span class="contsnum">3</span>
-					Verhalten
-				</a></li>
-				<li><a href="#faehigkeiten">
-					<span class="contsnum">4</span>
-					F&auml;higkeiten
-				</a></li>
-				<li><a href="#herkunft">
-					<span class="contsnum">5</span>
-					Herkunft
-				</a></li>
-				<li><a href="#namensherkunft">
-					<span class="contsnum">6</span>
-					Namensherkunft
-				</a></li>
-		</ul>
-	</div>
-
-		<h2 class="header" id="aussehen">Aussehen</h2>
-		<ul>
-			<li>angekokelte, rote Fl&uuml;gel</li>
-			<li>schwarz/grauer K&ouml;rper</li>
-			<li>hat vier Augen wie normaler Quork, aber die drei &auml;u&szlig;eren sind abgestorben, und das eigentlich abgestorbene ist wieder offen</li>
-			<li>Augen haben roten Rand, das offene Auge ist ebenfalls rot</li>
-			<li>roter Ring wo beim Quork der Beutel sitzt</li>
-			<li>haben keine Beutel mehr</li>
-			<li>vier Beine, keine Arme</li>
-			<li>bewegt sich auf allen vieren/steht waagerecht in der Luft </li>
-		</ul>
-		<h2 class="header" id="vorkommen">Vorkommen</h2>
-		<h2 class="header" id="verhalten">Verhalten</h2>
-		<ul>
-			<li>launisch</li>
-			<li>entscheidet spontan, ob es angreift oder nicht</li>
-			<li>kommt vor, dass es keine Lust hat zu k&auml;mpfen</li>
-			<li>wird es angegriffen, verteidigt es sich aber immer</li>
-		</ul>
-		<h2 class="header" id="faehigkeiten">F&auml;higkeiten</h2>
-		<h2 class="header" id="herkunft">Herkunft</h2>
-		<ul>
-			<li>verfluchter <a title="Quork" href="../../../../../../Kulturen/Rassen/Quork/Quork.html">Quork</a></li>
-		</ul>
-		<h2 class="header" id="namensherkunft">Namensherkunft</h2>
+			<h2 class="header" id="aussehen">Aussehen</h2>
+			<ul>
+				<li>angekokelte, rote Fl&uuml;gel</li>
+				<li>schwarz/grauer K&ouml;rper</li>
+				<li>hat vier Augen wie normaler Quork, aber die drei &auml;u&szlig;eren sind abgestorben, und das eigentlich abgestorbene ist wieder offen</li>
+				<li>Augen haben roten Rand, das offene Auge ist ebenfalls rot</li>
+				<li>roter Ring wo beim Quork der Beutel sitzt</li>
+				<li>haben keine Beutel mehr</li>
+				<li>vier Beine, keine Arme</li>
+				<li>bewegt sich auf allen vieren/steht waagerecht in der Luft </li>
+			</ul>
+			<h2 class="header" id="vorkommen">Vorkommen</h2>
+			<h2 class="header" id="verhalten">Verhalten</h2>
+			<ul>
+				<li>launisch</li>
+				<li>entscheidet spontan, ob es angreift oder nicht</li>
+				<li>kommt vor, dass es keine Lust hat zu k&auml;mpfen</li>
+				<li>wird es angegriffen, verteidigt es sich aber immer</li>
+			</ul>
+			<h2 class="header" id="faehigkeiten">F&auml;higkeiten</h2>
+			<h2 class="header" id="herkunft">Herkunft</h2>
+			<ul>
+				<li>verfluchter <a title="Quork" href="../../../../../../Kulturen/Rassen/Quork/Quork.html">Quork</a></li>
+			</ul>
+			<h2 class="header" id="namensherkunft">Namensherkunft</h2>
+		
 		</div>
+		<script src="../../../../../../metakram/searchbar.js"></script>
 	</body>
 </html>
