@@ -8,93 +8,106 @@
 	<body>
 		<b><a href="./Hauptseite_Regelwerk.html" style="margin-left: 5em; margin-top:1em;position:absolute;">Hauptseite</a></b>
 
+		<div class="container">
+			<input type="text" id="searchbar" onkeyup="search()" placeholder="Such was...">
+			<div id="results"></div>
+		</div>
+
 		<div id="content">
-		<h1 id="header">Magie</h1>
+			<h1 id="header">Magie</h1>
 
-		<div id="contents">
-			<div class="box-header">Inhaltsverzeichnis</div>
-			<ul class="blank">
-				<li><a href="#zauberklasse">
-					<span class="contsnum">1</span>
-					 Zauberklassen
-				 </a></li>
-							 <li><a href="#zerst">
-								 <span class="contsnum" style="margin-left:15px;">1.1</span>
-									Zerst&ouml;rung
-								</a></li>
-							 <li><a href="#beschw">
-								 <span class="contsnum" style="margin-left:15px;">1.2</span>
-									Beschw&ouml;rung
-								</a></li>
-								<li><a href="#wieder">
-								 <span class="contsnum" style="margin-left:15px;">1.3</span>
-									Wiederherstellung/Verst&auml;rkung
-								</a></li>
-								<li><a href="#ver">
-								 <span class="contsnum" style="margin-left:15px;">1.4</span>
-									Ver&auml;nderung
-								</a></li>
-				<li><a href="#char">
-					<span class="contsnum">2</span>
-					 Charaktererstellung
-				 </a></li>
-				 <li><a href="#mana">
-	 				<span class="contsnum">3</span>
-	 				 Mana
-	 			 </a></li>
-			</ul>
-		</div>
+			<div id="contents">
+				<div class="box-header">Inhaltsverzeichnis</div>
+				<ul class="blank">
+					<li><a href="#zauberklasse">
+						<span class="contsnum">1</span>
+						Zauberklassen
+					</a></li>
+								<li><a href="#zerst">
+									<span class="contsnum" style="margin-left:15px;">1.1</span>
+										Zerst&ouml;rung
+									</a></li>
+								<li><a href="#beschw">
+									<span class="contsnum" style="margin-left:15px;">1.2</span>
+										Beschw&ouml;rung
+									</a></li>
+									<li><a href="#wieder">
+									<span class="contsnum" style="margin-left:15px;">1.3</span>
+										Wiederherstellung/Verst&auml;rkung
+									</a></li>
+									<li><a href="#ver">
+									<span class="contsnum" style="margin-left:15px;">1.4</span>
+										Ver&auml;nderung
+									</a></li>
+					<li><a href="#char">
+						<span class="contsnum">2</span>
+						Charaktererstellung
+					</a></li>
+					<li><a href="#mana">
+						<span class="contsnum">3</span>
+						Mana
+					</a></li>
+				</ul>
+			</div>
 
-		<h2 class="header" id="zauberklasse">Zauberklassen</h2>
-		<p>Die Zauber sind in vier Klassen unterteilt. Diese lauten: <a href="#zerst"><b>Zerst&ouml;rung</b></a>,
-			<a href="#beschw"><b>Beschw&ouml;rung</b></a>, <a href="#wieder"><b>Wiederherstellung/Verst&auml;rkung</b></a>
-			 und <a href="#ver"><b>Ver&auml;nderung</b></a>.
-		</p>
+			<h2 class="header" id="zauberklasse">Zauberklassen</h2>
+			<p>
+				<p>
+					Die Zauber sind in vier Klassen unterteilt. Diese lauten: <a href="#zerst"><b>Zerst&ouml;rung</b></a>,
+					<a href="#beschw"><b>Beschw&ouml;rung</b></a>, <a href="#wieder"><b>Wiederherstellung/Verst&auml;rkung</b></a>
+					und <a href="#ver"><b>Ver&auml;nderung</b></a>.
+				</p>
 
-			<h3 id="zerst">Zerst&ouml;rung</h3>
-			<p>Die Zerst&ouml;rungszauber teilen sich in die vier Elementarklassen
-				 <b>Feuer</b>, <b>Wasser</b>, <b>Erde</b> und <b>Luft</b> ein.
-				  <br>Diese Zauber teilen direkten Schaden durch elementare Angriffe der entsprechenden Unterklasse
+				<h3 id="zerst">Zerst&ouml;rung</h3>
+				<p>
+					Die Zerst&ouml;rungszauber teilen sich in die vier Elementarklassen
+					<b>Feuer</b>, <b>Wasser</b>, <b>Erde</b> und <b>Luft</b> ein.
+					<br>Diese Zauber teilen direkten Schaden durch elementare Angriffe der entsprechenden Unterklasse
 					auf ein Ziel oder einen Gegner aus.
-			 </p>
+				</p>
 
-			<h3 id="beschw">Beschw&ouml;rung</h3>
-			<p>Bei den Zaubern der Klasse Beschw&ouml;rung erschafft der Anwender eine Kreatur unterschiedlichen Aussehens,
-				die ihm im Kampf oder auch anderweitig zur Seite steht und nach einer gewissen Zeit wieder verschwindet.
+				<h3 id="beschw">Beschw&ouml;rung</h3>
+				<p>
+					Bei den Zaubern der Klasse Beschw&ouml;rung erschafft der Anwender eine Kreatur unterschiedlichen Aussehens,
+					die ihm im Kampf oder auch anderweitig zur Seite steht und nach einer gewissen Zeit wieder verschwindet.
+				</p>
+
+				<h3 id="wieder">Wiederherstellung/Verst&auml;rkung</h3>
+				<p>
+					Diese Zauber stellen den defensiven Part der Magie dar.
+					Der Magier kann sich oder andere sch&uuml;tzen oder heilen.
+				</p>
+
+				<h3 id="ver">Ver&auml;nderung</h3>
+				<p>
+					Die Zauberklasse der Ver&auml;nderung teilt sich in die zwei Unterklassen <b>psychisch</b> und <b>physisch</b> ein.
+					<br>Physische Ver&auml;nderung beschreibt solche, die in die Umwelt eingreift und mit ihr interagiert, wie die Telekinese
+					(also Objektverschiebung durch Gedankenkraft) oder Illusionen.
+					<br>Psychische Ver&auml;nderung greift in die Gedankenwelt von Lebewesen ein, dazu z&auml;hlen unter anderem Telepathie
+					(also die Kommunikation per Gedankenkraft) oder auch die Manipulation des Geistes zur &Uuml;berzeugung von Personen
+					oder &auml;hnliche Eingriffe in den Verstand von Rasse und Tier.
+				</p>
 			</p>
 
-			<h3 id="wieder">Wiederherstellung/Verst&auml;rkung</h3>
-			<p>Diese Zauber stellen den defensiven Part der Magie dar.
-				Der Magier kann sich oder andere sch&uuml;tzen oder heilen.
-			</p>
+			<h2 class="header" id="char">Charaktererstellung</h2>
+				<p>Man kann Punkte in die <a href="#zauberklasse">Zauberklassen</a> investieren,
+					allerdings nur bis zum Wert 16 (im Gegensatz zu 20 bei regul&auml;ren Attributen).
+					Punkte werden im Verh&auml;ltnis 2:1 ausgegeben.
+					Das bedeutet, dass zwei zu vergebene Punkte einem Punkt der jeweilligen Zauberklasse entsprechen.
+					Die Zauber, die dann benutzt werden m&uuml;ssen ebenfalls mit Punkten gekauft werden.
+					Jeder Zauber hat 4 Stufen, und kostet Punkte entsprechend der Stufe (also Stufe 1 - 1 Punkt, Stufe 2 - 2 Punkte usw.).
+					Jede Stufe erh&ouml;ht den Wert der Zauberklasse ebenfalls entsprechend der Stufe f&uuml;r W&uuml;rfelw&uuml;rfe auf diesen Zauber,
+					sodass mit einer voll gelevelten Zauberklasse und einem Stufe 4 Zauber die maximalen 20 Attributspunkte erreicht werden k&ouml;nnen.
+					Dazu gew&auml;hrt jede weitere Stufe Buffs wie erh&ouml;hte Reichweite oder Schaden etc.
+				</p>
 
-			<h3 id="ver">Ver&auml;nderung</h3>
-			<p>Die Zauberklasse der Ver&auml;nderung teilt sich in die zwei Unterklassen <b>psychisch</b> und <b>physisch</b> ein.
-				<br>Physische Ver&auml;nderung beschreibt solche, die in die Umwelt eingreift und mit ihr interagiert, wie die Telekinese
-				(also Objektverschiebung durch Gedankenkraft) oder Illusionen.
-				<br>Psychische Ver&auml;nderung greift in die Gedankenwelt von Lebewesen ein, dazu z&auml;hlen unter anderem Telepathie
-				(also die Kommunikation per Gedankenkraft) oder auch die Manipulation des Geistes zur &Uuml;berzeugung von Personen
-				oder &auml;hnliche Eingriffe in den Verstand von Rasse und Tier.
+			<h2 class="header" id="mana">Mana</h2>
+			<p>Das Mana eines Charakters errechnet sich mit folgender Formal:
+				<br><br>((Fokus + Magiewissen + Geschicklichkeit)/3) * 10
+				<br><br>Der Minimalwert f&uuml;r Mana liegt bei 10, der Maximalwert bei 200. Mana regeneriert sich sowohl tags als auch nachts.
 			</p>
-
-		<h2 class="header" id="char">Charaktererstellung</h2>
-			<p>Man kann Punkte in die <a href="#zauberklasse">Zauberklassen</a> investieren,
-				allerdings nur bis zum Wert 16 (im Gegensatz zu 20 bei regul&auml;ren Attributen).
-				Punkte werden im Verh&auml;ltnis 2:1 ausgegeben.
-				Das bedeutet, dass zwei zu vergebene Punkte einem Punkt der jeweilligen Zauberklasse entsprechen.
-				Die Zauber, die dann benutzt werden m&uuml;ssen ebenfalls mit Punkten gekauft werden.
-				Jeder Zauber hat 4 Stufen, und kostet Punkte entsprechend der Stufe (also Stufe 1 - 1 Punkt, Stufe 2 - 2 Punkte usw.).
-				Jede Stufe erh&ouml;ht den Wert der Zauberklasse ebenfalls entsprechend der Stufe f&uuml;r W&uuml;rfelw&uuml;rfe auf diesen Zauber,
-				sodass mit einer voll gelevelten Zauberklasse und einem Stufe 4 Zauber die maximalen 20 Attributspunkte erreicht werden k&ouml;nnen.
-				Dazu gew&auml;hrt jede weitere Stufe Buffs wie erh&ouml;hte Reichweite oder Schaden etc.
-			</p>
-
-		<h2 class="header" id="mana">Mana</h2>
-		<p>Das Mana eines Charakters errechnet sich mit folgender Formal:
-			<br><br>((Fokus + Magiewissen + Geschicklichkeit)/3) * 10
-			<br><br>Der Minimalwert f&uuml;r Mana liegt bei 10, der Maximalwert bei 200. Mana regeneriert sich sowohl tags als auch nachts.
-		</p>
 
 		</div>
+		<script src="../metakram/searchbar.js"></script>
 	</body>
 </html>

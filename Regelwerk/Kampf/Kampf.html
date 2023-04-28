@@ -6,68 +6,74 @@
 		<link rel="stylesheet" type="text/css" href="../../metakram/stylesheet.css">
 	</head>
 	<body>
-	<b><a href="../Hauptseite_Regelwerk.html" style="margin-left: 5em; margin-top:1em;position:absolute;">Hauptseite</a></b>
+		<b><a href="../Hauptseite_Regelwerk.html" style="margin-left: 5em; margin-top:1em;position:absolute;">Hauptseite</a></b>
 
-	<div id="content">
-		<h1 id="header">Kampf</h1>
-		<h3>Initiative</h3>
-		<p>
-			Die Initiative errechnet sich aus dem Schnelligkeitswert
-			(s. <a href="../Charakterbogen/Attribute.html">Attribute</a>)
-			und einem W6 Wurf.
-		</p>
+		<div class="container">
+			<input type="text" id="searchbar" onkeyup="search()" placeholder="Such was...">
+			<div id="results"></div>
+		</div>
 
-		<h3>Parade</h3>
-		<p>Der Paradewert entspricht der H&auml;lfte des Angriffswertes der Waffenklasse mit der der Spieler parieren m&ouml;chte</p>
+		<div id="content">
+			<h1 id="header">Kampf</h1>
+			<h3>Initiative</h3>
+			<p>
+				Die Initiative errechnet sich aus dem Schnelligkeitswert
+				(s. <a href="../Charakterbogen/Attribute.html">Attribute</a>)
+				und einem W6 Wurf.
+			</p>
 
-		<h3>Waffen</h3>
-		<p>
-			Waffen verf&uuml;gen &uuml;ber Modifikatoren, die sowohl den Angriffs- als auch den Paradewert beeinflussen k&ouml;nnen.
-			Ein Modifikator kann sowohl positiv, als auch negativ ausfallen.
-			So ist ein Dolch beispielsweise schlechter zum Parieren geeignet als ein Schwert, beide jedoch fallen in die
-			<a href="./Waffenklassen.html">Waffenklasse</a> der Hiebwaffen.
-			Dieser Unterschied soll durch den Modifikator dargestellt werden.
-			Jede Waffe hat einen Schadenswert.
-			Dieser kann entweder fest sein oder wird durch einen W&uuml;rfelwurf ermittelt.
-			Zu diesem kann auch noch ein fester Wert addiert werden (zB. 1W6+3).
-			Der Schaden den eine Waffe macht lässt sich grob durch die Art der Waffe bestimmen:
+			<h3>Parade</h3>
+			<p>Der Paradewert entspricht der H&auml;lfte des Angriffswertes der Waffenklasse mit der der Spieler parieren m&ouml;chte</p>
 
-			<table cellspacing="1" cellpadding="4" style="border: 1px solid grey; width: 20%; background-color: #f8f9fa;">
-				<tr>
-					<th class="table">Schaden</th>
-					<th class="table">1+W6</th>
-					<th class="table">5+W6</th>
-					<th class="table">8+W10</th>
-					<th class="table">15+W6</th>
-				</tr>
-				<tr>
-					<td>Waffe</td>
-					<td class="table">Faust, Tritt, Kopfnuss, geworfener Gegenstand</td>
-					<td class="table">Bumerang, Wurfmesser, Dolch, Kn&uuml;ppel</td>
-					<td class="table">Bogen, Wurfspeer, Keule, Lanze</td>
-					<td class="table">Armbrust, Hammer, Schwert, Axt</td>
-				</tr>
-				<tr>
-					<td>Magie</td>
-					<td class="table">Zauberstufe 1</td>
-					<td class="table">Zauberstufe 2</td>
-					<td class="table">Zauberstufe 3</td>
-					<td class="table">Zauberstufe 4</td>
-				</tr>
-			</table>
-		</p>
+			<h3>Waffen</h3>
+			<p>
+				Waffen verf&uuml;gen &uuml;ber Modifikatoren, die sowohl den Angriffs- als auch den Paradewert beeinflussen k&ouml;nnen.
+				Ein Modifikator kann sowohl positiv, als auch negativ ausfallen.
+				So ist ein Dolch beispielsweise schlechter zum Parieren geeignet als ein Schwert, beide jedoch fallen in die
+				<a href="./Waffenklassen.html">Waffenklasse</a> der Hiebwaffen.
+				Dieser Unterschied soll durch den Modifikator dargestellt werden.
+				Jede Waffe hat einen Schadenswert.
+				Dieser kann entweder fest sein oder wird durch einen W&uuml;rfelwurf ermittelt.
+				Zu diesem kann auch noch ein fester Wert addiert werden (zB. 1W6+3).
+				Der Schaden den eine Waffe macht lässt sich grob durch die Art der Waffe bestimmen:
+
+				<table cellspacing="1" cellpadding="4" style="border: 1px solid grey; width: 20%; background-color: #f8f9fa;">
+					<tr>
+						<th class="table">Schaden</th>
+						<th class="table">1+W6</th>
+						<th class="table">5+W6</th>
+						<th class="table">8+W10</th>
+						<th class="table">15+W6</th>
+					</tr>
+					<tr>
+						<td>Waffe</td>
+						<td class="table">Faust, Tritt, Kopfnuss, geworfener Gegenstand</td>
+						<td class="table">Bumerang, Wurfmesser, Dolch, Kn&uuml;ppel</td>
+						<td class="table">Bogen, Wurfspeer, Keule, Lanze</td>
+						<td class="table">Armbrust, Hammer, Schwert, Axt</td>
+					</tr>
+					<tr>
+						<td>Magie</td>
+						<td class="table">Zauberstufe 1</td>
+						<td class="table">Zauberstufe 2</td>
+						<td class="table">Zauberstufe 3</td>
+						<td class="table">Zauberstufe 4</td>
+					</tr>
+				</table>
+			</p>
 
 
-		<h3>Angriff</h3>
-		<p>
-			Um anzugreifen, w&uuml;rfelt der Spieler auf den Wert der entsprechenden
-			<a href="./Waffenklassen.html">Waffenklasse</a>.
-			Besteht er die Probe, also unterbietet oder trifft seinen Wert, so greift der Spieler an.
-		</p>
+			<h3>Angriff</h3>
+			<p>
+				Um anzugreifen, w&uuml;rfelt der Spieler auf den Wert der entsprechenden
+				<a href="./Waffenklassen.html">Waffenklasse</a>.
+				Besteht er die Probe, also unterbietet oder trifft seinen Wert, so greift der Spieler an.
+			</p>
 
-		<h3>Regeln</h3>
-		<p></p>
+			<h3>Regeln</h3>
+			<p></p>
 
-	</div>
+		</div>
+		<script src="../../metakram/searchbar.js"></script>
 	</body>
 </html>

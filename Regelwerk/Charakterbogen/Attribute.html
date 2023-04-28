@@ -8,93 +8,93 @@
 	<body>
 		<b><a href="../Hauptseite_Regelwerk.html" style="margin-left: 5em; margin-top:1em;position:absolute;">Hauptseite</a></b>
 
-		<div id="content">
-		<h1 id="header">Attribute</h1>
-
-		<p>Wird eine Aktion ausgeführt, die einem Attributswert entspricht (zB jemand m&ouml;chte l&uuml;gen), dann wird eine einfache Probe auf diesen Wert abgelegt.
-			Soll eine spezifische Aktion ausgef&uuml;hrt werden, werden Proben auf drei Attributswerte verlangt (zB ein Hemd n&auml;hen w&uuml;rde Proben auf Umgang mit Werkzeugen, Fingerfertigkeit und Geduld verlangen).
-			Gewisse h&auml;ufige Aktionen sind bereits als Kombis festgelegt und bestehen aus lediglich zwei Attributen (zB erfordert ein Stehlen Proben auf Fingerfertigkeit und Schleichen).
-		</p>
-
-		<h3>Soziales (Empathie)</h3>
-		<ul>
-			<li>Menschenkenntnis</li>
-			<li>Lügen</li>
-			<li>Täuschen</li>
-			<li>Überzeugen (Überreden)</li>
-			<li>Charisma</li>
-			<li>Einschüchtern</li>
-			<li>Betören</li>
-			<li>Feilschen</li>
-		</ul>
-
-		<h3>Wissen</h3>
-		<ul>
-			<li>Medizin</li>
-			<li>Pflanzenkunde</li>
-			<li>Tierkunde</li>
-			<li>Kulturwissen</li>
-			<li>Religionswissen</li>
-			<li>Ortskunde</li>
-			<li>Gassenwissen</li>
-			<li>Magiewissen</li>
-			<li>Geschichtswissen</li>
-			<li>Etikette</li>
-		</ul>
-
-		<h3>K&ouml;rperliches</h3>
-		<ul>
-			<li>Beweglichkeit</li>
-			<li>Reaktion</li>
-			<li>Schnelligkeit</li>
-			<li>Gleichgewicht</li>
-			<li>Schleichen</li>
-			<li>Fingerfertigkeit</li>
-			<li>Umgang mit Werkzeugen</li>
-			<li>Geschicklichkeit</li>
-		</ul>
-
-		<h3>Mentales</h3>
-		<ul>
-			<li>Fokus (Konzentration)</li>
-			<li>Geduld</li>
-			<li>Wahrnehmung (Übersicht)</li>
-			<li>Untersuchen (Suchen)</li>
-			<li>Erinnerung</li>
-			<li>Vorsicht</li>
-			<li>Orientierung</li>
-			<li>Mut</li>
-			<li>Willenskraft</li>
-		</ul>
-
-		<h3>Kombinationen</h3>
-		<ul>
-			<li>Tierkunde+Charisma=Umgang mit Tieren</li>
-			<li>Fingerfertigkeit+Schleichen=Stehlen</li>
-			<li>Untersuchen+Tierkunde=Fährtenlesen</li>
-			<li>Untersuchen+Wahrnehmung=Spurenlesen</li>
-			<li>Beweglichkeit+Gleichgewicht=Klettern</li>
-			<li>Fokus+Beweglichkeit=Werfen</li>
-		</ul>
-
-		<h3>Feste Fertigkeiten</h3>
-		<p>Feste Fertigkeiten beschreiben solche, die keine W&uuml;rfelprobe erfodern. Diese F&auml;higkeiten sind entweder vorhanden oder nicht.
-			<ul>
-			<li>Schwimmen</li>
-			<li>Reiten</li>
-			<li>Lesen</li>
-			<li>Schreiben</li>
-			<li>Mathematik</li>
-			<li>Sprachkenntnis</li>
-			</ul>
-		</p>
-
-
-
-
-
-
-		</ul>
+		<div class="container">
+			<input type="text" id="searchbar" onkeyup="search()" placeholder="Such was...">
+			<div id="results"></div>
 		</div>
+
+		<div id="content">
+			<h1 id="header">Attribute</h1>
+
+			<p>Wird eine Aktion ausgeführt, die einem Attributswert entspricht (zB jemand m&ouml;chte l&uuml;gen), dann wird eine einfache Probe auf diesen Wert abgelegt.
+				Soll eine spezifische Aktion ausgef&uuml;hrt werden, werden Proben auf drei Attributswerte verlangt (zB ein Hemd n&auml;hen w&uuml;rde Proben auf Umgang mit Werkzeugen, Fingerfertigkeit und Geduld verlangen).
+				Gewisse h&auml;ufige Aktionen sind bereits als Kombis festgelegt und bestehen aus lediglich zwei Attributen (zB erfordert ein Stehlen Proben auf Fingerfertigkeit und Schleichen).
+			</p>
+
+			<h3>Soziales (Empathie)</h3>
+			<ul>
+				<li>Menschenkenntnis</li>
+				<li>Lügen</li>
+				<li>Täuschen</li>
+				<li>Überzeugen (Überreden)</li>
+				<li>Charisma</li>
+				<li>Einschüchtern</li>
+				<li>Betören</li>
+				<li>Feilschen</li>
+			</ul>
+
+			<h3>Wissen</h3>
+			<ul>
+				<li>Medizin</li>
+				<li>Pflanzenkunde</li>
+				<li>Tierkunde</li>
+				<li>Kulturwissen</li>
+				<li>Religionswissen</li>
+				<li>Ortskunde</li>
+				<li>Gassenwissen</li>
+				<li>Magiewissen</li>
+				<li>Geschichtswissen</li>
+				<li>Etikette</li>
+			</ul>
+
+			<h3>K&ouml;rperliches</h3>
+			<ul>
+				<li>Beweglichkeit</li>
+				<li>Reaktion</li>
+				<li>Schnelligkeit</li>
+				<li>Gleichgewicht</li>
+				<li>Schleichen</li>
+				<li>Fingerfertigkeit</li>
+				<li>Umgang mit Werkzeugen</li>
+				<li>Geschicklichkeit</li>
+			</ul>
+
+			<h3>Mentales</h3>
+			<ul>
+				<li>Fokus (Konzentration)</li>
+				<li>Geduld</li>
+				<li>Wahrnehmung (Übersicht)</li>
+				<li>Untersuchen (Suchen)</li>
+				<li>Erinnerung</li>
+				<li>Vorsicht</li>
+				<li>Orientierung</li>
+				<li>Mut</li>
+				<li>Willenskraft</li>
+			</ul>
+
+			<h3>Kombinationen</h3>
+			<ul>
+				<li>Tierkunde+Charisma=Umgang mit Tieren</li>
+				<li>Fingerfertigkeit+Schleichen=Stehlen</li>
+				<li>Untersuchen+Tierkunde=Fährtenlesen</li>
+				<li>Untersuchen+Wahrnehmung=Spurenlesen</li>
+				<li>Beweglichkeit+Gleichgewicht=Klettern</li>
+				<li>Fokus+Beweglichkeit=Werfen</li>
+			</ul>
+
+			<h3>Feste Fertigkeiten</h3>
+			<p>Feste Fertigkeiten beschreiben solche, die keine W&uuml;rfelprobe erfodern. Diese F&auml;higkeiten sind entweder vorhanden oder nicht.
+				<ul>
+					<li>Schwimmen</li>
+					<li>Reiten</li>
+					<li>Lesen</li>
+					<li>Schreiben</li>
+					<li>Mathematik</li>
+					<li>Sprachkenntnis</li>
+				</ul>
+			</p>
+
+		</div>
+		<script src="../../metakram/searchbar.js"></script>
 	</body>
 </html>

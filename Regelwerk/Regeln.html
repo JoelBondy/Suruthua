@@ -8,12 +8,19 @@
 	<body>
 		<b><a href="./Hauptseite_Regelwerk.html" style="margin-left: 5em; margin-top:1em;position:absolute;">Hauptseite</a></b>
 
+		<div class="container">
+			<input type="text" id="searchbar" onkeyup="search()" placeholder="Such was...">
+			<div id="results"></div>
+		</div>
+		
 		<div id="content">
 			<h1 id="header">Regeln</h1>
 			<ul>
 				<li>20 ist der h&ouml;chste Wert den ein Attribut erreichen kann</li>
 				<li>Eine gew&uuml;rfelte 20 ist immer ein kritischer Misserfolg, auch wenn der Attributswert 20 betr&auml;gt</li>
 			</ul>
+
 		</div>
+		<script src="../metakram/searchbar.js"></script>
 	</body>
 </html>

@@ -6,7 +6,13 @@
 		<link rel="stylesheet" type="text/css" href="../metakram/stylesheet.css">
 	</head>
 	<body>
-	<b><a href="../Hauptseite.html" style="margin-left: 5em; margin-top:1em;position:absolute;">Allgemein</a></b>
+		<b><a href="../Hauptseite.html" style="margin-left: 5em; margin-top:1em;position:absolute;">Allgemein</a></b>
+		
+		<div class="container">
+			<input type="text" id="searchbar" onkeyup="search()" placeholder="Such was...">
+			<div id="results"></div>
+		</div>
+		
 		<div id="content">
 			<div id="contents">
 				<div class="box-header">&Uuml;bersicht</div>
@@ -38,7 +44,7 @@
 								</a><br>
 								<a target="_self" style="margin-left: 30px;" href="../Kulturen/Rassen/Guqual/Guqual_Regelwerk.html">
 									<span style="color: black;">1.2.5</span>
-									 Guqual
+									Guqual
 								</a><br>
 								<a target="_self" style="margin-left: 30px;" href="../Kulturen/Rassen/Avzitil/Avzitil_Regelwerk.html">
 									<span style="color: black;">1.2.6</span>
@@ -57,14 +63,14 @@
 						<a target="_self" href="../Kulturen/Religion/Goetter_Religion_Regelwerk.html">
 							<span style="color: black;">2.</span>
 								Religion
-							</a>
+						</a>
 						<br>
 
 						<a target="_self" href="./Kampf/Kampf.html">
 							<span style="color: black;">3.</span>
 								Kampf
-							</a>
-							<br>
+						</a>
+						<br>
 							<a target="_self" style="margin-left: 15px;" href="./ListeAllerGegner.html">
 								<span style="color: black;">3.1</span>
 								Gegner
@@ -87,6 +93,8 @@
 
 				</ul>
 			</div>
+
 		</div>
+		<script src="../metakram/searchbar.js"></script>
 	</body>
 </html>

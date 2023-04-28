@@ -8,83 +8,89 @@
 	<body>
 		<b><a href="../Hauptseite_Regelwerk.html" style="margin-left: 5em; margin-top:1em;position:absolute;">Hauptseite</a></b>
 
+		<div class="container">
+			<input type="text" id="searchbar" onkeyup="search()" placeholder="Such was...">
+			<div id="results"></div>
+		</div>
+		
 		<div id="content">
-		<h1 id="header">Waffenklassen</h1>
-		<p>Die verf&uuml;gbaren Waffen werden in sieben Waffenklassen unterteilt.</p>
+			<h1 id="header">Waffenklassen</h1>
+			<p>Die verf&uuml;gbaren Waffen werden in sieben Waffenklassen unterteilt.</p>
 
-		<div id="contents">
-			<div class="box-header">Inhaltsverzeichnis</div>
-			<ul class="blank">
-				<li>1 Nahkampf</li>
+			<div id="contents">
+				<div class="box-header">Inhaltsverzeichnis</div>
+				<ul class="blank">
+					<li>1 Nahkampf</li>
 					<li><a href="#klinge" style="margin-left:15px;">
 						<span class="contsnum">1.1</span>
-						 Klingenwaffen
-					 </a></li>
-					 <li><a href="#schlag" style="margin-left:15px;">
- 						<span class="contsnum">1.2</span>
- 							Schlagwaffen
- 					 </a></li>
+						Klingenwaffen
+					</a></li>
+					<li><a href="#schlag" style="margin-left:15px;">
+						<span class="contsnum">1.2</span>
+							Schlagwaffen
+					</a></li>
 					<li><a href="#stich" style="margin-left:15px;">
 						<span class="contsnum">1.3</span>
-						 Stichwaffen
-					 </a></li>
+						Stichwaffen
+					</a></li>
 					<li style="margin-left:15px;">1.4 Waffenloser Angriff</li>
 					<li><a href="#kampfkunst" style="margin-left:30px;">
 						<span class="contsnum">1.4.1</span>
-						 Kampfkunst
-					 </a></li>
-					 <li><a href="#raufen" style="margin-left:30px;">
- 						<span class="contsnum">1.4.2</span>
- 						 Raufen
- 					 </a></li>
-				<li>2 Fernkampf</li>
+						Kampfkunst
+					</a></li>
+					<li><a href="#raufen" style="margin-left:30px;">
+						<span class="contsnum">1.4.2</span>
+						Raufen
+					</a></li>
+					<li>2 Fernkampf</li>
 					<li><a href="#wurf" style="margin-left:15px;">
 						<span class="contsnum">2.1</span>
-						 Wurfwaffen
-					 </a></li>
+						Wurfwaffen
+					</a></li>
 					<li><a href="#fern" style="margin-left:15px;">
 						<span class="contsnum">2.2</span>
-						 Fernwaffen
-					 </a></li>
-			 <li><a href="#bonuswert">
- 					<span class="contsnum">3</span>
- 					Bonuswert
-				</a></li>
-			</ul>
+						Fernwaffen
+					</a></li>
+					<li><a href="#bonuswert">
+						<span class="contsnum">3</span>
+						Bonuswert
+					</a></li>
+				</ul>
+			</div>
+
+			<h2 class="header" id="klinge">Klingenwaffen</h2>
+			<p>Zu den Klingenwaffen z&auml;hlen Hiebwaffen mit Klinge wie Schwerter und &Auml;xte. <br>
+			<br>Die <i>Klassentalente</i> f&uuml;r Klingenwaffen lauten: <b>Geschicklichkeit</b>, <b>Fokus</b>, <b>Schnelligkeit</b></p>
+
+			<h2 class="header" id="schlag">Schlagwaffen</h2>
+			<p>Zu den Schlagwaffen z&auml;hlen stumpfe Hiebwaffen wie Kn&uuml;ppel, Keulen und H&auml;mmer.</p>
+			<br>Die <i>Klassentalente</i> f&uuml;r Schlagwaffen lauten: <b>St&auml;rke</b>, <b>Einsch&uuml;chtern</b>, <b>Beweglichkeit</b></p>
+
+			<h2 class="header" id="stich">Stichwaffen</h2>
+			<p>Zu den Stichwaffen z&auml;hlen unter anderem Dolche, Lanzen und Speere.</p>
+			<br>Die <i>Klassentalente</i> f&uuml;r Stichwaffen lauten: <b>Gleichgewicht</b>, <b>Fingerfertigkeit</b>, <b>Beweglichkeit</b></p>
+
+			<h2 class="header" id="kampfkunst">Kampfkunst</h2>
+			<p>Kampfkunst beschreibt den waffenlosen Kampf. Hierzu z&auml;hle alle Kampftechniken bei denen der Gegner durch geschickte Bewegungen angegriffen wird.</p>
+			<br>Die <i>Klassentalente</i> f&uuml;r Kampfkunst lauten: <b>Gleichgewicht</b>, <b>Reaktion</b>, <b>Beweglichkeit</b></p>
+
+			<h2 class="header" id="raufen">Raufen</h2>
+			<p>Raufen beschreibt den unge&uuml;bten waffenlosen Kampf. Hier werden keine Kampftechniken angewandt, sondern rabiatere wie Faustschl&auml;ge, Tritte und Kopfn&uuml;sse.</p>
+			<br>Die <i>Klassentalente</i> f&uuml;r Raufen lauten: <b>Mut</b>, <b>Einsch&uuml;chtern</b>, <b>Schnelligkeit</b></p>
+
+			<h2 class="header" id="wurf">Wurfwaffen</h2>
+			<p>Zu den Wurfwaffen z&auml;hlen unter anderem Wurfmesser, Steine und Boomerangs.</p>
+			<br>Die <i>Klassentalente</i> f&uuml;r Wurfwaffen lauten: <b>Geschicklichkeit</b>, <b>Fokus</b>, <b>Werfen</b></p>
+
+			<h2 class="header" id="fern">Fernwaffen</h2>
+			<p>Zu den Fernwaffen z&auml;hlen unter anderem Armbr&uuml;ste und B&ouml;gen.</p>
+			<br>Die <i>Klassentalente</i> f&uuml;r Fernwaffen lauten: <b>Geschicklichkeit</b>, <b>Fokus</b>, <b>Geduld</b></p>
+
+			<h2 class="header" id="bonuswert">Bonuswert</h2>
+			<p>Der Bonuswert errechnet sich aus den drei <i>Klassentalenten</i> der Waffenklassen mit folgender Formel:<br><br>
+			(T1+T2+T3)*0.1</p>
+
 		</div>
-
-		<h2 class="header" id="klinge">Klingenwaffen</h2>
-		<p>Zu den Klingenwaffen z&auml;hlen Hiebwaffen mit Klinge wie Schwerter und &Auml;xte. <br>
-		<br>Die <i>Klassentalente</i> f&uuml;r Klingenwaffen lauten: <b>Geschicklichkeit</b>, <b>Fokus</b>, <b>Schnelligkeit</b></p>
-
-		<h2 class="header" id="schlag">Schlagwaffen</h2>
-		<p>Zu den Schlagwaffen z&auml;hlen stumpfe Hiebwaffen wie Kn&uuml;ppel, Keulen und H&auml;mmer.</p>
-		<br>Die <i>Klassentalente</i> f&uuml;r Schlagwaffen lauten: <b>St&auml;rke</b>, <b>Einsch&uuml;chtern</b>, <b>Beweglichkeit</b></p>
-
-		<h2 class="header" id="stich">Stichwaffen</h2>
-		<p>Zu den Stichwaffen z&auml;hlen unter anderem Dolche, Lanzen und Speere.</p>
-		<br>Die <i>Klassentalente</i> f&uuml;r Stichwaffen lauten: <b>Gleichgewicht</b>, <b>Fingerfertigkeit</b>, <b>Beweglichkeit</b></p>
-
-		<h2 class="header" id="kampfkunst">Kampfkunst</h2>
-		<p>Kampfkunst beschreibt den waffenlosen Kampf. Hierzu z&auml;hle alle Kampftechniken bei denen der Gegner durch geschickte Bewegungen angegriffen wird.</p>
-		<br>Die <i>Klassentalente</i> f&uuml;r Kampfkunst lauten: <b>Gleichgewicht</b>, <b>Reaktion</b>, <b>Beweglichkeit</b></p>
-
-		<h2 class="header" id="raufen">Raufen</h2>
-		<p>Raufen beschreibt den unge&uuml;bten waffenlosen Kampf. Hier werden keine Kampftechniken angewandt, sondern rabiatere wie Faustschl&auml;ge, Tritte und Kopfn&uuml;sse.</p>
-		<br>Die <i>Klassentalente</i> f&uuml;r Raufen lauten: <b>Mut</b>, <b>Einsch&uuml;chtern</b>, <b>Schnelligkeit</b></p>
-
-		<h2 class="header" id="wurf">Wurfwaffen</h2>
-		<p>Zu den Wurfwaffen z&auml;hlen unter anderem Wurfmesser, Steine und Boomerangs.</p>
-		<br>Die <i>Klassentalente</i> f&uuml;r Wurfwaffen lauten: <b>Geschicklichkeit</b>, <b>Fokus</b>, <b>Werfen</b></p>
-
-		<h2 class="header" id="fern">Fernwaffen</h2>
-		<p>Zu den Fernwaffen z&auml;hlen unter anderem Armbr&uuml;ste und B&ouml;gen.</p>
-		<br>Die <i>Klassentalente</i> f&uuml;r Fernwaffen lauten: <b>Geschicklichkeit</b>, <b>Fokus</b>, <b>Geduld</b></p>
-
-		<h2 class="header" id="bonuswert">Bonuswert</h2>
-		<p>Der Bonuswert errechnet sich aus den drei <i>Klassentalenten</i> der Waffenklassen mit folgender Formel:<br><br>
-		(T1+T2+T3)*0.1</p>
-
-		</div>
+		<script src="../../metakram/searchbar.js"></script>
 	</body>
 </html>
