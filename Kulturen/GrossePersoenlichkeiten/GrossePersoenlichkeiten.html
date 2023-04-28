@@ -8,6 +8,11 @@
 	<body>
 		<b><a href="../../Hauptseite.html" style="margin-left: 5em; margin-top:1em;position:absolute;">Hauptseite</a></b>
 
+		<div class="container">
+			<input type="text" id="searchbar" onkeyup="search()" placeholder="Such was...">
+			<div id="results"></div>
+		</div>
+
 		<div id="content">
 		<h1 id="header">Gro&szlig;e Pers&ouml;nlichkeiten</h1>
 		<table cellspacing="1" cellpadding="4" style="border: 1px solid grey; width: 40%; background-color: #f8f9fa;">
@@ -22,6 +27,9 @@
 				<td class="border">Gesch&auml;ftsmann und B&uuml;rgermeister</td>
 			</tr>
 		</table>
+
 		</div>
+
+		<script src="../../metakram/searchbar.js"></script>
 	</body>
 </html>

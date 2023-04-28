@@ -9,8 +9,13 @@
 		<b><a href="../../../Hauptseite.html" style="margin-left: 5em; margin-top:1em;position:absolute;">Hauptseite</a></b>
 		<b><a href="./Quork_Regelwerk.html" style="margin-left: 5em; margin-top:2.5em;position:absolute;">Regelwerk</a></b>
 
+		<div class="container">
+			<input type="text" id="searchbar" onkeyup="search()" placeholder="Such was...">
+			<div id="results"></div>
+		</div>
+
 		<div id="content">
-		<h1 id="header">Quork</h1>
+			<h1 id="header">Quork</h1>
 
 			<div class="infobox">
 				<div class="infobox-header">Quork</div>
@@ -38,80 +43,85 @@
 				<ul class="blank">
 					<li><a href="#aussehen">
 						<span class="contsnum">1</span>
-						 Aussehen
-					 </a></li>
+						Aussehen
+					</a></li>
 					<li><a href="#lebensweise">
 						<span class="contsnum">2</span>
-						 Lebensweise
-					 </a></li>
+						Lebensweise
+					</a></li>
 					<li><a href="#lebensraum">
 						<span class="contsnum">3</span>
-						 Lebensraum/Herkunft
-					 </a></li>
+						Lebensraum/Herkunft
+					</a></li>
 					<li><a href="#nahrung">
 						<span class="contsnum">4</span>
-						 Nahrung
-					 </a></li>
+						Nahrung
+					</a></li>
 				</ul>
 			</div>
 
-		<h2 class="header" id="aussehen">Aussehen</h2>
-		<p>Die Quork haben libellenartige, wasserabweisende Fl&uuml;gel
-			Werden die Fl&uuml;gel jedoch richtig nass, k&ouml;nnen die Quork zun&auml;nchst nicht fliegen.
-			Im Laufe ihres Lebens wachsen die Fl&uuml;gel weiter.
-			So werden die Quork ohne Fl&uuml;gel geboren und durchlaufen danach vier weitere Lebensphasen,
-			in denen ihnen jeweils zwei neue Fl&uuml;gel wachsen.
-			Ein jugendlicher Quork hat also zwei Fl&uuml;gel, ein Erwachsener vier.
-			Erreicht der Quork ein gehobenes Alter, so wachsen ihm zwei weitere Fl&uuml;gel.
-			Etwas seltener kann ein Quork ein so hohes Alter erreichen,
-			dass ihm noch einmal zwei Fl&uuml;gel wachsen und er also acht Fl&uuml;gel besitzt.
-			<br>
-			Wie bei den Fl&uuml;geln, h&auml;ngt die Anzahl der Augen von der Lebensphase der Quork ab.
-			Geboren werden die Quork mit einem Auge, dass jedoch zun&auml;chst geschlossen ist. Im Jugendalter &ouml;ffnet es sich.
-			Ein Erwachsener hat zwei, ein &auml;lterer drei Augen. Im Gegensatz zu den Fl&uuml;geln kommt auch in außerordentlichem Alter kein weiteres Auge hinzu.
-			<br>
-			<img alt="" src="./Bilder/quork_augen.jpg" style="width: 313.70px; height: 123.50px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="Quork Augen">
-			<p>
-				Die Quork besitzen zwei Beine und zwei Arme. Sie haben keinen ausgepr&auml;gten Kopf, ihre Augen sitzen auf Armh&ouml;he.
-				Anstelle eines Mundes besitzen die Quork einen Beutel mit "Membran", der zur Nahrungsaufnahme und Kommunikation dient.
-				Sie besitzen keinen Geschmackssinn.
+			<h2 class="header" id="aussehen">Aussehen</h2>
+			<p>Die Quork haben libellenartige, wasserabweisende Fl&uuml;gel
+				Werden die Fl&uuml;gel jedoch richtig nass, k&ouml;nnen die Quork zun&auml;nchst nicht fliegen.
+				Im Laufe ihres Lebens wachsen die Fl&uuml;gel weiter.
+				So werden die Quork ohne Fl&uuml;gel geboren und durchlaufen danach vier weitere Lebensphasen,
+				in denen ihnen jeweils zwei neue Fl&uuml;gel wachsen.
+				Ein jugendlicher Quork hat also zwei Fl&uuml;gel, ein Erwachsener vier.
+				Erreicht der Quork ein gehobenes Alter, so wachsen ihm zwei weitere Fl&uuml;gel.
+				Etwas seltener kann ein Quork ein so hohes Alter erreichen,
+				dass ihm noch einmal zwei Fl&uuml;gel wachsen und er also acht Fl&uuml;gel besitzt.
+				<br>
+				Wie bei den Fl&uuml;geln, h&auml;ngt die Anzahl der Augen von der Lebensphase der Quork ab.
+				Geboren werden die Quork mit einem Auge, dass jedoch zun&auml;chst geschlossen ist. Im Jugendalter &ouml;ffnet es sich.
+				Ein Erwachsener hat zwei, ein &auml;lterer drei Augen. Im Gegensatz zu den Fl&uuml;geln kommt auch in außerordentlichem Alter kein weiteres Auge hinzu.
+				<br>
+				<img alt="" src="./Bilder/quork_augen.jpg" style="width: 313.70px; height: 123.50px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="Quork Augen">
+				<p>
+					Die Quork besitzen zwei Beine und zwei Arme. Sie haben keinen ausgepr&auml;gten Kopf, ihre Augen sitzen auf Armh&ouml;he.
+					Anstelle eines Mundes besitzen die Quork einen Beutel mit "Membran", der zur Nahrungsaufnahme und Kommunikation dient.
+					Sie besitzen keinen Geschmackssinn.
+				</p>
 			</p>
 
-		<h2 class="header" id="lebensweise">Lebensweise</h2>
-		<p>Die Quork sind in der Lage auf zwei Beinen zu laufen, sind jedoch schlechte L&auml;ufer und bevorzugen, auf vier Beinen zu gehen.
-			Wenn m&ouml;glich, vermeiden sie das Laufen allerdings. Quork k&ouml;nnen nicht schwimmen.
-			<br>
-			Die Quork leben in Kolonien.
-			<br>
-			Die vier Lebensphasen sind Kind, jugendlich, erwachsen, alt und in seltenen F&auml;llen sehr alt.
-		</p>
-		<h2 class="header" id="lebensraum">Lebensraum/Herkunft</h2>
-		<p>Die Quork leben hauptsächlich an hohen Wasserf&auml;lle und Klippen mit vielen Felsvorspr&uuml;ngen und H&ouml;hlen.
-			Sie stammen vom Kontinent Loromoth, aber auch im Norden Wirinimas finden sich viele Kolonien.
+			<h2 class="header" id="lebensweise">Lebensweise</h2>
+			<p>Die Quork sind in der Lage auf zwei Beinen zu laufen, sind jedoch schlechte L&auml;ufer und bevorzugen, auf vier Beinen zu gehen.
+				Wenn m&ouml;glich, vermeiden sie das Laufen allerdings. Quork k&ouml;nnen nicht schwimmen.
+				<br>
+				Die Quork leben in Kolonien.
+				<br>
+				Die vier Lebensphasen sind Kind, jugendlich, erwachsen, alt und in seltenen F&auml;llen sehr alt.
+			</p>
 
-			<h3 id="wrethh">Wrethh</h3>
-				<p>
-						Das Zentrum der quorkischen Kultur befindet sich in
-						<a title="Cureg" href="../../../Umgebung/Karte/Kontinente/Loromoth/Loromoth.html#cureg">Cureg</a>
-						im Südwesten
-						<a title="Loromoth" href="../../../Umgebung/Karte/Kontinente/Loromoth/Loromoth.html">Loromoths</a>,
-						und wird von den Quork Wrethh [vrəθ] genannt. Diese Kolonie ist mit Abstand die Größte
-						und praktisch die Hauptstadt der Quork. Sie besteht aus unzähligen bewachsenen Felsvorsprüngen und Höhlen.
-						Überall fließen große und kleine Wasserfälle zwischen den Felsen hinab.
-						Die Stadt ergrünt durch unzählige Büsche, Gräser und auch Laubbäume, die teils mächtige Höhen erreichen.
-						Die blühende Natur bricht den Anblick der steinernen Felsen und kreirt ein besonderes Farbenspiel aus dem Grau des Steins,
-						dem Grün der Pflanzen und dem Blau und Weiß des Wassers.
-						Die <a title="Elb" href="../Elb/Elb.html">Elben</a>
-						nennen sie Sarth-Tan, was sich mit "blaue Stadt" übersetzen lässt.
-						Die Stadt ist sehr belebt, überall laufen und fliegen Quork herum.
-						Die Fortbewegung in der Stadt gestaltet sich für Wesen, die nicht fliegen können, allerdings äußerst schwierig.
-				</p>
-		</p>
-		<h2 class="header" id="nahrung">Nahrung</h2>
-		<ul>
-			<li>Die Quork betreiben Landwirtschaft und legen Felder an</li>
-			<li>Die Quork fangen Fische die den Wasserfall hinab schwimmen oder in der Nähe leben</li>
-		</ul>
+			<h2 class="header" id="lebensraum">Lebensraum/Herkunft</h2>
+			<p>Die Quork leben hauptsächlich an hohen Wasserf&auml;lle und Klippen mit vielen Felsvorspr&uuml;ngen und H&ouml;hlen.
+				Sie stammen vom Kontinent Loromoth, aber auch im Norden Wirinimas finden sich viele Kolonien.
+
+				<h3 id="wrethh">Wrethh</h3>
+					<p>
+							Das Zentrum der quorkischen Kultur befindet sich in
+							<a title="Cureg" href="../../../Umgebung/Karte/Kontinente/Loromoth/Loromoth.html#cureg">Cureg</a>
+							im Südwesten
+							<a title="Loromoth" href="../../../Umgebung/Karte/Kontinente/Loromoth/Loromoth.html">Loromoths</a>,
+							und wird von den Quork Wrethh [vrəθ] genannt. Diese Kolonie ist mit Abstand die Größte
+							und praktisch die Hauptstadt der Quork. Sie besteht aus unzähligen bewachsenen Felsvorsprüngen und Höhlen.
+							Überall fließen große und kleine Wasserfälle zwischen den Felsen hinab.
+							Die Stadt ergrünt durch unzählige Büsche, Gräser und auch Laubbäume, die teils mächtige Höhen erreichen.
+							Die blühende Natur bricht den Anblick der steinernen Felsen und kreirt ein besonderes Farbenspiel aus dem Grau des Steins,
+							dem Grün der Pflanzen und dem Blau und Weiß des Wassers.
+							Die <a title="Elb" href="../Elb/Elb.html">Elben</a>
+							nennen sie Sarth-Tan, was sich mit "blaue Stadt" übersetzen lässt.
+							Die Stadt ist sehr belebt, überall laufen und fliegen Quork herum.
+							Die Fortbewegung in der Stadt gestaltet sich für Wesen, die nicht fliegen können, allerdings äußerst schwierig.
+					</p>
+			</p>
+			
+			<h2 class="header" id="nahrung">Nahrung</h2>
+			<ul>
+				<li>Die Quork betreiben Landwirtschaft und legen Felder an</li>
+				<li>Die Quork fangen Fische die den Wasserfall hinab schwimmen oder in der Nähe leben</li>
+			</ul>
+
 		</div>
+		<script src="../../../metakram/searchbar.js"></script>
 	</body>
 </html>

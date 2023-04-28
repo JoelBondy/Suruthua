@@ -8,30 +8,37 @@
 	<body>
 		<b><a href="../../../../Hauptseite.html" style="margin-left: 5em; margin-top:1em;position:absolute;">Hauptseite</a></b>
 
-    <div id="content">
-	  <h1 id="header">Mensch</h1>
+    <div class="container">
+			<input type="text" id="searchbar" onkeyup="search()" placeholder="Such was...">
+			<div id="results"></div>
+		</div>
 
-    <div class="infobox">
-      <div class="infobox-header">Mensch</div>
-      <div class="infobox-img">
-        <img alt="Mensch" src="" style="width: 233.50px; height: 270.66px;  margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="Mensch">
+    <div id="content">
+      <h1 id="header">Mensch</h1>
+
+      <div class="infobox">
+        <div class="infobox-header">Mensch</div>
+        <div class="infobox-img">
+          <img alt="Mensch" src="" style="width: 233.50px; height: 270.66px;  margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title="Mensch">
+        </div>
+        <table cellspacing="1" cellpadding="4">
+          <tr>
+            <th>Aussprache:</th>
+            <td>???</td>
+          </tr>
+          <tr>
+            <th>Lebenserwartung:<br><br>Durchschnittsgr&ouml;&szlig;e:<br>Durchschnittsgewicht:</th>
+            <td>184 Abl&auml;ufe<br>(ca. 80 Erden-Jahre)<br>190cm<br>80kg</td>
+          </tr>
+          <tr>
+            <th>Religion:</th>
+            <td>Vier Elemente</td>
+          </tr>
+        </table>
       </div>
-      <table cellspacing="1" cellpadding="4">
-        <tr>
-          <th>Aussprache:</th>
-          <td>???</td>
-        </tr>
-        <tr>
-          <th>Lebenserwartung:<br><br>Durchschnittsgr&ouml;&szlig;e:<br>Durchschnittsgewicht:</th>
-          <td>184 Abl&auml;ufe<br>(ca. 80 Erden-Jahre)<br>190cm<br>80kg</td>
-        </tr>
-        <tr>
-          <th>Religion:</th>
-          <td>Vier Elemente</td>
-        </tr>
-      </table>
+      <p>Die Menschen wurden vor einiger Zeit von den Elben ausgerottet, nachdem sie zuvor von ihnen versklavt worden waren.</p>
+
     </div>
-		<p>Die Menschen wurden vor einiger Zeit von den Elben ausgerottet, nachdem sie zuvor von ihnen versklavt worden waren.</p>
-    </div>
+    <script src="../../../../metakram/searchbar.js"></script>
 	</body>
 </html>
