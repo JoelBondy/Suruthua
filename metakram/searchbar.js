@@ -81,7 +81,7 @@ const all_pages = {
     "Puletsi":"https://joelbondy.github.io/Suruthua/Umgebung/Karte/Kontinente/Inseln/Inseln.html#puletsi",
     'Quork':"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Quork/Quork.html",
     'Quork (Regelwerk)':"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Quork/Quork_Regelwerk.html",
-    "Ras'qath":"https://joelbondy.github.io/Suruthua/Umgebung/Karte/Kontinente/Inseln/Inseln.html#rasqath",
+    "Ras'qath":"https://joelbondy.github.io/Suruthua/Umgebung/Karte/Kontinente/Berethao/Berethao.html#rasqath",
     'Regeln':"https://joelbondy.github.io/Suruthua/Regelwerk/Regeln.html",
     "Religionen und Götter":"https://joelbondy.github.io/Suruthua/Kulturen/Religion/Goetter_Religion.html",
     'Religion (Regelwerk)':"https://joelbondy.github.io/Suruthua/Kulturen/Religion/Goetter_Religion_Regelwerk.html",
