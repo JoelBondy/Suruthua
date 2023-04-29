@@ -222,6 +222,9 @@ a.hoverbox:hover {
     padding: 5px 20px;
     color: black;
 }
+a.resultItem:visited {
+	color:black;
+}
 .resultItem:hover {
     background-color:#e6dede;
 	text-decoration: none;
