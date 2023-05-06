@@ -75,7 +75,7 @@ const all_pages = {
     'Namen':"https://joelbondy.github.io/Suruthua/metakram/Namen.html",
     'Naturphänomene':"https://joelbondy.github.io/Suruthua/Umgebung/Astronomie/Sonnensystem/Naturph%C3%A4nomene.html",
     'Parasitkäfer':"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Fauna/Tiere/Parasitkaefer/Parasitkaefer.html",
-    "Pflanzen":"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Flora/Pflanzen.html",
+    "Pflanzen":"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Flora/Pflanzen.html",  
     "Pflanzengolem":"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Fauna/MagischeKreaturen/Golem/Golem.html#pflanzeg",
     'Pilze':"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Flora/Pilze/Pilze.html",
     "Psychogolem":"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Fauna/MagischeKreaturen/Golem/Golem.html#psychog",
