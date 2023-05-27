@@ -1,9 +1,0 @@
--scans erneuern (avzitil, guqual)
--religionen überarbeiten:
--kulturen ausarbeiten:
-      -avzitil
-      -quork (lebensphasen)
-      -amaka
--logo überlegen
--design überarbeiten
--struktur ändern -> magische kreaturen aus fauna rausholen
