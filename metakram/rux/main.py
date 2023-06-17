@@ -41,7 +41,7 @@ operator = ["b", "g", "pos", "root", "rel", "derv", "rootb", "relb", "dervb", "d
 # import dict from file
 lex_file = open("rux_lex", "r", encoding="utf-8")
 lex_cont = lex_file.read()
-lex_list = lex_cont[:-1].split(".")  # split aber ignoriere letzten punkt (sonst gibts nen leeren eintrag)
+lex_list = lex_cont[:-1].split("\\")     # split aber ignoriere letzten punkt (sonst gibts nen leeren eintrag)
 lex = {}
 for x in lex_list:  # erstelle dict
     (key, val, pos, his) = x.split(":")  # trenne eintrag und bedeutungen (+pos tag und verwandte wörter)
@@ -60,7 +60,7 @@ def save():
         for entry in lex:
             f.write(
                 entry + ":" + ",".join(lex[entry][0]) + ":" + ",".join(lex[entry][1]) + ":" + ",".join(lex[entry][2][0])
-                + ">" + ",".join(lex[entry][2][1]) + ">" + ",".join(lex[entry][2][2]) + ".")
+                + ">" + ",".join(lex[entry][2][1]) + ">" + ",".join(lex[entry][2][2]) + "\\")
     print("Lexikon gesichert:")
     print(str(len(lex)) + " Einträge")
 
@@ -89,6 +89,23 @@ def separator(text):
     else:
         number = int(number)  # konvertiere number zu integer
     return string, number
+
+
+def vowel_counter(string):
+    count = 0
+    for letter in string:
+        if letter in vowels:
+            count += 1
+    return count
+
+
+def last_vowel(string):
+    vowel = ""
+    for letter in reversed(string):
+        if letter in vowels:
+            vowel = letter
+            break
+    return vowel
 
 
 def check_lex(item):
@@ -353,17 +370,18 @@ def grammar_verbs(word):
 
 def grammar_nouns(word):
     lemma = ends_in_vowel(word)  # füge d hinzu, wenn auf vokal endet
+    # nominativ und dativ
     if "N1" in lex[word][1] or "PN1" in lex[word][1]:
         print("Nominativ: gu-" + word + "\nDativ: " + word + "-gūn")
     elif "N2" in lex[word][1] or "PN2" in lex[word][1]:
         print("Nominativ: ga-" + word + "\nDativ: " + word + "-gān")
     elif "N3" in lex[word][1] or "PN3" in lex[word][1]:
         print("Nominativ: a-" + word + "\nDativ: " + word + "-dān")
-
-    if lemma[-2] == "a" or lemma[-2] == "ā":
-        print("Plural: " + lemma + "un")
-    elif lemma[-2] == "u" or lemma[-2] == "ū":
-        print("Plural: " + lemma + "an")
+    # plural
+    if vowel_counter(lemma) == 1 or last_vowel(lemma) in ["u", "ū"]:
+        print("Plural: " + lemma + "an")    # einsilbige nomen und solche die auf -u/-ū enden erhalten ein -(d)an
+    elif last_vowel(lemma) in ["a", "ā"]:
+        print("Plural: " + lemma + "un")    # nomen die auf -a/-ā enden erhalten ein -(d)un
 
 
 def grammar_pronouns(word):
