@@ -17,8 +17,12 @@ POS = {
 }
 POS_noun = ["N1", "N2", "N3", "PN1", "PN2", "PN3"]
 POS_det = ["DET1", "DET2", "DET3"]
-info = "Befehle:\n'all' = Ganzes Lexikon\n'words' = Alle Einträge ohne Übersetzung\n'len' = Anzahl Einträge" \
-       "\n'random[v/n/a]' = Zufälliges Wort (Verb/Nomen/Adjektiv)'\n'empty' = Zeige alle Einträge ohne Überetzung an" \
+hello = "Moin!\n'words' = Einträge mit Übersetzung\n'random' = zufälliges Wort\n'save' = speichern" \
+        "\n'tschö' = beenden OHNE speichern\n'b' = bearbeiten\n'del' = löschen\n'g' = Grammatik\n'info' = Info"
+info = "Befehle:\n'all' = Ganzes Lexikon\n'len' = Anzahl Einträge" \
+       "\n'empty' = Zeige alle Einträge ohne Übersetzung an" \
+       "\n'random[v/n/a][zahl]' = (Anzahl) zufällige Worte [Verb/Nomen/Adjektiv] (Keine Angabe = 1)" \
+       "\n'words[zahl]' = Zeige [zahl] Wörter mit Übersetzung (Keine Angabe = 10, 0 = alle)" \
        "\n'verbs[zahl]' = Zeige [zahl] an Verben (Keine Angabe = 10, 0 = alle)" \
        "\n'nouns[zahl]' = Zeige [zahl] an Nomen (Keine Angabe = 10, 0 = alle)" \
        "\n'adj[zahl]' = Zeige [zahl] an Adjektiven (Keine Angabe = 10, 0 = alle)" \
@@ -28,10 +32,12 @@ info = "Befehle:\n'all' = Ganzes Lexikon\n'words' = Alle Einträge ohne Überset
 info_ling = "Weitere Befehle:\n'b' = Bearbeite den letztgesuchten Eintrag\n'del' = Lösche den letztgesuchten Eintrag" \
             "\n'g' = Bilde grammatikalische Formen des letztgesuchten Eintrags" \
             "\n'pos' = Zeige POS-Tag des letztgesuchten Eintrags" \
+            "\n'trans' = Zeige Übersetzung(en)" \
             "\n'root'/'rootb' = Zeige/bearbeite Wurzel(n) des Wortes" \
             "\n'rel'/'relb' = Zeige/bearbeite verwandte Wörter" \
             "\n'derv'/'dervb' = Zeige/bearbeite abgeleitete Wörter\na|/u|/d| = ā/ū/ð\n-'info' = Info"
-operator = ["b", "g", "pos", "root", "rel", "derv", "rootb", "relb", "dervb", "del", "trans", "info", "infoling"]
+operator = ["b", "g", "pos", "root", "rel", "derv", "rootb", "relb", "dervb", "del", "trans",
+            "info", "infoling", "save"]
 # import dict from file
 lex_file = open("rux_lex", "r", encoding="utf-8")
 lex_cont = lex_file.read()
@@ -70,11 +76,11 @@ def get_input(prompt, form=""):
 
 # helper function, um input in buchstaben/zahlen zu trennen
 def separator(text):
-    dig = "0123456789"  # definiere ziffern
+    zif = "0123456789"  # definiere ziffern
     string = ""  # buchstaben in input
     number = ""  # zahlen in input
     for char in text:
-        if char in dig:  # wenn char eine zahl, füge zu 'number' hinzu, sonst zu 'string'
+        if char in zif:  # wenn char eine zahl, füge zu 'number' hinzu, sonst zu 'string'
             number += char
         else:
             string += char
@@ -106,7 +112,7 @@ def check_antwort(prompt="Bist du sicher? j/n\n"):
 
 
 def print_trans(word):
-    if not lex[word][0] == [""]:  # checke, ob übersetzungen vorhanden sind
+    if word in lex and not lex[word][0] == [""]:  # checke, ob übersetzungen vorhanden sind
         print(", ".join(lex[word][0]))
     else:
         print("Keine Übersetzung gefunden")
@@ -125,7 +131,7 @@ def insert(item):
         print(item)
         lex[item] = lex[item][0] + get_input("Bedeutungen: " + ", ".join(lex[item][0]) + ", ", "format"), \
             lex[item][1], lex[item][2]
-    print("Geänderter Eintrag:\n" + item + ": " + ", ".join(lex[item][0]) + ", " + "/".join(lex[item][1]))
+    print("Geänderter Eintrag:\n" + item + ": " + ", ".join(lex[item][0]) + "\n(" + "/".join(lex[item][1])+")")
 
 
 def delete(item):
@@ -184,7 +190,7 @@ def edit_derv(word):
     for derv in lex[word][2][2]:
         if derv in lex and word not in lex[derv][2][0]:
             if lex[derv][2][0] == [""]:
-                lex[derv][2][0] = word
+                lex[derv][2][0] = [word]
             else:
                 lex[derv][2][0].append(word)
             count += 1
@@ -213,6 +219,38 @@ def print_entry(item):
             scope = len(adj)
         print("\n".join(adj[-scope:]))  # printe die letzten x adjektive, x = scope
         print(str(len(adj)) + " Adjektive gefunden")
+    else:
+        print("Inkorrekte Eingabe")
+
+
+def print_words(item):
+    _, scope = separator(item)  # trenne input ('words') von gewünschter anzahl (scope)
+    if scope > len(lex) or scope == 0:     # scope = 0 -> alle wörter; und catche ob input > len um errors zu vermeiden
+        scope = len(lex)
+    elif scope == -1:   # wenn kein wert angegeben
+        scope = 10      # standardwert 10
+
+    # erstelle liste aus x (=scope) einträgen + übersetzungen ['w1: t1, t2', 'w2: t1', ...]
+    ret = [wort+": "+", ".join(lex[wort][0]) for wort in list(lex)[0:scope]]
+    print("\n".join(ret))
+
+
+def print_related(klasse, wort):
+    if klasse in "root":
+        if wort in lex and not lex[wort][2][0] == ['']:
+            print("Wurzel(n): {"+", ".join(lex[wort][2][0])+"}")
+        else:
+            print("Keine Wurzel gefunden")
+    elif klasse in "rel":
+        if wort in lex and not lex[wort][2][1] == ['']:
+            print("Verwandte Wörter: {"+", ".join(lex[wort][2][1])+"}")
+        else:
+            print("Keine verwandten Wörter gefunden")
+    elif klasse in "derv":
+        if wort in lex and not lex[wort][2][2] == ['']:
+            print("Abgeleitete Wörter: {"+", ".join(lex[wort][2][2])+"}")
+        else:
+            print("Keine abgeleiteten Wörter gefunden")
 
 
 def search_empty():
@@ -223,20 +261,28 @@ def search_empty():
     return lex_notrans
 
 
-def random_entry(item):
-    if item[-1] == "v":  # zufälliges verb
-        r = random.randrange(len(verbs))
+def random_entry(item):     # input: 'random[v/n/a][x], x = beliebige zahl
+    (klasse, scope) = separator(item)
+
+    if klasse[-1] == "v":  # zufälliges verb
         k = verbs
-    elif item[-1] == "n":  # zufälliges nomen
-        r = random.randrange(len(nouns))
+    elif klasse[-1] == "n":  # zufälliges nomen
         k = nouns
-    elif item[-1] == "a":  # zufälliges adjektiv
-        r = random.randrange(len(adj))
+    elif klasse[-1] == "a":  # zufälliges adjektiv
         k = adj
-    else:
-        r = random.randrange(len(lex))  # zufällige zahl in range(0, anzahl_einträge)
-        k = [entr for entr in lex.keys()]  # liste aller keys (einträge)
-    print(k[r])  # gebe zufälligen key aus der liste aus
+    else:                   # zufälliges wort (liste aller keys/einträge)
+        k = [entry for entry in lex.keys()]
+
+    if scope < 1:
+        scope = 1   # standardwert 1
+    elif scope > len(k):
+        scope = 5   # übermäßige Angaben werden auf 5 zurückgesetzt
+
+    r = 0
+    for number in range(scope):
+        r = random.randrange(len(k))
+        print(k[r])  # gebe zufälligen key aus der liste aus
+
     return k[r]
 
 
@@ -331,38 +377,35 @@ def ends_in_vowel(word):
 
 
 def lexikon():
-    print("Moin!\n'words' = Alle Einträge\n'save' = speichern\n'tschö' = beenden OHNE speichern"
-          "\n'b' = bearbeiten\n'del' = löschen\n'g' = Grammatik\n'info' = Info")
+    print(hello)
 
     active = ""
     item = get_input("-> ").lower()  # erster input
     while not item == "tschö" and not item == "bye":  # beende mit befehl 'tschö' oder 'bye' die schleife (das programm)
         item = item.replace("a|", "ā").replace("u|", "ū").replace("d|", "ð")  # füge special character ein
 
-        if item not in operator:  # resete input nicht bei bestimmten befehlen
+        if item not in operator:  # resete input nicht bei bestimmten meta befehlen
             active = item
         if item == "":  # enter wird nicht gesucht, sondern übersprungen
             pass
-        elif item == "info":  # zeige alle befehle
+        elif item == "info":  # zeige mehr befehle
             print(info)
-        elif item == "infoling":
+        elif item == "infoling":    # zeige restliche befehle
             print(info_ling)
         elif item == "all":  # zeige ganzes lexikon an
             print(lex)
-        elif item == "words":  # zeige alle einträge in rux
-            for word in lex:
-                print(word)
-            print(str(len(lex)) + " words")
+        elif "words" in item:  # zeige (x) einträge in rux
+            print_words(item)
         elif item == "trans":
             print_trans(active)
         elif item == "len":
             print(str(len(lex)) + " Einträge!")
         elif "verbs" in item or "nouns" in item or "adj" in item:  # printe liste mit x einträgen von wortklasse
             print_entry(item)
-        elif "random" in item:  # zeige zufälliges wort
+        elif "random" in item:  # zeige x zufällige worte an ([v]erbs,[a]djectives,[n]ouns)
             active = random_entry(item)
         elif item == "empty":  # zeige alle wörter an, die noch keine übersetzung haben
-            print(search_empty())
+            print("\n".join(search_empty()))
         elif item == "give d":  # um special character zu bekommen:
             print("ð")
         elif item == "vowels":
@@ -382,26 +425,23 @@ def lexikon():
             active = swap(active)
             print(pos(active))
         elif item in "rootb":
+            active = swap(active)
             if item[-1] == "b":  # 'rootb' bearbeitet den wurzeleintrag
-                active = swap(active)
                 edit_root(active)
             else:  # 'root' zeigt die wurzel an
-                active = swap(active)
-                print(lex[active][2][0])
+                print_related(item, active)
         elif item in "relb":
+            active = swap(active)
             if item[-1] == "b":  # 'relb' bearbeitet verwandte wörter
-                active = swap(active)
                 edit_rel(active)
             else:  # 'rel' zeigt verwandte wörter an
-                active = swap(active)
-                print(lex[active][2][1])
+                print_related(item, active)
         elif item in "dervb":
+            active = swap(active)
             if item[-1] == "b":  # 'dervb' bearbeitet abgeleitete wörter
-                active = swap(active)
                 edit_derv(active)
             else:  # 'derv' zeigt abgeleitete wörter an
-                active = swap(active)
-                print(lex[active][2][2])
+                print_related(item, active)
         elif item == "save":
             save()
         else:  # wenn wort noch nicht vorhanden oder ohne übersetzung ist
