@@ -110,7 +110,7 @@ function setTotal() {
             let pointsspent = getVal(t,"pointstotal")-getVal(t,"pointsleft"); //totalpunkte-restliche_punkte=bisher ausgegebene punkte
 
             //Eingabe darf nicht weniger als insgesamt ausgegeben sein und muss mind. 35 sein (jedes Attribut auf 1)
-            if (number>=pointsspent&&number>=35) {
+            if (number>=pointsspent&&number>=50) {
             setVal(t,"pointstotal",number); //Neue total punkte
             setVal(t,"pointsleft",number-pointsspent); //Neue noch übrige Punkte
             punkte=number; //update variable für spätere berechnungen
@@ -390,7 +390,7 @@ function updateWerte(element) {
 
             //catche stärke und werfen, da sie text und kein value enthalten
             if (bonus[item][0]=="stark") bonus1 = getNum(t,bonus[item][0]); //Bonuswert1
-            else bonus1 = getNum(v,bonus[item][0]);                        
+            else bonus1 = getNum(v,bonus[item][0]);
             bonus2 = getNum(v,bonus[item][1]);                             //Bonuswert2
             if (bonus[item][2]=="werf") bonus3 = getNum(t,bonus[item][2]); //Bonuswert3
             else bonus3 = getNum(v,bonus[item][2]);
@@ -420,7 +420,7 @@ function updateWerte(element) {
             neuzauber = getNum(t,item+"punkte")/2; //Kosten 2:1
             setVal(t,item+"wert",neuzauber);
         });
-    
+
         //Ausgegebene Punkte
         total = punkte-total;         //(alle_Punkte - total_ausgegebene)=noch übrig
         setVal(t,"pointsleft",total);
