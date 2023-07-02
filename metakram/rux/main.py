@@ -13,7 +13,7 @@ POS = {
     "PN1": "Eigenname (Klasse 1)", "PN2": "Eigenname (Klasse 2)", "PN3": "Eigenname (Klasse 3)",
     "ADJ": "Adjektiv", "DET1": "Artikel (Klasse 1)", "DET2": "Artikel (Klasse 2)", "DET3": "Artikel (Klasse 3)",
     "PREP": "Präposition", "TMP": "Temporaladverb", "KNJ": "Konjunktion", "NON": "Negation", "DIM": "Diminutiv",
-    "PRO": "Pronomen", "JA": "Ja", "NO": "Nein"
+    "PRO": "Pronomen", "JA": "Ja", "NO": "Nein", "ZAHL": "Zahl"
 }
 POS_noun = ["N1", "N2", "N3", "PN1", "PN2", "PN3"]
 POS_det = ["DET1", "DET2", "DET3"]
@@ -21,15 +21,15 @@ hello = "Moin!\n'words' = Einträge mit Übersetzung\n'random' = zufälliges Wor
         "\n'tschö' = beenden OHNE speichern\n'b' = bearbeiten\n'del' = löschen\n'g' = Grammatik\n'info' = Info"
 info = "Befehle:\n'all' = Ganzes Lexikon\n'len' = Anzahl Einträge\n'active' = Zeige aktuelles Wort an" \
        "\n'empty' = Zeige alle Einträge ohne Übersetzung an" \
-       "\n'notlist = Zeige alle Übersetzungen ohne Eintrag an" \
+       "\n'notlist = Zeige alle Übersetzungen ohne Eintrag an\n'add' = Füge Wort zur notlist hinzu" \
        "\n'random[v/n/a][zahl]' = (Anzahl) zufällige Worte [Verb/Nomen/Adjektiv] (Keine Angabe = 1)" \
        "\n'words[zahl]' = Zeige [zahl] Wörter mit Übersetzung (Keine Angabe = 10, 0 = alle)" \
        "\n'verbs[zahl]' = Zeige [zahl] an Verben (Keine Angabe = 10, 0 = alle)" \
        "\n'nouns[zahl]' = Zeige [zahl] an Nomen (Keine Angabe = 10, 0 = alle)" \
-       "\n'adj[zahl]' = Zeige [zahl] an Adjektiven (Keine Angabe = 10, 0 = alle)" \
+       "\n'adjs[zahl]' = Zeige [zahl] an Adjektiven (Keine Angabe = 10, 0 = alle)" \
        "\n'save' = Speichern\n'tschö' = Beenden OHNE speichern\n'give d' = get d" \
        "\n'vowels' = print special vowels\n'abc' = ganzes Alphabet" \
-       "\na|/u|/d| = ā/ū/ð\n+'infoling' = more info"
+       "\na|/u|/d|/p| = ā/ū/ð/ƥ\n+'infoling' = more info"
 info_ling = "Weitere Befehle:\n'b' = Bearbeite den letztgesuchten Eintrag\n'del' = Lösche den letztgesuchten Eintrag" \
             "\n'g' = Bilde grammatikalische Formen des letztgesuchten Eintrags" \
             "\n'pos' = Zeige POS-Tag des letztgesuchten Eintrags" \
@@ -37,8 +37,8 @@ info_ling = "Weitere Befehle:\n'b' = Bearbeite den letztgesuchten Eintrag\n'del'
             "\n'root'/'rootb' = Zeige/bearbeite Wurzel(n) des Wortes" \
             "\n'rel'/'relb' = Zeige/bearbeite verwandte Wörter" \
             "\n'derv'/'dervb' = Zeige/bearbeite abgeleitete Wörter\na|/u|/d| = ā/ū/ð\n-'info' = Info"
-operator = ["b", "g", "pos", "root", "rel", "derv", "rootb", "relb", "dervb", "del", "trans", "active", "syn",
-            "info", "infoling", "save"]
+operator = ["b", "g", "pos", "posb", "root", "rel", "derv", "rootb", "relb", "dervb", "del", "trans", "active",
+            "syn", "add", "info", "infoling", "save"]
 exceptions = {"ûdar": ["V", ["ûda", "ûdu", "ûdad"], ["udā", "udū", "ûdud"]]}
 # import dict from file
 lex_file = open("rux_lex", "r", encoding="utf-8")
@@ -55,7 +55,7 @@ lex_file.close()
 
 verbs = [word for word in lex if "V" in lex[word][1]]  # erstelle liste aller verben
 nouns = [word for word in lex if any(item in lex[word][1] for item in POS_noun)]  # erstelle liste aller nomen
-adj = [word for word in lex if "ADJ" in lex[word][1]]  # erstelle liste aller adjektive
+adjs = [word for word in lex if "ADJ" in lex[word][1]]  # erstelle liste aller adjektive
 
 
 def save():
@@ -77,7 +77,8 @@ def get_input(prompt, form=""):
         item = input(prompt)
     else:
         item = input(prompt).replace(" ", "").replace("_", " ").replace("a|", "ā") \
-            .replace("u|", "ū").replace("d|", "ð").split(",")
+            .replace("u|", "ū").replace("d|", "ð").replace("p|", "ƥ").split(",")
+
     return item
 
 
@@ -164,6 +165,17 @@ def swap(active):
     return active
 
 
+# update wortlisten nach tag (nouns/verbs/adjs), wenn neues wort hinzugefügt wird
+def insert_poslist(postag, word):
+    for tag in postag:
+        if tag.upper() == "ADJ":
+            adjs.append(word)
+        elif tag.upper() in POS_noun:
+            nouns.append(word)
+        elif tag.upper() == "V":
+            verbs.append(word)
+
+
 # PRINTERS
 def print_entry(word):  # printe eintrag aus lex
     for entry in lex:
@@ -206,11 +218,11 @@ def print_class(item):
             scope = len(nouns)
         print("\n".join(nouns[-scope:]))  # printe die letzten x nomen, x = scope
         print(str(len(nouns)) + " Nomen gefunden")
-    elif klasse == "adj":
+    elif klasse == "adjs":
         if scope == 0:  # scope = 0 -> alle adjektive
-            scope = len(adj)
-        print("\n".join(adj[-scope:]))  # printe die letzten x adjektive, x = scope
-        print(str(len(adj)) + " Adjektive gefunden")
+            scope = len(adjs)
+        print("\n".join(adjs[-scope:]))  # printe die letzten x adjektive, x = scope
+        print(str(len(adjs)) + " Adjektive gefunden")
     else:
         print("Inkorrekte Eingabe")
 
@@ -265,6 +277,7 @@ def insert(item):
             if poz not in POS:  # füge nur gültige pos tags hinzu
                 tag.remove(poz)
         lex[item] = word, tag, [[""], [""], [""]]
+        insert_poslist(tag, item)   # update verbs/nouns/adjs
     else:
         print(item)
         lex[item] = lex[item][0] + get_input("Bedeutungen: " + ", ".join(lex[item][0]) + ", ", "format"), \
@@ -288,7 +301,8 @@ def edit_root(word):
         lex[word][2][0] = get_input("new root(s): ", "format")
     else:
         print("root of " + word + ": " + ", ".join(lex[word][2][0]))
-        lex[word][2][0] += get_input("added root(s): ", "format")
+        # füge wurzeln hinzu, die noch nicht vorhanden sind
+        lex[word][2][0] += [neu for neu in get_input("added root(s): ", "format") if neu not in lex[word][2][0]]
     count = 1
     for wurz in lex[word][2][0]:
         if wurz in lex and word not in lex[wurz][2][2]:
@@ -308,7 +322,8 @@ def edit_rel(word):
         lex[word][2][1] = get_input("new word(s): ", "format")
     else:
         print("Verwandte Wörter von '" + word + "': " + str(lex[word][2][1]))
-        lex[word][2][1] += get_input("added word(s): ", "format")
+        # füge verwandte worte hinzu, die noch nicht vorhanden sind
+        lex[word][2][1] += [neu for neu in get_input("added word(s): ", "format") if neu not in lex[word][2][1]]
     count = 1
     for verw in lex[word][2][1]:
         if verw in lex and word not in lex[verw][2][1]:
@@ -327,7 +342,8 @@ def edit_derv(word):
         lex[word][2][2] = get_input("new word(s): ", "format")
     else:
         print("Abgeleitete Wörter von '" + word + "': " + str(lex[word][2][2]))
-        lex[word][2][2] += get_input("added word(s): ", "format")
+        # füge abgeleitete worte hinzu, die noch nicht vorhanden sind
+        lex[word][2][2] += [neu for neu in get_input("added word(s): ", "format") if neu not in lex[word][2][2]]
     count = 1
     for derv in lex[word][2][2]:
         if derv in lex and word not in lex[derv][2][0]:
@@ -366,7 +382,7 @@ def random_entry(item):     # input: 'random[v/n/a][x], x = beliebige zahl
     elif klasse[-1] == "n":  # zufälliges nomen
         k = nouns
     elif klasse[-1] == "a":  # zufälliges adjektiv
-        k = adj
+        k = adjs
     else:                   # zufälliges wort (liste aller keys/einträge)
         k = [entry for entry in lex.keys()]
 
@@ -389,19 +405,21 @@ def pos(word):
         for tag in POS:
             if tag in lex[word][1]:
                 tags.append(POS[tag])
-        return tags
+        print("/".join(tags))
     else:
-        return "Keinen POS-Tag gefunden"
+        print("Keinen POS-Tag gefunden")
 
 
 # finde synonyme
 def synonyms(word):
     syn = []
-    for entry in lex:
-        if any(item in lex[word][0] for item in lex[entry][0]) and not word == entry:
-            syn.append(entry)
+    if word in lex:
+        for entry in lex:
+            if any(item in lex[word][0] for item in lex[entry][0]) and not word == entry:
+                syn.append(entry)
 
     return syn
+
 
 # GRAMMAR
 
@@ -522,7 +540,7 @@ def lexikon():
             print_syns(active)
         elif item == "len":
             print(str(len(lex)) + " Einträge!")
-        elif "verbs" in item or "nouns" in item or "adj" in item:  # printe liste mit x einträgen von wortklasse
+        elif "verbs" in item or "nouns" in item or "adjs" in item:  # printe liste mit x einträgen von wortklasse
             print_class(item)
         elif "random" in item:  # zeige x zufällige worte an ([v]erbs,[a]djectives,[n]ouns)
             active = random_entry(item)
@@ -545,9 +563,9 @@ def lexikon():
         elif item == "g":  # grammatik printen
             active = swap(active)
             grammar(active)
-        elif item == "pos":  # part of speech tag
+        elif item in "pos":     # part of speech tag
             active = swap(active)
-            print(pos(active))
+            pos(active)
         elif item in ["root", "rootb"]:
             active = swap(active)
             if item[-1] == "b":  # 'rootb' bearbeitet den wurzeleintrag
