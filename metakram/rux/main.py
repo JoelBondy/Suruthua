@@ -34,11 +34,11 @@ info_ling = "Weitere Befehle:\n'b' = Bearbeite den letztgesuchten Eintrag\n'del'
             "\n'g' = Bilde grammatikalische Formen des letztgesuchten Eintrags" \
             "\n'pos' = Zeige POS-Tag des letztgesuchten Eintrags" \
             "\n'trans' = Zeige Übersetzung(en)\n'syn' = Zeige Synonyme an" \
-            "\n'root'/'rootb' = Zeige/bearbeite Wurzel(n) des Wortes" \
-            "\n'rel'/'relb' = Zeige/bearbeite verwandte Wörter" \
-            "\n'derv'/'dervb' = Zeige/bearbeite abgeleitete Wörter\na|/u|/d| = ā/ū/ð\n-'info' = Info"
-operator = ["b", "g", "pos", "posb", "root", "rel", "derv", "rootb", "relb", "dervb", "del", "trans", "active",
-            "syn", "add", "info", "infoling", "save"]
+            "\n'root[b/n]' = Zeige Wurzel(n) des Wortes [bearbeiten/ersetzen]" \
+            "\n'rel[b/n]' = Zeige verwandte Wörter [bearbeiten/ersetzen]" \
+            "\n'der[b/n]' = Zeige abgeleitete Wörter [bearbeiten/ersetzen]\na|/u|/d|/p| = ā/ū/ð/ƥ\n-'info' = Info"
+operator = ["b", "g", "pos", "posb", "posn", "root", "rel", "derv", "rootb", "relb", "dervb", "rootn", "reln", "dervn"
+            "del", "trans", "active", "syn", "add", "info", "infoling", "save"]
 exceptions = {"ûdar": ["V", ["ûda", "ûdu", "ûdad"], ["udā", "udū", "ûdud"]]}
 # import dict from file
 lex_file = open("rux_lex", "r", encoding="utf-8")
@@ -117,8 +117,9 @@ def last_vowel(string):
     return vowel
 
 
+# füge 'd-' zum suffix hinzu, wenn word auf vokal endet
 def end_vowel(word):
-    if ends_in_vowel(word):  # worte die auf einen vokal enden, fügen ein d- zum suffix hinzu
+    if ends_in_vowel(word):
         word = word + "d"
     return word
 
@@ -208,21 +209,33 @@ def print_class(item):
     if scope == -1:  # wenn kein wert angegeben
         scope = 10  # standardwert 10
 
-    if klasse == "verbs":
+    if "verbs" in klasse:
         if scope == 0:  # scope = 0 -> alle verben
             scope = len(verbs)
-        print("\n".join(verbs[-scope:]))  # printe die letzten x verben, x = scope
-        print(str(len(verbs)) + " Verben gefunden")
-    elif klasse == "nouns":
+        # printe die letzten x verben, x = scope
+        if klasse == "transverbs":  # printe mit übersetzung
+            print("\n".join([v + ": " + ", ".join(lex[v][0]) for v in verbs[-scope:]]))
+        else:
+            print("\n".join(verbs[-scope:]))  # printe die letzten x verben, x = scope
+        print("Insgesamt " + str(len(verbs)) + " Verben gefunden")
+    elif "nouns" in klasse:
         if scope == 0:  # scope = 0 -> alle nomen
             scope = len(nouns)
-        print("\n".join(nouns[-scope:]))  # printe die letzten x nomen, x = scope
-        print(str(len(nouns)) + " Nomen gefunden")
+        # printe die letzten x nomen, x = scope
+        if klasse == "transnouns":  # printe mit übersetzung
+            print("\n".join([n + ": " + ", ".join(lex[n][0]) for n in nouns[-scope:]]))
+        else:
+            print("\n".join(nouns[-scope:]))
+        print("Insgesamt " + str(len(nouns)) + " Nomen gefunden")
     elif klasse == "adjs":
         if scope == 0:  # scope = 0 -> alle adjektive
             scope = len(adjs)
-        print("\n".join(adjs[-scope:]))  # printe die letzten x adjektive, x = scope
-        print(str(len(adjs)) + " Adjektive gefunden")
+        # printe die letzten x adjektive, x = scope
+        if klasse == "transnouns":  # printe mit übersetzung
+            print("\n".join([a + ": " + ", ".join(lex[a][0]) for a in adjs[-scope:]]))
+        else:
+            print("\n".join(adjs[-scope:]))
+        print("Insgesamt " + str(len(adjs)) + " Adjektive gefunden")
     else:
         print("Inkorrekte Eingabe")
 
@@ -267,6 +280,14 @@ def print_syns(word):
         print("Keine Synonyme gefunden")
 
 
+def print_pos(word):
+    tags = pos(word)
+    if tags:
+        print("/".join(tags))
+    else:
+        print("Keinen POS-Tag gefunden")
+
+
 # DICT MANIPULATION
 def insert(item):
     if item not in lex or lex[item][0] == [""]:
@@ -295,71 +316,136 @@ def delete(item):
         print(item + " wurde gelöscht")
 
 
-def edit_root(word):
-    if lex[word][2][0] == [""]:  # wenn liste leer
-        print("Keine Wurzel gefunden (" + word + ")")
-        lex[word][2][0] = get_input("new root(s): ", "format")
+# bearbeite den POS Eintrag ('posb') oder überschreibe ihn ('posn')
+def add_pos(item, word):
+    if word in lex:
+        tags = ""
+        if lex[word][1] == [""]:
+            print("Keinen POS Tag gefunden (" + word + ")")
+            tags = get_input("new POS: ", "format")
+        elif item == "posb":
+            print("POS von " + word + ": " + ", ".join([tag + " (" + POS[tag] + ")" for tag in lex[word][1]]))
+            tags = lex[word][1] + get_input("added POS: ", "format")
+        elif item == "posn":
+            print("POS von " + word + ": " + ", ".join([tag + " (" + POS[tag] + ")" for tag in lex[word][1]]))
+            print("Vorsicht! Eintrag wird überschrieben. 'x' zum abbrechen")
+            tags = get_input("new POS: ", "format")
+            if "x" in tags:
+                return
+        if tags:
+            lex[word] = lex[word][0], [t.upper() for t in tags if t.upper() in POS], lex[word][2]
+            print("POS Tags: " + "/".join(lex[word][1]))
     else:
-        print("root of " + word + ": " + ", ".join(lex[word][2][0]))
+        print("Eintrag konnte nicht gefunden werden")
+
+
+def edit_root(item, word):
+    if word in lex:
+        if lex[word][2][0] == [""]:  # wenn liste leer
+            print("Keine Wurzel gefunden (" + word + ")")
+            lex[word][2][0] = get_input("new root(s): ", "format")
+        else:
+            add_root(item, word)
+        count = 1
+        for wurz in lex[word][2][0]:
+            if wurz in lex and word not in lex[wurz][2][2]:
+                if lex[wurz][2][2] == [""]:
+                    lex[wurz][2][2] = [word]  # leere einträge ersetzen
+                else:
+                    lex[wurz][2][2].append(word)
+                count += 1
+
+        print("Wurzel(n): " + ", ".join(lex[word][2][0]))
+        print(str(count) + " Eintrag/Einträge geändert")
+    else:
+        print("Kein Eintrag vorhanden")
+
+
+def add_root(item, word):
+    print("root of " + word + ": " + ", ".join(lex[word][2][0]))
+    if item == "rootb":
         # füge wurzeln hinzu, die noch nicht vorhanden sind
         lex[word][2][0] += [neu for neu in get_input("added root(s): ", "format") if neu not in lex[word][2][0]]
-    count = 1
-    for wurz in lex[word][2][0]:
-        if wurz in lex and word not in lex[wurz][2][2]:
-            if lex[wurz][2][2] == [""]:
-                lex[wurz][2][2] = [word]  # leere einträge ersetzen
-            else:
-                lex[wurz][2][2].append(word)
-            count += 1
-
-    print("Wurzel(n): " + ", ".join(lex[word][2][0]))
-    print(str(count) + " Eintrag/Einträge geändert")
+    elif item == "rootn":
+        inpt = get_input("Vorsicht! Eintrag wird überschrieben.\nSchreibe 'x' um abzubrechen\nnew root(s): ", "format")
+        if "x" not in inpt:
+            # ersetze wurzeln durch input
+            lex[word][2][0] = inpt
 
 
-def edit_rel(word):
-    if lex[word][2][1] == [""]:  # wenn liste leer
-        print("Keine verwandten Wörter (" + word + ")")
-        lex[word][2][1] = get_input("new word(s): ", "format")
+def edit_rel(item, word):
+    if word in lex:
+        if lex[word][2][1] == [""]:  # wenn liste leer
+            print("Keine verwandten Wörter (" + word + ")")
+            lex[word][2][1] = get_input("new word(s): ", "format")
+        else:
+            add_rel(item, word)
+
+        count = 1
+        for verw in lex[word][2][1]:
+            if verw in lex and word not in lex[verw][2][1]:
+                if lex[verw][2][1] == [""]:
+                    lex[verw][2][1] = [word]
+                else:
+                    lex[verw][2][1].append(word)
+                count += 1
+        print("Verwandte Wörter: " + ", ".join(lex[word][2][1]))
+        print(str(count) + " Eintrag/Einträge geändert")
     else:
-        print("Verwandte Wörter von '" + word + "': " + str(lex[word][2][1]))
+        print("Kein Eintrag vorhanden")
+
+
+def add_rel(item, word):
+    print("Verwandte Wörter von '" + word + "': " + str(lex[word][2][1]))
+    if item == "relb":
         # füge verwandte worte hinzu, die noch nicht vorhanden sind
         lex[word][2][1] += [neu for neu in get_input("added word(s): ", "format") if neu not in lex[word][2][1]]
-    count = 1
-    for verw in lex[word][2][1]:
-        if verw in lex and word not in lex[verw][2][1]:
-            if lex[verw][2][1] == [""]:
-                lex[verw][2][1] = [word]
-            else:
-                lex[verw][2][1].append(word)
-            count += 1
-    print("Verwandte Wörter: " + ", ".join(lex[word][2][1]))
-    print(str(count) + " Eintrag/Einträge geändert")
+    elif item == "reln":
+        inpt = get_input("Vorsicht! Eintrag wird überschrieben.\nSchreibe 'x' um abzubrechen\nnew word(s): ", "format")
+        if "x" not in inpt:
+            # ersetze verwandte wörter durch input
+            lex[word][2][1] = inpt
 
 
-def edit_derv(word):
-    if lex[word][2][2] == [""]:  # wenn liste leer
-        print("Keine abgeleiteten Wörter (" + word + ")")
-        lex[word][2][2] = get_input("new word(s): ", "format")
+def edit_derv(item, word):
+    if word in lex:
+        if lex[word][2][2] == [""]:  # wenn liste leer
+            print("Keine abgeleiteten Wörter (" + word + ")")
+            lex[word][2][2] = get_input("new word(s): ", "format")
+        else:
+            add_derv(item, word)
+        count = 1
+        for derv in lex[word][2][2]:
+            if derv in lex and word not in lex[derv][2][0]:
+                if lex[derv][2][0] == [""]:
+                    lex[derv][2][0] = [word]
+                else:
+                    lex[derv][2][0].append(word)
+                count += 1
+        print("Abgeleitete Wörter: " + ", ".join(lex[word][2][2]))
+        print(str(count) + " Eintrag/Einträge geändert")
     else:
-        print("Abgeleitete Wörter von '" + word + "': " + str(lex[word][2][2]))
+        print("Kein Eintrag gefunden")
+
+
+def add_derv(item, word):
+    print("Abgeleitete Wörter von '" + word + "': " + str(lex[word][2][2]))
+    if item == "dervb":
         # füge abgeleitete worte hinzu, die noch nicht vorhanden sind
         lex[word][2][2] += [neu for neu in get_input("added word(s): ", "format") if neu not in lex[word][2][2]]
-    count = 1
-    for derv in lex[word][2][2]:
-        if derv in lex and word not in lex[derv][2][0]:
-            if lex[derv][2][0] == [""]:
-                lex[derv][2][0] = [word]
-            else:
-                lex[derv][2][0].append(word)
-            count += 1
-    print("Abgeleitete Wörter: " + ", ".join(lex[word][2][2]))
-    print(str(count) + " Eintrag/Einträge geändert")
+    elif item == "dervn":
+        inpt = get_input("Vorsicht! Eintrag wird überschrieben.\nSchreibe 'x' um abzubrechen\nnew word(s): ", "format")
+        if 'x' not in inpt:
+            # ersetze abgeleitete wörter
+            lex[word][2][2] = inpt
 
 
 # GET INFO
 def checkerito(item):
     if check_lex(item):
         print_entry(item)
+    elif item in grammar(item):
+        print_entry()
     elif check_lex(item, unassigned):
         print("Noch kein Eintrag erstellt")
     else:
@@ -400,14 +486,12 @@ def random_entry(item):     # input: 'random[v/n/a][x], x = beliebige zahl
 
 
 def pos(word):
+    tags = []
     if word in lex and not lex[word][1] == [""]:  # wenn word und zugehörige pos tags vorhanden
-        tags = []
         for tag in POS:
             if tag in lex[word][1]:
                 tags.append(POS[tag])
-        print("/".join(tags))
-    else:
-        print("Keinen POS-Tag gefunden")
+    return tags
 
 
 # finde synonyme
@@ -422,48 +506,116 @@ def synonyms(word):
 
 
 # GRAMMAR
+def print_grammar(gramlist, klasse):
+    if gramlist == [] or klasse == "":
+        print("Keine Grammatik verfügbar")
+    elif klasse == "V":
+        if gramlist[0]:
+            print("Nominalisierung: " + gramlist[0])
+        print("Imperativ: " + gramlist[1] + "! " + gramlist[2] + "!\n")
+        print("Präsens:\t\tVergangenheit:\n" + gramlist[3] + "\t\t\t" + gramlist[6] + "\n" + gramlist[4] + "\t\t\t"
+              + gramlist[7] + "\n" + gramlist[5] + "\t\t\t" + gramlist[8])
+    elif klasse == "N":
+        print("Nominativ: " + gramlist[0] + "\nDativ: " + gramlist[1])
+        print("Plural: " + gramlist[2])
+    elif klasse == "PRO":
+        print("Nominativ: " + gramlist[0] + "\nDativ: " + gramlist[1])
+    elif klasse == "ART":
+        print(", ".join(gramlist))
+    elif klasse == "OTHER":
+        print("/".join(gramlist))
+
 
 # print alle grammatikalischen formen
 def grammar(word):
-    if word not in lex:
-        print("Keine Grammatik verfügbar")
-    # verben
-    elif len(word) > 3 and "V" in lex[word][1]:
-        grammar_verbs(word)
-    # nomen
-    elif any(item in lex[word][1] for item in POS_noun):  # enthält 'liste pos' ein noun tag?
-        grammar_nouns(word)
-    # pronomen
-    elif "PRO" in lex[word][1]:
-        grammar_pronouns(word)
-    # artikel
-    elif word in articles:
-        grammar_articles(word)
-    # alles andere
-    elif not lex[word][1] == [""]:
-        print(word)
-        print(pos(word))
+    table = []
+    klasse = ""
+    if word in lex:
+        # verben
+        if len(word) > 3 and "V" in lex[word][1]:
+            table = grammar_verbs(word)
+            klasse = "V"
+        # nomen
+        elif any(item in lex[word][1] for item in POS_noun):  # enthält 'liste pos' ein noun tag?
+            table = grammar_nouns(word)
+            klasse = "N"
+        # pronomen
+        elif "PRO" in lex[word][1]:
+            table = [word, pronouns[word]]
+            klasse = "PRO"
+        # artikel
+        elif word in articles:
+            table = articles[word]
+            klasse = "ART"
+        # alles andere
+        elif not lex[word][1] == [""]:
+            table = pos(word)
+            klasse = "OTHER"
+
+    return table, klasse
 
 
 def grammar_verbs(verb):
+    # stamm ohne infinitiv-endung
     lemma = verb[:-3]
-    # nominalisierung
+
+    # nominalisierung, imperativ, konjugation
+    ret = [verbs_nominal(lemma)]
+    [ret.append(imp) for imp in verbs_imp(lemma)]
+    [ret.append(con) for con in verbs_conj(lemma)]
+    return ret
+
+
+# verben (nominalisierung)
+def verbs_nominal(lemma):
+    nom = ""
     if last_vowel(lemma) in ["a", "ā"]:
         if ends_in_vowel(lemma):
-            print("Nominalisierung: " + lemma + "'ul\n")
+            nom = lemma+"'ul"
         else:
-            print("Nominalisierung: " + lemma + "ul\n")
+            nom = lemma + "ul"
     elif last_vowel(lemma) in ["u", "ū"]:
         if ends_in_vowel(lemma):
-            print("Nominalisierung: " + lemma + "'al\n")
+            nom = lemma + "'al"
         else:
-            print("Nominalisierung: " + lemma + "al\n")
+            nom = lemma + "al"
+    return nom
 
+
+# verben (imperativ)
+def verbs_imp(lemma):
+    singular = lemma
+    plural = lemma
+
+    if last_vowel(lemma) in ["a", "ā", "â"]:
+        if ends_in_vowel(singular):
+            singular += "d"
+        else:
+            singular += "ad"
+        plural = singular + "un"
+    elif last_vowel(lemma) in ["u", "ū", "û"]:
+        if ends_in_vowel(singular):
+            singular += "d"
+        else:
+            singular += "ud"
+        plural = singular + "an"
+    # wörter mit einem stamm von 3 silben oder mehr wechseln den hinzugefügten vokal
+    if vowel_counter(plural) >= 4:
+        plural = plural[:-4] + last_vowel(plural) + plural[-3:]     # rukdān(a)dun -> rukdān(u)dun
+
+    if lemma == "û":    # ûdar -> ud! ûdan!
+        singular = "ud"
+
+    return singular, plural
+
+
+# verben (konjugation)
+def verbs_conj(lemma):
     lemma = end_vowel(lemma)
     conj = [lemma + "a", lemma + "u", lemma + "ad", lemma + "ā", lemma + "ū", lemma + "ud"]
     # āXū/ā -> âXū/ā
     if last_vowel(lemma) == "ā":
-        if vowel_counter(lemma) == 1:   # one syllable words lose the guttural
+        if vowel_counter(lemma) == 1:  # one syllable words lose the guttural
             conj[3] = lemma[:-2] + "a" + lemma[-1] + "ā"
             conj[4] = lemma[:-2] + "a" + lemma[-1] + "ū"
         else:
@@ -471,7 +623,7 @@ def grammar_verbs(verb):
             conj[4] = lemma[:-2] + "â" + lemma[-1] + "ū"
     # ūXū/ā -> ûXū/ā
     elif last_vowel(lemma) in ["ū", "û"]:
-        if vowel_counter(lemma) == 1:   # one syllable words lose the guttural
+        if vowel_counter(lemma) == 1:  # one syllable words lose the guttural
             conj[3] = lemma[:-2] + "u" + lemma[-1] + "ā"
             conj[4] = lemma[:-2] + "u" + lemma[-1] + "ū"
         else:
@@ -482,34 +634,31 @@ def grammar_verbs(verb):
         conj[3] = lemma[:-1] + "qa"
         conj[4] = lemma[:-1] + "qu"
 
-    print("Präsens:\t\tVergangenheit:\n" + conj[0] + "\t\t\t" + conj[3] + "\n" + conj[1] + "\t\t\t"
-          + conj[4] + "\n" + conj[2] + "\t\t\t" + conj[5])
+    return conj
 
 
+# nomen
 def grammar_nouns(noun):
     lemma = end_vowel(noun)  # füge d hinzu, wenn auf vokal endet
     # nominativ und dativ
+    decl = []
     if "N1" in lex[noun][1] or "PN1" in lex[noun][1]:
-        print("Nominativ: gu-" + noun + "\nDativ: " + noun + "-gūn")
+        decl = ["gu-" + noun, noun + "-gūn"]
     elif "N2" in lex[noun][1] or "PN2" in lex[noun][1]:
-        print("Nominativ: ga-" + noun + "\nDativ: " + noun + "-gān")
+        decl = ["ga-" + noun, noun + "-gān"]
     elif "N3" in lex[noun][1] or "PN3" in lex[noun][1]:
-        print("Nominativ: a-" + noun + "\nDativ: " + noun + "-dān")
+        decl = ["a-" + noun, noun + "-dān"]
+
     # plural
     if vowel_counter(lemma) == 1 or last_vowel(lemma) in ["u", "ū", "û"]:
-        print("Plural: " + lemma + "an")    # einsilbige nomen und solche die auf -u/-ū enden erhalten ein -(d)an
+        decl.append(lemma + "an")   # einsilbige nomen und solche die auf -u/-ū enden erhalten ein -(d)an
     elif last_vowel(lemma) in ["a", "ā", "â"]:
-        print("Plural: " + lemma + "un")    # nomen die auf -a/-ā enden erhalten ein -(d)un
+        decl.append(lemma + "un")  # nomen die auf -a/-ā enden erhalten ein -(d)un
+
+    return decl
 
 
-def grammar_pronouns(pronoun):
-    print("Dativ: " + pronouns[pronoun])
-
-
-def grammar_articles(article):
-    print(", ".join(articles[article]))
-
-
+# LEXIKON
 def lexikon():
     print(hello)
 
@@ -562,28 +711,31 @@ def lexikon():
             delete(active)
         elif item == "g":  # grammatik printen
             active = swap(active)
-            grammar(active)
-        elif item in "pos":     # part of speech tag
+            liste, klasse = grammar(active)
+            print_grammar(liste, klasse)
+        elif item == "pos":     # zeige part of speech tag
             active = swap(active)
-            pos(active)
-        elif item in ["root", "rootb"]:
+            print_pos(active)
+        elif item in ["posb", "posn"]:
+            add_pos(item, active)
+        elif "root" in item:
             active = swap(active)
-            if item[-1] == "b":  # 'rootb' bearbeitet den wurzeleintrag
-                edit_root(active)
-            else:  # 'root' zeigt die wurzel an
+            if item == "root":  # 'root' zeigt den wurzeleintrag
                 print_related(item, active)
-        elif item in ["rel", "relb"]:
+            else:   # 'rootb' fügt neue wurzeln hinzu, 'rootn' ersetzt sie
+                edit_root(item, active)
+        elif "rel" in item:
             active = swap(active)
-            if item[-1] == "b":  # 'relb' bearbeitet verwandte wörter
-                edit_rel(active)
-            else:  # 'rel' zeigt verwandte wörter an
+            if item == "rel":  # 'rel' zeigt verwandte wörter
                 print_related(item, active)
-        elif item in ["derv", "dervb"]:
+            else:  # 'relb' fügt neue verwandte wörter hinzu, 'reln' ersetzt sie
+                edit_rel(item, active)
+        elif "derv" in item:
             active = swap(active)
-            if item[-1] == "b":  # 'dervb' bearbeitet abgeleitete wörter
-                edit_derv(active)
-            else:  # 'derv' zeigt abgeleitete wörter an
+            if item == "derv":  # 'derv' bearbeitet abgeleitete wörter
                 print_related(item, active)
+            else:  # 'dervb' fügt neue abgeleitete wörter hinzu, 'dervn' ersetzt sie
+                edit_derv(item, active)
         elif item == "add":
             insert_notlist(active)
         elif item == "save":
