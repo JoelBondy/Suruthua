@@ -1,12 +1,13 @@
 import random
+from time import sleep
 
 # ['Ak', 'Akamah', 'Amaka', 'Amaka (Regelwerk)', 'Attribute', 'Augling', 'Augling (Regelwerk)', 'Avzitil', 'Avztil (Regelwerk)', 'Baumgeister', 'Berethao', 'Berge von Loromoth', 'Blauer Traum', 'Blib', 'Blutborke', 'Bodengolem', 'Charakterbogen', "Cul'thur", 'Cureg', 'Drah', 'Dras und Drus', 'Dras und Drus Feldzug', 'Draske', 'Draske (Regelwerk)', 'Drasna', 'Elb', 'Elb (Regelwerk)', 'Elbenkriege', 'Entstehung der Welt', 'Feuergolem', 'Flossenbeutler', 'Fluggolem', 'Fluropilz', 'Flüche', 'Frostwein', 'Förun', 'Gebirge', 'Gegner', 'Gemüsegolem', 'Geologie', 'Gesteinsgolem', 'Gewässer', 'Giftgolem', 'Glaubenskriege', 'Gloq', 'Golem', 'Große Persönlichkeiten', 'Guqual', 'Guqual (Regelwerk)', 'Halluzinationspilz', 'Himmelserz', 'Himmelsregen', 'Ideen', 'Ideen (Tiere)', 'Illoda', 'Inseln', 'Kalender/Zeitr', 'Kampf', 'Karte', "Keil'O Renn", 'Kiesenriller-Maus', 'Kncohengolem', 'Knochendorn', 'Koberinth', 'Kuberika', 'Kwin Stalbu', 'Lachratte', 'Loromoth', 'Magie', 'Mensch', 'Menschen Vernichtung', 'Minort (Stalbu)', 'Mithadium', 'Mond', 'Namen', 'Nautrphänomene', 'Parasitkäfer', 'Pflanzengolem', 'Pilze', 'Psychogolem', 'Puletsi', 'Quork', 'Quork (Regelwerk)', "Ras'qath", 'Regeln', 'Religion', 'Religion (Regelwerk)', 'Ruryx', 'Ry', 'Sauerbaum', 'Schlafplanze (Blauer Traum)', 'Schlangenrausch', 'Schreiender Triesel', 'Schwarze Löcher', 'Segen', 'Sonne', 'Sonnensytem', 'Stalbu', 'Suru', 'Säuregolem', 'Triesel', 'Trivia Gott', 'Trollbrücke', 'Tropfbeutel', 'Tropfbeutler', 'Turninch', 'Unhabhängigkeitskriege von Puletsi', 'Vadon', 'Vadonier', 'Vadonier (Regelwerk)', 'Vaiad', 'Verfluchte Wesen', 'Verfluchter Quork', 'Versiegeltes Schloss', 'Vier Elemente', 'Waffenklassen', 'Wassergolem', 'Wichtige Daten', 'Wirinima', 'Wrethh', 'Währung', 'Xaraton', 'Zeitrechnung', 'Übernehmen (Natur)']
 vowels = ["a", "u", "ū", "ā", "û", "â"]
 consonants = ["x", "g", "q", "l", "r", "n", "ð", "d", "k", "ƥ"]
 pronouns = {"kā": "gā", "la": "gal", "rā": "gār", "kān": "gān", "lan": "gan", "rān": "grān"}
 articles = {
-        "gu-": ["ugu-", "gul-", "ugul-", "gur-", "āgur-"], "ga-": ["uga-", "gāl-", "gūl-", "gar-", "gār-"],
-        "a-": ["ā-", "āl-", "ūl-", "ra-", "ār-"]
+    "gu-": ["ugu-", "gul-", "ugul-", "gur-", "āgur-"], "ga-": ["uga-", "gāl-", "gūl-", "gar-", "gār-"],
+    "a-": ["ā-", "āl-", "ūl-", "ra-", "ār-"]
 }
 POS = {
     "V": "Verb", "N1": "Nomen (Klasse 1)", "N2": "Nomen (Klasse 2)", "N3": "Nomen (Klasse 3)",
@@ -36,15 +37,17 @@ info_ling = "Weitere Befehle:\n'b' = Bearbeite den letztgesuchten Eintrag\n'del'
             "\n'trans' = Zeige Übersetzung(en)\n'syn' = Zeige Synonyme an" \
             "\n'root[b/n]' = Zeige Wurzel(n) des Wortes [bearbeiten/ersetzen]" \
             "\n'rel[b/n]' = Zeige verwandte Wörter [bearbeiten/ersetzen]" \
-            "\n'der[b/n]' = Zeige abgeleitete Wörter [bearbeiten/ersetzen]\na|/u|/d|/p| = ā/ū/ð/ƥ\n-'info' = Info"
+            "\n'der[b/n]' = Zeige abgeleitete Wörter [bearbeiten/ersetzen]" \
+            "\n'generate[zahl]' = Generiere neue Worte aus dem Alphabet (keine Angabe = 10)" \
+            "\na|/u|/d|/p| = ā/ū/ð/ƥ\n-'info' = Info"
 operator = ["b", "g", "pos", "posb", "posn", "root", "rel", "derv", "rootb", "relb", "dervb", "rootn", "reln", "dervn"
-            "del", "trans", "active", "syn", "add", "info", "infoling", "save"]
+            "del", "trans", "active", "syn", "add", "notlist", "info", "infoling", "save"]
 exceptions = {"ûdar": ["V", ["ûda", "ûdu", "ûdad"], ["udā", "udū", "ûdud"]]}
 # import dict from file
 lex_file = open("rux_lex", "r", encoding="utf-8")
 lex_cont = lex_file.readline()
-unassigned = lex_file.readline()[:-1].split("\\")   # erstelle liste von übersetzungen ohne eintrag
-lex_list = lex_cont[:-2].split("\\")     # split aber ignoriere letzten punkt und \n (sonst gibts nen leeren eintrag)
+unassigned = lex_file.readline()[:-1].split("\\")  # erstelle liste von übersetzungen ohne eintrag
+lex_list = lex_cont[:-2].split("\\")  # split aber ignoriere letzten punkt und \n (sonst gibts nen leeren eintrag)
 lex = {}
 for x in lex_list:  # erstelle dict
     (key, val, pos, his) = x.split(":")  # trenne eintrag und bedeutungen (+pos tag und verwandte wörter)
@@ -107,14 +110,18 @@ def vowel_counter(string):
     return count
 
 
-# get last vowel
-def last_vowel(string):
+# get last vowel oder gleiche mit check ab
+def last_vowel(string, check=""):
     vowel = ""
     for letter in reversed(string):
         if letter in vowels:
             vowel = letter
             break
-    return vowel
+
+    if check:
+        return vowel == check
+    else:
+        return vowel
 
 
 # füge 'd-' zum suffix hinzu, wenn word auf vokal endet
@@ -186,14 +193,19 @@ def print_entry(word):  # printe eintrag aus lex
 
 
 def print_empty(liste="empty"):
-    if liste == "empty":    # worte ohne übersetzung
+    if liste == "empty":  # worte ohne übersetzung
         cont = search_empty()
-    elif liste == "unassigned":     # übersetzung ohne eintrag
+    elif liste == "unassigned":  # übersetzung ohne eintrag
         cont = unassigned
     else:
+        print("Inkorrekte Eingabe")
         return
 
-    print("\n".join(cont))
+    if not cont == [""]:
+        print("\n".join(cont))
+        print(str(len(cont)) + " Einträge gefunden")
+    else:
+        print("Keine Worte vorhanden")
 
 
 def print_trans(word):
@@ -227,11 +239,11 @@ def print_class(item):
         else:
             print("\n".join(nouns[-scope:]))
         print("Insgesamt " + str(len(nouns)) + " Nomen gefunden")
-    elif klasse == "adjs":
+    elif "adjs" in klasse:
         if scope == 0:  # scope = 0 -> alle adjektive
             scope = len(adjs)
         # printe die letzten x adjektive, x = scope
-        if klasse == "transnouns":  # printe mit übersetzung
+        if klasse == "transadjs":  # printe mit übersetzung
             print("\n".join([a + ": " + ", ".join(lex[a][0]) for a in adjs[-scope:]]))
         else:
             print("\n".join(adjs[-scope:]))
@@ -242,32 +254,32 @@ def print_class(item):
 
 def print_words(item):
     _, scope = separator(item)  # trenne input ('words') von gewünschter anzahl (scope)
-    if scope > len(lex) or scope == 0:     # scope = 0 -> alle wörter; und catche ob input > len um errors zu vermeiden
+    if scope > len(lex) or scope == 0:  # scope = 0 -> alle wörter; und catche ob input > len um errors zu vermeiden
         scope = len(lex)
-    elif scope == -1:   # wenn kein wert angegeben
-        scope = 10      # standardwert 10
+    elif scope == -1:  # wenn kein wert angegeben
+        scope = 10  # standardwert 10
 
     # erstelle liste aus x (=scope) einträgen + übersetzungen ['w1: t1, t2', 'w2: t1', ...]
-    ret = [wort+": "+", ".join(lex[wort][0]) for wort in list(lex)[0:scope]]
+    ret = [wort + ": " + ", ".join(lex[wort][0]) for wort in list(lex)[0:scope]]
     print("\n".join(ret))
     # parse letztes wort
-    return list(lex)[scope-1]
+    return list(lex)[scope - 1]
 
 
 def print_related(klasse, wort):
     if klasse in "root":
         if wort in lex and not lex[wort][2][0] == ['']:
-            print("Wurzel(n): {"+", ".join(lex[wort][2][0])+"}")
+            print("Wurzel(n): {" + ", ".join(lex[wort][2][0]) + "}")
         else:
             print("Keine Wurzel gefunden")
     elif klasse in "rel":
         if wort in lex and not lex[wort][2][1] == ['']:
-            print("Verwandte Wörter: {"+", ".join(lex[wort][2][1])+"}")
+            print("Verwandte Wörter: {" + ", ".join(lex[wort][2][1]) + "}")
         else:
             print("Keine verwandten Wörter gefunden")
     elif klasse in "derv":
         if wort in lex and not lex[wort][2][2] == ['']:
-            print("Abgeleitete Wörter: {"+", ".join(lex[wort][2][2])+"}")
+            print("Abgeleitete Wörter: {" + ", ".join(lex[wort][2][2]) + "}")
         else:
             print("Keine abgeleiteten Wörter gefunden")
 
@@ -288,6 +300,31 @@ def print_pos(word):
         print("Keinen POS-Tag gefunden")
 
 
+def generate_words(eingabe):
+    _, anzahl = separator(eingabe)  # lese anzahl wörter aus dem input heraus
+    # kein wert oder wert 0 auf Standardwert 10 setzen
+    if anzahl < 1:
+        anzahl = 10
+
+    gen_words = []  # liste der generierten wörter
+    for z in range(anzahl):     # generiere (anzahl) wörter
+        endstring = ""
+        syllables = random.randrange(1, 4)  # ein wort kann 1, 2 oder 3 silben lang sein
+        count = 0
+
+        if random.randrange(10) < 7:    # chance von 70 % dass das wort mit einem konsonanten beginnt
+            endstring += random.choice(consonants)
+
+        while count < syllables:
+            endstring += random.choice(vowels)
+            endstring += random.choice(consonants)
+            count += 1
+
+        gen_words.append(endstring)
+
+    print("\n".join(gen_words))
+
+
 # DICT MANIPULATION
 def insert(item):
     if item not in lex or lex[item][0] == [""]:
@@ -298,12 +335,16 @@ def insert(item):
             if poz not in POS:  # füge nur gültige pos tags hinzu
                 tag.remove(poz)
         lex[item] = word, tag, [[""], [""], [""]]
-        insert_poslist(tag, item)   # update verbs/nouns/adjs
+        insert_poslist(tag, item)  # update verbs/nouns/adjs
     else:
         print(item)
         lex[item] = lex[item][0] + get_input("Bedeutungen: " + ", ".join(lex[item][0]) + ", ", "format"), \
             lex[item][1], lex[item][2]
-    print("Geänderter Eintrag:\n" + item + ": " + ", ".join(lex[item][0]) + "\n(" + "/".join(lex[item][1])+")")
+
+    # entferne wörter aus liste unassigned, wenn sie zu wort hinzugefügt wurden
+    [unassigned.remove(trans) for trans in lex[item][0] if trans in unassigned]
+
+    print("Geänderter Eintrag:\n" + item + ": " + ", ".join(lex[item][0]) + "\n(" + "/".join(lex[item][1]) + ")")
 
 
 def insert_notlist(word):
@@ -334,7 +375,7 @@ def add_pos(item, word):
                 return
         if tags:
             lex[word] = lex[word][0], [t.upper() for t in tags if t.upper() in POS], lex[word][2]
-            print("POS Tags: " + "/".join(lex[word][1]))
+            print("POS Tag(s): " + "/".join(lex[word][1]))
     else:
         print("Eintrag konnte nicht gefunden werden")
 
@@ -444,8 +485,6 @@ def add_derv(item, word):
 def checkerito(item):
     if check_lex(item):
         print_entry(item)
-    elif item in grammar(item):
-        print_entry()
     elif check_lex(item, unassigned):
         print("Noch kein Eintrag erstellt")
     else:
@@ -460,7 +499,7 @@ def search_empty():
     return lex_notrans
 
 
-def random_entry(item):     # input: 'random[v/n/a][x], x = beliebige zahl
+def random_entry(item):  # input: 'random[v/n/a][x], x = beliebige zahl
     (klasse, scope) = separator(item)
 
     if klasse[-1] == "v":  # zufälliges verb
@@ -469,13 +508,13 @@ def random_entry(item):     # input: 'random[v/n/a][x], x = beliebige zahl
         k = nouns
     elif klasse[-1] == "a":  # zufälliges adjektiv
         k = adjs
-    else:                   # zufälliges wort (liste aller keys/einträge)
+    else:  # zufälliges wort (liste aller keys/einträge)
         k = [entry for entry in lex.keys()]
 
     if scope < 1:
-        scope = 1   # standardwert 1
+        scope = 1  # standardwert 1
     elif scope > len(k):
-        scope = 5   # übermäßige Angaben werden auf 5 zurückgesetzt
+        scope = 5  # übermäßige Angaben werden auf 5 zurückgesetzt
 
     r = 0
     for number in range(scope):
@@ -516,8 +555,9 @@ def print_grammar(gramlist, klasse):
         print("Präsens:\t\tVergangenheit:\n" + gramlist[3] + "\t\t\t" + gramlist[6] + "\n" + gramlist[4] + "\t\t\t"
               + gramlist[7] + "\n" + gramlist[5] + "\t\t\t" + gramlist[8])
     elif klasse == "N":
-        print("Nominativ: " + gramlist[0] + "\nDativ: " + gramlist[1])
-        print("Plural: " + gramlist[2])
+        print("Nominativ: " + gramlist[3] + " / " + gramlist[1])
+        print("Dativ: " + gramlist[4] + " / " + gramlist[5])
+        print("Instrumentalis: " + gramlist[2] + " / " + gramlist[0])
     elif klasse == "PRO":
         print("Nominativ: " + gramlist[0] + "\nDativ: " + gramlist[1])
     elif klasse == "ART":
@@ -526,7 +566,7 @@ def print_grammar(gramlist, klasse):
         print("/".join(gramlist))
 
 
-# print alle grammatikalischen formen
+# bilde alle grammatikalischen formen und ermittle die klasse
 def grammar(word):
     table = []
     klasse = ""
@@ -558,6 +598,8 @@ def grammar(word):
 def grammar_verbs(verb):
     # stamm ohne infinitiv-endung
     lemma = verb[:-3]
+    if verb[-3] == "ð":
+        lemma += "ƥ"
 
     # nominalisierung, imperativ, konjugation
     ret = [verbs_nominal(lemma)]
@@ -571,7 +613,7 @@ def verbs_nominal(lemma):
     nom = ""
     if last_vowel(lemma) in ["a", "ā"]:
         if ends_in_vowel(lemma):
-            nom = lemma+"'ul"
+            nom = lemma + "'ul"
         else:
             nom = lemma + "ul"
     elif last_vowel(lemma) in ["u", "ū"]:
@@ -601,9 +643,9 @@ def verbs_imp(lemma):
         plural = singular + "an"
     # wörter mit einem stamm von 3 silben oder mehr wechseln den hinzugefügten vokal
     if vowel_counter(plural) >= 4:
-        plural = plural[:-4] + last_vowel(plural) + plural[-3:]     # rukdān(a)dun -> rukdān(u)dun
+        plural = plural[:-4] + last_vowel(plural) + plural[-3:]  # rukdān(a)dun -> rukdān(u)dun
 
-    if lemma == "û":    # ûdar -> ud! ûdan!
+    if lemma == "û":  # ûdar -> ud! ûdan!
         singular = "ud"
 
     return singular, plural
@@ -640,21 +682,28 @@ def verbs_conj(lemma):
 # nomen
 def grammar_nouns(noun):
     lemma = end_vowel(noun)  # füge d hinzu, wenn auf vokal endet
-    # nominativ und dativ
     decl = []
-    if "N1" in lex[noun][1] or "PN1" in lex[noun][1]:
-        decl = ["gu-" + noun, noun + "-gūn"]
-    elif "N2" in lex[noun][1] or "PN2" in lex[noun][1]:
-        decl = ["ga-" + noun, noun + "-gān"]
-    elif "N3" in lex[noun][1] or "PN3" in lex[noun][1]:
-        decl = ["a-" + noun, noun + "-dān"]
 
-    # plural
+    # instrumentalis plural, nominativ plural
     if vowel_counter(lemma) == 1 or last_vowel(lemma) in ["u", "ū", "û"]:
-        decl.append(lemma + "an")   # einsilbige nomen und solche die auf -u/-ū enden erhalten ein -(d)an
+        # einsilbige nomen und solche die auf -u/-ū enden erhalten ein -(d)að/-(d)an
+        decl = [lemma + "að", lemma + "an"]
     elif last_vowel(lemma) in ["a", "ā", "â"]:
-        decl.append(lemma + "un")  # nomen die auf -a/-ā enden erhalten ein -(d)un
+        # nomen die auf -a/-ā enden erhalten ein -(d)uð/-(d)un
+        decl = [lemma + "uð", lemma + "un"]
 
+    # instrumentalis singular
+    decl.append(noun+"da")
+
+    # nominativ, dativ, dativ plural (nom plural + dativ endung)
+    if "N1" in lex[noun][1] or "PN1" in lex[noun][1]:
+        decl.extend(["gu-" + noun, noun + "-gūn", decl[1] + "-gūn"])
+    elif "N2" in lex[noun][1] or "PN2" in lex[noun][1]:
+        decl.extend(["ga-" + noun, noun + "-gān", decl[1] + "-gān"])
+    elif "N3" in lex[noun][1] or "PN3" in lex[noun][1]:
+        decl.extend(["a-" + noun, noun + "-dān", decl[1] + "-dān"])
+
+    # [inst pl, nom pl, inst sg, nom sg, dat sg, dat pl]
     return decl
 
 
@@ -674,7 +723,7 @@ def lexikon():
             pass
         elif item == "info":  # zeige mehr befehle
             print(info)
-        elif item == "infoling":    # zeige restliche befehle
+        elif item == "infoling":  # zeige restliche befehle
             print(info_ling)
         elif item == "all":  # zeige ganzes lexikon an
             print(lex)
@@ -713,7 +762,7 @@ def lexikon():
             active = swap(active)
             liste, klasse = grammar(active)
             print_grammar(liste, klasse)
-        elif item == "pos":     # zeige part of speech tag
+        elif item == "pos":  # zeige part of speech tag
             active = swap(active)
             print_pos(active)
         elif item in ["posb", "posn"]:
@@ -722,7 +771,7 @@ def lexikon():
             active = swap(active)
             if item == "root":  # 'root' zeigt den wurzeleintrag
                 print_related(item, active)
-            else:   # 'rootb' fügt neue wurzeln hinzu, 'rootn' ersetzt sie
+            else:  # 'rootb' fügt neue wurzeln hinzu, 'rootn' ersetzt sie
                 edit_root(item, active)
         elif "rel" in item:
             active = swap(active)
@@ -740,6 +789,8 @@ def lexikon():
             insert_notlist(active)
         elif item == "save":
             save()
+        elif "generate" in item:
+            generate_words(item)
         else:  # wenn wort noch nicht vorhanden oder ohne übersetzung ist
             checkerito(item)
 
@@ -749,6 +800,8 @@ def lexikon():
         print("Goodbye sir!")
     else:
         print("Tschüss!")
+
+    sleep(0.6)
 
 
 if __name__ == '__main__':
