@@ -22,7 +22,7 @@ const magie =["feuer","wasser","erde","luft","beschwer","verstark","phys","psych
 const bonus = {"kling":["k8","m1","k3"],"schlag":["stark","s8","k1",],"stich":["k4","k6","k1"],
 "kunst":["k4","k2","k1"],"rauf":["m8","s8","k3"],"wurf":["k8","m1","werf"], "fern":["k8","m1","m2"]};
 const kombi = {"tiere":["w2","s6"],"dieb":["k6","k5"],"tierspur":["m4","w2"],"spur":["m4",
-"m3"],"klette":["k1","k4"],"werf":["m1","k1"]};
+"m3"],"klette":["k1","k4"],"werf":["m1","k1"],"werk":["k6","k8"]};
 const selected = {"raceselect":["raceselect","Auswahl"],"schwimm":["schwimmno","Nein"],"reit":["reitno","Nein"],"les":["lesno","Nein"],
 "schreib":["schreibno","Nein"],"mathe":["matheno","Nein"],"klasse1":["default1","Klasse"],"klasse2":["default2","Klasse"],
 "klasse3":["default3","Klasse"],"klasse4":["default4","Klasse"],"klasse5":["default5","Klasse"],"klasse6":["default6","Klasse"],
@@ -35,7 +35,7 @@ const idcorp = {
     "Gleichgewicht":"k4",
     "Schleichen":"k5",
     "Fingerfertigkeit":"k6",
-    "Umgang mit Werkzeugen":"k7",
+    "Ausdauer":"k7",
     "Geschicklichkeit":"k8",
     "Fokus":"m1",
     "Geduld":"m2",
@@ -109,8 +109,8 @@ function setTotal() {
             let number = getVal(v,"settotal"); //Eingegebene Zahl
             let pointsspent = getVal(t,"pointstotal")-getVal(t,"pointsleft"); //totalpunkte-restliche_punkte=bisher ausgegebene punkte
 
-            //Eingabe darf nicht weniger als insgesamt ausgegeben sein und muss mind. 35 sein (jedes Attribut auf 1)
-            if (number>=pointsspent&&number>=35) {
+            //Eingabe darf nicht weniger als insgesamt ausgegeben sein und muss mind. 50 sein (jedes Attribut auf 1)
+            if (number>=pointsspent&&number>=50) {
             setVal(t,"pointstotal",number); //Neue total punkte
             setVal(t,"pointsleft",number-pointsspent); //Neue noch übrige Punkte
             punkte=number; //update variable für spätere berechnungen

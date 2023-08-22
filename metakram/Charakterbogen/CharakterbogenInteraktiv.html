@@ -2,7 +2,7 @@
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
     <title>Charakterbogen</title>
-    <link rel="stylesheet" type="text/css" href="./stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../stylesheet.css">
 </head>
 <body>
     <b><a href="../Regelwerk/Hauptseite_Regelwerk.html" style="margin-left: 5em; margin-top:1em;position:absolute;">Hauptseite</a></b>
@@ -18,7 +18,7 @@
         <div>Punkte übrig: <span id="pointsleft"></span>
             <button id="reset" onclick="reset()">Reset</button></div>
         <br>
-        
+
         <!-- Persönliche Daten -->
         <h1 class="header">Persönliche Daten</h1>
         <b>Rasse:</b>
@@ -51,7 +51,7 @@
         <input type="text" placeholder="Religion" id="religion"><br>
         <input type="text" placeholder="Beruf" id="beruf"><br>
         <br>
-        
+
         <div><b>Leben:</b> <span id="leben">0</span>
             <b>Geistige Gesundheit:</b> <span id="gege">0</span>
             <b>Mana:</b> <span id="mana">0</span>
@@ -205,7 +205,7 @@
                 <td class="border">
                     <input id="k2" type="number" min="1" max="20" maxlength="2" value="1" oninput="changeNumber(k2)">
                 </td>
-            </tr>  
+            </tr>
             <tr>
                 <td>Schnelligkeit</td>
                 <td class="border">
@@ -231,7 +231,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Umgang mit Werkzeugen</td>
+                <td>Ausdauer</td>
                 <td class="border">
                     <input id="k7" type="number" min="1" max="20" maxlength="2" value="1" oninput="changeNumber(k7)">
                 </td>
@@ -246,7 +246,7 @@
         <br>
 
                 <!-- Mentales -->
-        <table style="border: 1px solid grey;width:20%;background-color:darkgreen;color:aliceblue"> 
+        <table style="border: 1px solid grey;width:20%;background-color:darkgreen;color:aliceblue">
             <tr>
                 <th class="table" style="color:black">Mentales</th>
                 <td id="mentales">1</td>
@@ -307,7 +307,7 @@
             </tr>
         </table>
         <br><br>
-        
+
 
                 <!-- Kombis -->
         <table style="border: 1px solid grey;width:40%;background-color:aliceblue">
@@ -343,6 +343,11 @@
                 <td class="center">Werfen</td>
                 <td class="bordercen">Fokus + Beweglichkeit</td>
                 <td class="center" id="werf">1</td>
+            </tr>
+            <tr>
+                <td class="center">Umgang mit Werkzeugen</td>
+                <td class="bordercen">Fingerfertigkeit + Geschicklichkeit</td>
+                <td class="center" id="werk">1</td>
             </tr>
         </table>
         <br>
@@ -844,11 +849,11 @@
             </tr>
         </table>
 
-        
+
     </div>
 
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<!--     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script> -->
     <script src="./Charakterbogen.js"></script>
 </body>
 </html>
