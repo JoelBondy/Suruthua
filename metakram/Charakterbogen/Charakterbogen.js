@@ -4,7 +4,7 @@ const race = {
     "Guqual": 101,
     "Avzitil": 94,
     "Vadonier": 87,
-    "Elb": 81,
+    "Myzar": 81,
     "Augling": 75,
     "Quork": 73,
     "Draske": 70
@@ -390,7 +390,7 @@ function updateWerte(element) {
 
             //catche stärke und werfen, da sie text und kein value enthalten
             if (bonus[item][0]=="stark") bonus1 = getNum(t,bonus[item][0]); //Bonuswert1
-            else bonus1 = getNum(v,bonus[item][0]);                        
+            else bonus1 = getNum(v,bonus[item][0]);
             bonus2 = getNum(v,bonus[item][1]);                             //Bonuswert2
             if (bonus[item][2]=="werf") bonus3 = getNum(t,bonus[item][2]); //Bonuswert3
             else bonus3 = getNum(v,bonus[item][2]);
@@ -420,7 +420,7 @@ function updateWerte(element) {
             neuzauber = getNum(t,item+"punkte")/2; //Kosten 2:1
             setVal(t,item+"wert",neuzauber);
         });
-    
+
         //Ausgegebene Punkte
         total = punkte-total;         //(alle_Punkte - total_ausgegebene)=noch übrig
         setVal(t,"pointsleft",total);
