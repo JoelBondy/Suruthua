@@ -229,3 +229,14 @@ a.resultItem:visited {
     background-color:#e6dede;
 	text-decoration: none;
 }
+button.buttontext {
+	background-color: white;
+	border: none;
+	font: inherit;
+}
+.buttontext:hover {
+	cursor:pointer;
+}
+b.Überschrift {
+	font-size: large;
+}
