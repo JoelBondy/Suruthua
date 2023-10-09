@@ -27,8 +27,8 @@ const all_pages = {
     'Draske':"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Draske/Draske.html",
     'Draske (Regelwerk)':"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Draske/Draske_Regelwerk.html",
     "Drasna":"https://joelbondy.github.io/Suruthua/Umgebung/Karte/Kontinente/Xaraton/Xaraton.html#drasna",
-    'Elb':"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Elb/Elb.html",
-    'Elb (Regelwerk)':"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Elb/Elb_Regelwerk.html",
+    'Myzar':"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Myzar/Myzar.html",
+    'Myzar (Regelwerk)':"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Myzar/Myzar_Regelwerk.html",
     'Entstehung der Welt':"https://joelbondy.github.io/Suruthua/Kulturen/Religion/Entstehung_der_Welt.html",
     "Feuergolem":"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Fauna/MagischeKreaturen/Golem/Golem.html#feuerg",
     'Flossenbeutler':"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Fauna/Tiere/Flossenbeutler/Flossenbeutler.html",
@@ -84,11 +84,12 @@ const all_pages = {
     "Monat":"https://joelbondy.github.io/Suruthua/Kulturen/Zeitrechnung/Zeitrechnung.html",
     "Mond":"https://joelbondy.github.io/Suruthua/Umgebung/Astronomie/Sonnensystem/Sonnensystem.html#mond",
     "Mondlauf":"https://joelbondy.github.io/Suruthua/Kulturen/Zeitrechnung/Zeitrechnung.html",
+    "Myzarikriege": "https://joelbondy.github.io/Suruthua/Kulturen/Zeitrechnung/WichtigeDaten.html#myzarikrieg",
     'Namen':"https://joelbondy.github.io/Suruthua/metakram/Namen.html",
     'Naturphänomene':"https://joelbondy.github.io/Suruthua/Umgebung/Astronomie/Sonnensystem/Naturph%C3%A4nomene.html",
     "Parade (Kampf)":"https://joelbondy.github.io/Suruthua/Regelwerk/Kampf/Kampf.html#para",
     'Parasitkäfer':"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Fauna/Tiere/Parasitkaefer/Parasitkaefer.html",
-    "Pflanzen":"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Flora/Pflanzen.html",  
+    "Pflanzen":"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Flora/Pflanzen.html",
     "Pflanzengolem":"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Fauna/MagischeKreaturen/Golem/Golem.html#pflanzeg",
     'Pilze':"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Flora/Pilze/Pilze.html",
     "Psychogolem":"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Fauna/MagischeKreaturen/Golem/Golem.html#psychog",
@@ -150,7 +151,7 @@ const all_pages = {
 };
 
 
-    
+
 let results = document.getElementById("results");
 Object.entries(all_pages).forEach(([key,value])=>{
     let a = document.createElement("a");
@@ -181,4 +182,3 @@ function search() {
 
     resultsContainer.style.display = noResults ? "none":"block";
 };
-
