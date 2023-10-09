@@ -71,6 +71,7 @@ const all_pages = {
     "Knochengolem":"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Fauna/MagischeKreaturen/Golem/Golem.html#knocheng",
     'Knochendorn':"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Flora/Knochendorn/Knochendorn.html",
     "Koberinth":"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Geologie/Geologie.html#koberinth",
+    "Kontinente":"https://joelbondy.github.io/Suruthua/Umgebung/Karte/Kontinente/Kontinente.html",
     "Kuberika":"https://joelbondy.github.io/Suruthua/Kulturen/Religion/Goetter_Religion.html#kuberika",
     "Kwin Stalbu":"https://joelbondy.github.io/Suruthua/Kulturen/GrossePersoenlichkeiten/Personen/KwinStalbu.html",
     'Lachratte':"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Fauna/Tiere/Lachratte/Lachratte.html",
