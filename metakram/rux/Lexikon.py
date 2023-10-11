@@ -2,6 +2,7 @@ import random
 from time import sleep
 
 # ['Ak', 'Akamah', 'Amaka', 'Amaka (Regelwerk)', 'Attribute', 'Augling', 'Augling (Regelwerk)', 'Avzitil', 'Avztil (Regelwerk)', 'Baumgeister', 'Berethao', 'Berge von Loromoth', 'Blauer Traum', 'Blib', 'Blutborke', 'Bodengolem', 'Charakterbogen', "Cul'thur", 'Cureg', 'Drah', 'Dras und Drus', 'Dras und Drus Feldzug', 'Draske', 'Draske (Regelwerk)', 'Drasna', 'Elb', 'Elb (Regelwerk)', 'Elbenkriege', 'Entstehung der Welt', 'Feuergolem', 'Flossenbeutler', 'Fluggolem', 'Fluropilz', 'Flüche', 'Frostwein', 'Förun', 'Gebirge', 'Gegner', 'Gemüsegolem', 'Geologie', 'Gesteinsgolem', 'Gewässer', 'Giftgolem', 'Glaubenskriege', 'Gloq', 'Golem', 'Große Persönlichkeiten', 'Guqual', 'Guqual (Regelwerk)', 'Halluzinationspilz', 'Himmelserz', 'Himmelsregen', 'Ideen', 'Ideen (Tiere)', 'Illoda', 'Inseln', 'Kalender/Zeitr', 'Kampf', 'Karte', "Keil'O Renn", 'Kiesenriller-Maus', 'Kncohengolem', 'Knochendorn', 'Koberinth', 'Kuberika', 'Kwin Stalbu', 'Lachratte', 'Loromoth', 'Magie', 'Mensch', 'Menschen Vernichtung', 'Minort (Stalbu)', 'Mithadium', 'Mond', 'Namen', 'Nautrphänomene', 'Parasitkäfer', 'Pflanzengolem', 'Pilze', 'Psychogolem', 'Puletsi', 'Quork', 'Quork (Regelwerk)', "Ras'qath", 'Regeln', 'Religion', 'Religion (Regelwerk)', 'Ruryx', 'Ry', 'Sauerbaum', 'Schlafplanze (Blauer Traum)', 'Schlangenrausch', 'Schreiender Triesel', 'Schwarze Löcher', 'Segen', 'Sonne', 'Sonnensytem', 'Stalbu', 'Suru', 'Säuregolem', 'Triesel', 'Trivia Gott', 'Trollbrücke', 'Tropfbeutel', 'Tropfbeutler', 'Turninch', 'Unhabhängigkeitskriege von Puletsi', 'Vadon', 'Vadonier', 'Vadonier (Regelwerk)', 'Vaiad', 'Verfluchte Wesen', 'Verfluchter Quork', 'Versiegeltes Schloss', 'Vier Elemente', 'Waffenklassen', 'Wassergolem', 'Wichtige Daten', 'Wirinima', 'Wrethh', 'Währung', 'Xaraton', 'Zeitrechnung', 'Übernehmen (Natur)']
+meta_dict = {"Einträge": "Eintrag"}
 vowels = ["a", "u", "ū", "ā", "û", "â"]
 consonants = ["x", "g", "q", "l", "r", "n", "ð", "d", "k", "ƥ"]
 alphabet = ["a", "u", "ū", "ā", "û", "â", "x", "g", "q", "l", "r", "n", "ð", "d", "k", "ƥ"]
@@ -187,28 +188,41 @@ def insert_poslist(postag, word):
             verbs.append(word)
 
 
+# finde singular (z.B. Eintrag/Einträge)
+def singulizer(word, num):
+    if word in meta_dict and num == 1:
+        return meta_dict[word]
+    return word
+
+
 # PRINTERS
 def print_entry(word):  # printe eintrag aus lex
     for entry in lex:
         if word == entry or word in (trans.lower() for trans in
                                      lex[entry][0]):  # item in eintrag oder in liste_bedeutungen (caseinsensitive)
-            print("Folgenden Eintrag gefunden:\n" + entry + ": " + ", ".join(lex[entry][0]))
+            print(f"Folgenden Eintrag gefunden:\n{entry}: " + ", ".join(lex[entry][0]))
 
 
-def print_empty(liste="empty"):
+def print_empty(inpt):
+    (liste, scope) = separator(inpt)
+    if scope == 0:  # wird eine 0 angegeben, wird scope auf standard gesetzt (alle einträge)
+        scope = -1
+
     if liste == "empty":  # worte ohne übersetzung
-        cont = search_empty()
-    elif liste == "unassigned":  # übersetzung ohne eintrag
-        cont = unassigned
+        cont = search_empty(scope)
+    elif liste == "notlist":  # übersetzung ohne eintrag
+        if scope == -1:
+            scope = len(unassigned)
+        cont = unassigned[:scope]   # hole {scope} worte aus unassigned
     else:
         print("Inkorrekte Eingabe")
         return
 
-    if not cont == [""]:
-        print("\n".join(cont))
-        print(str(len(cont)) + " Einträge gefunden")
-    else:
+    if not cont or cont == [""]:
         print("Keine Worte vorhanden")
+    else:
+        print("\n".join(cont))
+        print(f"{len(cont)} {singulizer('Einträge', len(cont))} gefunden")
 
 
 def print_trans(word):
@@ -232,7 +246,7 @@ def print_class(item):
             print("\n".join([v + ": " + ", ".join(lex[v][0]) for v in verbs[-scope:]]))
         else:
             print("\n".join(verbs[-scope:]))  # printe die letzten x verben, x = scope
-        print("Insgesamt " + str(len(verbs)) + " Verben gefunden")
+        print(f"Insgesamt {len(verbs)} Verben gefunden")
     elif "nouns" in klasse:
         if scope == 0:  # scope = 0 -> alle nomen
             scope = len(nouns)
@@ -241,7 +255,7 @@ def print_class(item):
             print("\n".join([n + ": " + ", ".join(lex[n][0]) for n in nouns[-scope:]]))
         else:
             print("\n".join(nouns[-scope:]))
-        print("Insgesamt " + str(len(nouns)) + " Nomen gefunden")
+        print(f"Insgesamt {len(nouns)} Nomen gefunden")
     elif "adjs" in klasse:
         if scope == 0:  # scope = 0 -> alle adjektive
             scope = len(adjs)
@@ -250,7 +264,7 @@ def print_class(item):
             print("\n".join([a + ": " + ", ".join(lex[a][0]) for a in adjs[-scope:]]))
         else:
             print("\n".join(adjs[-scope:]))
-        print("Insgesamt " + str(len(adjs)) + " Adjektive gefunden")
+        print(f"Insgesamt {len(adjs)} Adjektive gefunden")
     else:
         print("Inkorrekte Eingabe")
 
@@ -290,7 +304,7 @@ def print_related(klasse, wort):
 def print_syns(word):
     syn = synonyms(word)
     if syn:
-        print(word + ": {" + ", ".join(syn) + "}")
+        print(f"{word}: {{" + ", ".join(syn) + "}")
     else:
         print("Keine Synonyme gefunden")
 
@@ -336,11 +350,11 @@ def print_meta(vowels=False):
     dictstart_sorted = sorted(dictstart.items(), key=lambda tup: tup[1], reverse=True)
     print("\nHäufigkeit Buchstaben:")
     for tupp in dictlet_sorted:
-        print(tupp[0] + ": " + str(tupp[1]))
+        print(f"{tupp[0]}: {tupp[1]}")
     print("\nHäufigkeit Anfangsbuchstaben:")
     for tupp in dictstart_sorted:
-        print(tupp[0] + ": " + str(tupp[1]))
-    print("\n" + str(länge) + " Einträge insgesamt")
+        print(f"{tupp[0]}: {tupp[1]}")
+    print(f"\n{länge} Einträge insgesamt")
 
 
 # DICT MANIPULATION
@@ -362,17 +376,20 @@ def insert(item):
     # entferne wörter aus liste unassigned, wenn sie zu wort hinzugefügt wurden
     [unassigned.remove(trans) for trans in lex[item][0] if trans in unassigned]
 
-    print("Geänderter Eintrag:\n" + item + ": " + ", ".join(lex[item][0]) + "\n(" + "/".join(lex[item][1]) + ")")
+    print(f"Geänderter Eintrag:\n{item}: " + ", ".join(lex[item][0]) + "\n(" + "/".join(lex[item][1]) + ")")
 
 
 def insert_notlist(word):
+    if "" in unassigned:
+        unassigned.remove("")
     unassigned.append(word.capitalize())
+    print("Wort zur notlist hinzugefügt!")
 
 
 def delete(item):
     if check_antwort():
         lex.pop(item)
-        print(item + " wurde gelöscht")
+        print(f"{item} wurde gelöscht")
 
 
 # bearbeite den POS Eintrag ('posb') oder überschreibe ihn ('posn')
@@ -380,13 +397,13 @@ def add_pos(item, word):
     if word in lex:
         tags = ""
         if lex[word][1] == [""]:
-            print("Keinen POS Tag gefunden (" + word + ")")
+            print(f"Keinen POS Tag gefunden ({word})")
             tags = get_input("new POS: ", "format")
         elif item == "posb":
-            print("POS von " + word + ": " + ", ".join([tag + " (" + POS[tag] + ")" for tag in lex[word][1]]))
+            print(f"POS von {word}: " + ", ".join([f"{tag} ({POS[tag]})" for tag in lex[word][1]]))
             tags = lex[word][1] + get_input("added POS: ", "format")
         elif item == "posn":
-            print("POS von " + word + ": " + ", ".join([tag + " (" + POS[tag] + ")" for tag in lex[word][1]]))
+            print(f"POS von {word}: " + ", ".join([f"{tag} ({POS[tag]}" for tag in lex[word][1]]))
             print("Vorsicht! Eintrag wird überschrieben. 'x' zum abbrechen")
             tags = get_input("new POS: ", "format")
             if "x" in tags:
@@ -401,7 +418,7 @@ def add_pos(item, word):
 def edit_root(item, word):
     if word in lex:
         if lex[word][2][0] == [""]:  # wenn liste leer
-            print("Keine Wurzel gefunden (" + word + ")")
+            print(f"Keine Wurzel gefunden ({word})")
             lex[word][2][0] = get_input("new root(s): ", "format")
         else:
             add_root(item, word)
@@ -415,13 +432,13 @@ def edit_root(item, word):
                 count += 1
 
         print("Wurzel(n): " + ", ".join(lex[word][2][0]))
-        print(str(count) + " Eintrag/Einträge geändert")
+        print(f"{count} {singulizer('Einträge', count)} geändert")
     else:
         print("Kein Eintrag vorhanden")
 
 
 def add_root(item, word):
-    print("root of " + word + ": " + ", ".join(lex[word][2][0]))
+    print(f"root of {word}: " + ", ".join(lex[word][2][0]))
     if item == "rootb":
         # füge wurzeln hinzu, die noch nicht vorhanden sind
         lex[word][2][0] += [neu for neu in get_input("added root(s): ", "format") if neu not in lex[word][2][0]]
@@ -435,7 +452,7 @@ def add_root(item, word):
 def edit_rel(item, word):
     if word in lex:
         if lex[word][2][1] == [""]:  # wenn liste leer
-            print("Keine verwandten Wörter (" + word + ")")
+            print(f"Keine verwandten Wörter ({word})")
             lex[word][2][1] = get_input("new word(s): ", "format")
         else:
             add_rel(item, word)
@@ -449,13 +466,13 @@ def edit_rel(item, word):
                     lex[verw][2][1].append(word)
                 count += 1
         print("Verwandte Wörter: " + ", ".join(lex[word][2][1]))
-        print(str(count) + " Eintrag/Einträge geändert")
+        print(f"{count} {singulizer('Einträge', count)} geändert")
     else:
         print("Kein Eintrag vorhanden")
 
 
 def add_rel(item, word):
-    print("Verwandte Wörter von '" + word + "': " + str(lex[word][2][1]))
+    print(f"Verwandte Wörter von '{word}': {lex[word][2][1]}")
     if item == "relb":
         # füge verwandte worte hinzu, die noch nicht vorhanden sind
         lex[word][2][1] += [neu for neu in get_input("added word(s): ", "format") if neu not in lex[word][2][1]]
@@ -469,7 +486,7 @@ def add_rel(item, word):
 def edit_derv(item, word):
     if word in lex:
         if lex[word][2][2] == [""]:  # wenn liste leer
-            print("Keine abgeleiteten Wörter (" + word + ")")
+            print(f"Keine abgeleiteten Wörter ({word})")
             lex[word][2][2] = get_input("new word(s): ", "format")
         else:
             add_derv(item, word)
@@ -482,13 +499,13 @@ def edit_derv(item, word):
                     lex[derv][2][0].append(word)
                 count += 1
         print("Abgeleitete Wörter: " + ", ".join(lex[word][2][2]))
-        print(str(count) + " Eintrag/Einträge geändert")
+        print(f"{count} {singulizer('Einträge', count)} geändert")
     else:
         print("Kein Eintrag gefunden")
 
 
 def add_derv(item, word):
-    print("Abgeleitete Wörter von '" + word + "': " + str(lex[word][2][2]))
+    print(f"Abgeleitete Wörter von '{word}': {lex[word][2][2]}")
     if item == "dervb":
         # füge abgeleitete worte hinzu, die noch nicht vorhanden sind
         lex[word][2][2] += [neu for neu in get_input("added word(s): ", "format") if neu not in lex[word][2][2]]
@@ -509,11 +526,15 @@ def checkerito(item):
         print("Nischt jefunden!")
 
 
-def search_empty():
+# finde anzahl {scope} worte in lex, die noch keine übersetzung haben
+def search_empty(scope):
     lex_notrans = []
     for entry in lex:
         if lex[entry][0] == [""]:  # finde einträge ohne übersetzung: wenn "liste übersetzungen" leer ist
             lex_notrans.append(entry)
+        if len(lex_notrans) == scope:   # wenn scope erreicht, beende loop
+            break
+
     return lex_notrans
 
 
@@ -566,14 +587,14 @@ def synonyms(word):
 # vowels: wenn False werden û/â als u/a behandelt
 # return anzahl einträge, dict: häufigkeit buchstaben, dict: häufigkeit anfangsbuchstaben
 def meta(vowels: bool):
-    letter_counter = {letter: 0 for letter in alphabet}     # dict = {buchstabe: 0} für jeden buchstaben
-    start_counter = {letter: 0 for letter in alphabet}      # " " "
+    letter_counter = {letter: 0 for letter in alphabet}  # dict = {buchstabe: 0} für jeden buchstaben
+    start_counter = {letter: 0 for letter in alphabet}  # " " "
     for entry in lex:
         if entry[0] in alphabet:
-            start_counter[entry[0]] += 1    # zähle anfangsbuchstaben, ignoriere suffixe (starten mit "-")
+            start_counter[entry[0]] += 1  # zähle anfangsbuchstaben, ignoriere suffixe (starten mit "-")
         for char in entry:
             if char in alphabet:
-                letter_counter[char] += 1   # zähle buchstaben
+                letter_counter[char] += 1  # zähle buchstaben
 
     # wenn vowels=False: û = u und â = a
     if not vowels:
@@ -591,16 +612,16 @@ def print_grammar(gramlist, klasse):
         print("Keine Grammatik verfügbar")
     elif klasse == "V":
         if gramlist[0]:
-            print("Nominalisierung: " + gramlist[0])
-        print("Imperativ: " + gramlist[1] + "! " + gramlist[2] + "!\n")
-        print("Präsens:\t\tVergangenheit:\n" + gramlist[3] + "\t\t\t" + gramlist[6] + "\n" + gramlist[4] + "\t\t\t"
-              + gramlist[7] + "\n" + gramlist[5] + "\t\t\t" + gramlist[8])
+            print(f"Nominalisierung: {gramlist[0]}")
+        print(f"Imperativ: {gramlist[1]}! {gramlist[2]}!\n")
+        print(f"Präsens:\t\tVergangenheit:\n{gramlist[3]}\t\t\t{gramlist[6]}\n{gramlist[4]}\t\t\t"
+              f"{gramlist[7]}\n{gramlist[5]}\t\t\t{gramlist[8]}")
     elif klasse == "N":
-        print("Nominativ: " + gramlist[3] + " / " + gramlist[1])
-        print("Dativ: " + gramlist[4] + " / " + gramlist[5])
-        print("Instrumentalis: " + gramlist[2] + " / " + gramlist[0])
+        print(f"Nominativ: {gramlist[3]} / {gramlist[1]}")
+        print(f"Dativ: {gramlist[4]} / {gramlist[5]}")
+        print(f"Instrumentalis: {gramlist[2]} / {gramlist[0]}")
     elif klasse == "PRO":
-        print("Nominativ: " + gramlist[0] + "\nDativ: " + gramlist[1])
+        print(f"Nominativ: {gramlist[0]}\nDativ: {gramlist[1]}")
     elif klasse == "ART":
         print(", ".join(gramlist))
     elif klasse == "OTHER":
@@ -778,11 +799,11 @@ def lexikon():
                 print_trans(active)
             case "active":
                 print(active)
-            case "syn":     # zeige synonyme
+            case "syn":  # zeige synonyme
                 active = swap(active)
                 print_syns(active)
             case "len":
-                print(str(len(lex)) + " Einträge!")
+                print(f"{len(lex)} Einträge!")
             case item if "verbs" in item:  # printe liste mit x einträgen von wortklasse
                 print_class(item)
             case item if "nouns" in item:
@@ -791,12 +812,10 @@ def lexikon():
                 print_class(item)
             case item if "random" in item:  # zeige x zufällige worte an ([v]erbs,[a]djectives,[n]ouns)
                 active = random_entry(item)
-            case "empty":  # zeige alle wörter an, die noch keine übersetzung haben
-                print_empty()
-            case "notlist":
-                print_empty("unassigned")
+            case item if "empty" in item or "notlist" in item:  # zeige alle wörter an, die noch keine übersetzung haben
+                print_empty(item)
             case "give d":  # um special character zu bekommen:
-                print("ð")
+                print("ð ƥ")
             case "vowels":
                 print("û, â, ū, ā")
             case "abc":
@@ -814,7 +833,7 @@ def lexikon():
             case "pos":  # zeige part of speech tag
                 active = swap(active)
                 print_pos(active)
-            case "posb" | "posn":   # bearbeite part of speech tag
+            case "posb" | "posn":  # bearbeite part of speech tag
                 add_pos(item, active)
             case item if "root" in item:
                 active = swap(active)
