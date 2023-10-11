@@ -1,0 +1,4 @@
+pluralwörter nicht nochmal in den plural setzen
+wörtern mit artikel keinen artikel mehr hinzufügen
+->marker für grammatikalische phänomene??
+ausnahmen verbkonjugation beachten
