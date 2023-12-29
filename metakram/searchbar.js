@@ -79,6 +79,7 @@ const all_pages = {
     'Loromoth':"https://joelbondy.github.io/Suruthua/Umgebung/Karte/Kontinente/Loromoth/Loromoth.html",
     'Magie':"https://joelbondy.github.io/Suruthua/Regelwerk/Magie.html",
     "Mana":"https://joelbondy.github.io/Suruthua/Regelwerk/Charakterbogen/Charakterbogen.html#mana",
+    "Meerespocke":"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Flora/Meerespocke/Meerespocke.html",
     'Mensch':"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Mensch/Mensch/Mensch.html",
     "Menschen Vernichtung":"https://joelbondy.github.io/Suruthua/Kulturen/Zeitrechnung/WichtigeDaten.html#mv",
     "Minort (Stalbu)":"https://joelbondy.github.io/Suruthua/Umgebung/Karte/Kontinente/Berethao/Berethao.html#stalbu",
