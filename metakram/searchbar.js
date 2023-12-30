@@ -151,6 +151,7 @@ const all_pages = {
     "Wrethh":"https://joelbondy.github.io/Suruthua/Umgebung/Karte/Kontinente/Loromoth/Loromoth.html#wrethh",
     'Xaraton':"https://joelbondy.github.io/Suruthua/Umgebung/Karte/Kontinente/Xaraton/Xaraton.html",
     "Yok":"https://joelbondy.github.io/Suruthua/Umgebung/Natur/Fauna/MagischeKreaturen/Yok/Yok.html",
+    "Yok-ma":"https://joelbondy.github.io/Suruthua/Umgebung/Karte/Kontinente/Inseln/Inseln.html#yokma",
     'Zeitrechnung':"https://joelbondy.github.io/Suruthua/Kulturen/Zeitrechnung/Zeitrechnung.html",
 };
 
