@@ -120,6 +120,7 @@ const all_pages = {
     "Snei":"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Gewaesser/Gewaesser.html#snei",
     "Sonne":"https://joelbondy.github.io/Suruthua/Suruthua/Welt.html#sonne",
     'Sonnensytem':"https://joelbondy.github.io/Suruthua/Suruthua/Welt.html#sonnensystem",
+    "Sport":"https://joelbondy.github.io/Suruthua/Kulturen/Sport",
     "Stalbu":"https://joelbondy.github.io/Suruthua/Suruthua/Karte/Kontinente/Berethao/Berethao.html#stalbu",
     "Stärke":"https://joelbondy.github.io/Suruthua/Regelwerk/Charakterbogen/Charakterbogen.html#staerke",
     "Suru":"https://joelbondy.github.io/Suruthua/Suruthua/Karte/Kontinente/Inseln/Inseln.html#suru",
