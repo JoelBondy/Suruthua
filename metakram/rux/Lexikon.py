@@ -834,6 +834,7 @@ def lexikon():
                 active = swap(active)
                 print_pos(active)
             case "posb" | "posn":  # bearbeite part of speech tag
+                active = swap(active)
                 add_pos(item, active)
             case item if "root" in item:
                 active = swap(active)
