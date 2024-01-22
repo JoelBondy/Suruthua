@@ -26,7 +26,7 @@ info = "Befehle:\n'all' = Ganzes Lexikon\n'len' = Anzahl Einträge\n'active' = Z
        "\n'empty' = Zeige alle Einträge ohne Übersetzung an" \
        "\n'notlist = Zeige alle Übersetzungen ohne Eintrag an\n'add' = Füge Wort zur notlist hinzu" \
        "\n'random[v/n/a][zahl]' = (Anzahl) zufällige Worte [Verb/Nomen/Adjektiv] (Keine Angabe = 1)" \
-       "\n'words[zahl]' = Zeige [zahl] Wörter mit Übersetzung (Keine Angabe = 10, 0 = alle)" \
+       "\n'[str]words[zahl]' = Zeige [zahl] Wörter beginnend mit 'str' mit Übersetzung (Keine Angabe = 10, 0 = alle)" \
        "\n'verbs[zahl]' = Zeige [zahl] an Verben (Keine Angabe = 10, 0 = alle)" \
        "\n'nouns[zahl]' = Zeige [zahl] an Nomen (Keine Angabe = 10, 0 = alle)" \
        "\n'adjs[zahl]' = Zeige [zahl] an Adjektiven (Keine Angabe = 10, 0 = alle)" \
@@ -87,6 +87,11 @@ def get_input(prompt, form=""):
             .replace("u|", "ū").replace("d|", "ð").replace("p|", "ƥ").split(",")
 
     return item
+
+
+# entferne special vowels
+def purify(word):
+    return word.replace("ā", "a").replace("â", "a").replace("ū", "u").replace("û", "u")
 
 
 # trenne input in buchstaben/zahlen
@@ -270,17 +275,28 @@ def print_class(item):
 
 
 def print_words(item):
-    _, scope = separator(item)  # trenne input ('words') von gewünschter anzahl (scope)
+    inpt, scope = separator(item)  # trenne input ('words') von gewünschter anzahl (scope)
     if scope > len(lex) or scope == 0:  # scope = 0 -> alle wörter; und catche ob input > len um errors zu vermeiden
         scope = len(lex)
     elif scope == -1:  # wenn kein wert angegeben
         scope = 10  # standardwert 10
 
-    # erstelle liste aus x (=scope) einträgen + übersetzungen ['w1: t1, t2', 'w2: t1', ...]
-    ret = [wort + ": " + ", ".join(lex[wort][0]) for wort in list(lex)[0:scope]]
-    print("\n".join(ret))
-    # parse letztes wort
-    return list(lex)[scope - 1]
+    if inpt.startswith("words"):
+        # erstelle liste aus x (=scope) einträgen + übersetzungen ['w1: t1, t2', 'w2: t1', ...]
+        ret = [wort + ": " + ", ".join(lex[wort][0]) for wort in list(lex)[0:scope]]
+        print("\n".join(ret))
+        # parse letztes wort als 'active'
+        return list(lex)[scope - 1]
+    else:
+        # extracte gewünschte anfangsbuchstaben/string ("awords" -> anfang = "a"; "guwords" -> anfang = "gu")
+        anfang = inpt.partition("words")[0]
+        if anfang:
+            ret = [wort + ": " + ", ".join(lex[wort][0]) for wort in list(lex) if wort.startswith(anfang)]
+            if not ret:
+                print(f"Keine Worte gefunden, die mit '{anfang}' beginnen")
+            else:
+                print("\n".join(ret[0:scope]))
+                print(f"Insgesamt {len(ret)} Worte gefunden")
 
 
 def print_related(klasse, wort):
