@@ -55,7 +55,7 @@ lex = {}
 for x in lex_list:  # erstelle dict
     (key, val, pos, his) = x.split(":")  # trenne eintrag und bedeutungen (+pos tag und verwandte wörter)
     (root, rel, der) = his.split(">")  # trenne verwandte wörter in wurzel und ableitungen
-    # erstelle liste von allen bedeutungen   (wort: ([bedeutungen], [pos], [[wurzel], [verwandt], [ableitungen]])
+    # erstelle liste von allen bedeutungen  (wort: ([bedeutungen], [pos], [[wurzel], [verwandt], [ableitungen]])
     lex[key] = val.split(","), pos.split(","), [root.split(","), rel.split(","), der.split(",")]
 lex_file.close()
 
