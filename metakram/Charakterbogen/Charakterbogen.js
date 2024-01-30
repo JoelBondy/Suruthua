@@ -17,7 +17,7 @@ const t = "t";
 //Arrays mit den ids aller festen Fähigkeiten, Waffenklassen, Zauberklassen
 const fest = ["schwimm","reit","les","schreib","mathe"];
 const waffenklassen = ["kling", "schlag", "stich", "kunst", "rauf", "wurf","fern"];
-const magie =["feuer","wasser","erde","luft","beschwer","verstark","phys","psych"];
+const magie = ["feuer","wasser","erde","luft","beschwer","verstark","phys","psych"];
 //bonus=bonuswert.id:[3 attribute.id zum berechnen];kombi=kombis.id:[attribut1.id,attribut2.id];selected=klappe.id:[auswahl.id,auswahl.value]
 const bonus = {"kling":["k8","m1","k3"],"schlag":["stark","s8","k1",],"stich":["k4","k6","k1"],
 "kunst":["k4","k2","k1"],"rauf":["m8","s8","k3"],"wurf":["k8","m1","werf"], "fern":["k8","m1","m2"]};
@@ -360,8 +360,7 @@ function updateWerte(element) {
         setVal(t,"stark",stark);
 
         //Geistige Gesundheit
-        let gg = getNum(v,"m9")+getNum(v,"m3")+getNum(v,"m1")+getNum(v,"m6"); //Geistige Gesundheit = Durchschnitt(Willenskraft+Wahrnehmung+Fokus+Vorsicht)*5
-        Math.round((gg/4)*5);
+        let gg = getNum(v,"m9")+getNum(v,"m3")+getNum(v,"m1")+getNum(v,"m6")+getNum(v,"m8"); //Geistige Gesundheit = Durchschnitt(Willenskraft+Wahrnehmung+Fokus+Vorsicht+Mut)
         if (gg<5) gg = 5; //Minwert 5
         else if (gg>100) gg=100; //Maxwert 100
         setVal(t,"gege",gg);
