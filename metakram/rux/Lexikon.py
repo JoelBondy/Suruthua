@@ -630,7 +630,7 @@ def print_grammar(gramlist, klasse):
         if gramlist[0]:
             print(f"Nominalisierung: {gramlist[0]}")
         print(f"Imperativ: {gramlist[1]}! {gramlist[2]}!\n")
-        print(f"Präsens:\t\tVergangenheit:\n{gramlist[3]}\t\t\t{gramlist[6]}\n{gramlist[4]}\t\t\t"
+        print(f"Präsens: \t\tVergangenheit: \n{gramlist[3]}\t\t\t{gramlist[6]}\n{gramlist[4]}\t\t\t"
               f"{gramlist[7]}\n{gramlist[5]}\t\t\t{gramlist[8]}")
     elif klasse == "N":
         print(f"Nominativ: {gramlist[3]} / {gramlist[1]}")
@@ -650,9 +650,13 @@ def grammar(word):
     klasse = ""
     if word in lex:
         # verben
-        if len(word) > 3 and "V" in lex[word][1]:
-            table = grammar_verbs(word)
-            klasse = "V"
+        if "V" in lex[word][1]:
+            if word == "dar":
+                table = special_verb(word)
+                klasse = "V"
+            else:
+                table = grammar_verbs(word)
+                klasse = "V"
         # nomen
         elif any(item in lex[word][1] for item in POS_noun):  # enthält 'liste pos' ein noun tag?
             table = grammar_nouns(word)
@@ -684,6 +688,11 @@ def grammar_verbs(verb):
     [ret.append(imp) for imp in verbs_imp(lemma)]
     [ret.append(con) for con in verbs_conj(lemma)]
     return ret
+
+
+def special_verb(verb):
+    if verb == "dar":
+        return ["da'ul", "dad", "dadun", "da", "du", "dad", "dā", "dū", "dud"]
 
 
 # verben (nominalisierung)
