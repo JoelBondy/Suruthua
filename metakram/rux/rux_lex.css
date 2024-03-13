@@ -103,29 +103,6 @@ a.hoverbox:hover {
 	text-decoration: none;
 	cursor:pointer;
 }
-.klappenmenu {
-	position: relative;
-	display: inline-block;
-	cursor: pointer;
-}
-.klappenmenu p:hover {
-	background-color:lightgrey;
-}
-.klappezu {
-	display: none;
-	position: absolute;
-	min-width:100px;
-	background-color:whitesmoke;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	z-index:1;
-}
-.klappeauf {
-	display: block;
-	text-align: center;
-}
-.klappe {
-  	cursor: pointer;
-}
 .container {
     display: flex;
 	flex-direction: column;
@@ -136,7 +113,6 @@ a.hoverbox:hover {
 #searchbar {
     padding: 15px;
 }
-
 .resultItem {
     display: flex;
     flex-direction: column;
@@ -276,3 +252,4 @@ b.Überschrift {
 	margin-top: 16.4cm;
 	margin-left: 10cm;
 }
+
