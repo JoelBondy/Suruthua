@@ -464,7 +464,7 @@ const lex = {
     'duqardur': [['herauskommen', 'weggehen', 'verlassen', 'gehen'], ['Verb'], [['dukdar', 'dār'], [''], ['']]],
     'ðunuldar': [['einschlafen'], ['Verb'], [['ðuguldar', 'ðun'], [''], ['']]],
     'nalgudar': [['bestehen aus', 'gemacht sein von/aus', 'zusammengestellt sein aus', 'sich zusammensetzen aus'], ['Verb'], [['nalgur'], [''], ['nargul']]],
-    'nargul': [['zusammengestellt', 'zusammengesetzt', 'aus verschiedenen Teilen bestehend'], ['Verb'], [['nalgur', 'nalgudar'], [''], ['']]],
+    'nargul': [['zusammengestellt', 'zusammengesetzt', 'aus verschiedenen Teilen bestehend'], ['Adjektiv'], [['nalgur', 'nalgudar'], [''], ['']]],
     'ƥur-nalgur': [['Die vier Elemente'], ['Eigenname'], [[''], [''], ['']]],
     'lagru': [['Finger'], ['Nomen'], [['lag', 'ru'], [''], ['']]],
     'aðradur': [['schmecken'], ['Verb'], [['aðrak'], [''], ['']]],
@@ -521,6 +521,12 @@ function write_doppela() {
 
 function write_doppelu() {
     document.getElementById("searchbar").value = document.getElementById("searchbar").value + "û"
+    search()
+}
+
+function randomatse() {
+    num = Math.floor(Math.random() * Object.keys(lex).length);
+    document.getElementById("searchbar").value = Object.keys(lex)[num]
     search()
 }
 
