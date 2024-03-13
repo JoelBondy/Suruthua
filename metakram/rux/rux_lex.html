@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+		<title>Rux Wörterbuch</title>
+		<link rel="stylesheet" type="text/css" href="./rux_lex.css">
+		<link rel="shortcut icon" href="../../Bilder/logo.png" type="image/x-icon">
+
+	</head>
+	<body>
+		<a href="../../Hauptseite.html"><img src="../../Bilder/logobunttransparent.png" style="width: 152px;height: 145px;position: absolute;margin-top: 2em;" alt="Suruthua Logo"></a>
+		<b><a href="../../Hauptseite.html" style="margin-left: 5em; margin-top:12em;position:absolute;">Hauptseite</a></b>
+		<b><a href="../../Regelwerk/Hauptseite_Regelwerk.html" style="margin-left: 5em; margin-top:13.5em;position:absolute;">Regelwerk</a></b>
+
+		<b><a href="../GesammelteWerke.html" style="margin-left: 5em; margin-top:15em;position:absolute;">Schriften</a></b>
+
+
+
+
+		<div id="content">
+            <h2 class="header" style="text-align: center;">Rux-Wörterbuch</h2>
+            <div class="box">
+                <div class="search-box">
+                    <input type="text" placeholder="Rux" id="searchbar" onkeyup="search()">
+					<div id="results"></div>
+
+					
+                </div>
+				<button onclick="write_d()" style="margin-top: 1em;" id="sign_d">ð</button>
+				<button onclick="write_f()" id="sign_f" style="margin-top: 1em;">ƥ</button>
+				<button onclick="write_a()" id="sign_a" style="margin-top: 1em;">ā</button>
+				<button onclick="write_doppela()" id="sign_doppela" style="margin-top: 1em;">â</button>
+				<button onclick="write_u()" id="sign_u" style="margin-top: 1em;">ū</button>
+				<button onclick="write_doppelu()" id="sign_doppelu" style="margin-top: 1em;">û</button>
+				
+            </div>
+
+
+			<h2 id="wort1"></h2>
+			<i id="pos1"></i>
+			<div id="uebersetzung1"></div>
+
+			<h2 id="wort2"></h2>
+			<i id="pos2"></i>
+			<div id="uebersetzung2"></div>
+
+			<h2 id="wort3"></h2>
+			<i id="pos3"></i>
+			<div id="uebersetzung3"></div>
+
+			
+			<h2 id="wort4"></h2>
+			<i id="pos4"></i>
+			<div id="uebersetzung4"></div>
+
+		</div>
+		<script src="./rux_lex.js"></script>
+
+
+
+
+	</body>
+</html>
