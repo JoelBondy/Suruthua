@@ -187,7 +187,6 @@ b.Überschrift {
 	position: absolute;
 	margin-top: 4.5cm;
 	margin-left: 8cm;
-	
 }
 #pos1 {
 	position: absolute;
@@ -200,51 +199,80 @@ b.Überschrift {
 	margin-top: 6cm;
 	margin-left: 9.5cm;
 }
+#root1{
+	position: absolute;
+	margin-top: 6.8cm;
+	margin-left: 10cm;
+}
+#rel1{
+	position: absolute;
+	margin-top: 7.3cm;
+	margin-left: 10cm;
+}
+#derv1 {
+	position: absolute;
+	margin-top: 7.8cm;
+	margin-left: 10cm;
+}
 #wort2 {
 	position: absolute;
-	margin-top: 7.5cm;
+	margin-top: 8.8cm;
 	margin-left: 8cm;
 }
 #pos2 {
 	position: absolute;
-	margin-top: 8.2cm;
+	margin-top: 9.5cm;
 	margin-left: 8cm;
 	color: darkgrey;
 }
 #uebersetzung2 {
 	position: absolute;
-	margin-top: 9cm;
+	margin-top: 10.3cm;
 	margin-left: 9.5cm;
+}
+#root2 {
+	position: absolute;
+	margin-top: 11.1cm;
+	margin-left: 10cm;
+}
+#rel2 {
+	position: absolute;
+	margin-top: 11.6cm;
+	margin-left: 10cm;
+}
+#derv2 {
+	position: absolute;
+	margin-top: 12.1cm;
+	margin-left: 10cm;
 }
 #wort3 {
 	position: absolute;
-	margin-top: 10.5cm;
+	margin-top: 13.1cm;
 	margin-left: 8cm;
 }
 #pos3 {
 	position: absolute;
-	margin-top: 11.2cm;
+	margin-top: 13.8cm;
 	margin-left: 8cm;
 	color: darkgrey;
 }
 #uebersetzung3 {
 	position: absolute;
-	margin-top: 12cm;
+	margin-top: 14.6cm;
 	margin-left: 9.5cm;
 }
-#wort4 {
+#root3 {
 	position: absolute;
-	margin-top: 13.5cm;
-	margin-left: 8cm;
+	margin-top: 15.4cm;
+	margin-left: 10cm;
 }
-#pos4 {
+#rel3 {
 	position: absolute;
-	margin-top: 14.2cm;
-	margin-left: 8cm;
-	color: darkgrey;
+	margin-top: 15.9cm;
+	margin-left: 10cm;
 }
-#uebersetzung4 {
+#derv3 {
 	position: absolute;
-	margin-top: 15cm;
-	margin-left: 9.5cm;
+	margin-top: 16.4cm;
+	margin-left: 10cm;
 }
