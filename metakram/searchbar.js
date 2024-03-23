@@ -19,6 +19,7 @@ const all_pages = {
     'Blib':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/Tiere/Blib/Blib.html",
     'Blutborke':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Flora/Blutborke/Blutborke.html",
     "Bodengolem":"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/MagischeKreaturen/Golem/Golem.html#bodeng",
+    "Chamäleonfuchs":"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/Tiere/Chamäleonfuchs/Chamäleonfuchs.html",
     "Chapaka/Chapakay":"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/Tiere/Chapaka/Chapaka.html",
     'Charakterbogen':"https://joelbondy.github.io/Suruthua/Regelwerk/Charakterbogen/Charakterbogen.html",
     "Cul'thur":"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/MagischeKreaturen/VerfluchteWesen/Culthur/Culthur.html",
