@@ -146,6 +146,7 @@ const all_pages = {
     'Vadonier':"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Vadonier/Vadonier.html",
     'Vadonier (Regelwerk)':"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Vadonier/Vadonier_Regelwerk.html",
     "Vaiad":"https://joelbondy.github.io/Suruthua/Suruthua/Karte/Kontinente/Inseln/Inseln.html#vaiad",
+    'Verfluchter Flossenbeutler':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/MagischeKreaturen/VerfluchteWesen/VFlossenbeutler/Verfluchter_Flossenbeutler.html",
     'Verfluchte Wesen':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/MagischeKreaturen/VerfluchteWesen/Verfluchte_Wesen.html",
     'Verfluchter Quork':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/MagischeKreaturen/VerfluchteWesen/VQuork/VQuork.html",
     "Versiegeltes Schloss":"https://joelbondy.github.io/Suruthua/Kulturen/Religion/Goetter_Religion.html#vs",
