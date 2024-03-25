@@ -116,7 +116,7 @@ const all_pages = {
     "Rüstung":"https://joelbondy.github.io/Suruthua/Regelwerk/Kampf/Kampf.html#regelkam",
     "Rux":"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Guqual/Guqual.html",
     "Ry":"https://joelbondy.github.io/Suruthua/Suruthua/Karte/Kontinente/Inseln/Inseln.html#ry",
-    'Triesel':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/Tiere/Sandwurm/Sandwurm.html",
+    'Sandwurm':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/Tiere/Sandwurm/Sandwurm.html",
     'Sauerbaum':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Flora/Sauerbaum/Sauerbaum.html",
     "Säuregolem":"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/MagischeKreaturen/Golem/Golem.html#sauerg",
     "Schlafplanze (Blauer Traum)":"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Flora/Blauer_Traum/Blauer_Traum.html",
