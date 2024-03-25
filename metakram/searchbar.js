@@ -78,6 +78,7 @@ const all_pages = {
     "Kuberika":"https://joelbondy.github.io/Suruthua/Kulturen/Religion/Goetter_Religion.html#kuberika",
     "Kwin Stalbu":"https://joelbondy.github.io/Suruthua/Kulturen/GrossePersoenlichkeiten/Personen/KwinStalbu.html",
     'Lachratte':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/Tiere/Lachratte/Lachratte.html",
+    'Laufmoos':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Flora/Laufmoos/Laufmoos.html",
     "Leben":"https://joelbondy.github.io/Suruthua/Regelwerk/Charakterbogen/Charakterbogen.html#leben",
     'Loromoth':"https://joelbondy.github.io/Suruthua/Suruthua/Karte/Kontinente/Loromoth/Loromoth.html",
     'Magie':"https://joelbondy.github.io/Suruthua/Regelwerk/Magie.html",
