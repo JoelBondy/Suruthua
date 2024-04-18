@@ -54,6 +54,7 @@ const all_pages = {
     'Gloq':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/Tiere/Gloq/Gloq.html",
     'Golem':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/MagischeKreaturen/Golem/Golem.html",
     'Große Persönlichkeiten':"https://joelbondy.github.io/Suruthua/Kulturen/GrossePersoenlichkeiten/GrossePersoenlichkeiten.html",
+    "Gruth":"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Geologie/Geologie.html#gruth",
     'Guqual':"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Guqual/Guqual.html",
     'Guqual (Regelwerk)':"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Guqual/Guqual_Regelwerk.html",
     "Halluzinationspilz":"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Pilze/Tagrut/Tagrut.html",
