@@ -125,6 +125,7 @@ const all_pages = {
     'Schreiender Triesel':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Flora/Schreiender_Triesel/Schreiender_Triesel.html",
     "Schwarze Löcher":"https://joelbondy.github.io/Suruthua/Suruthua/Welt.html#schwarzloch",
     "Segen":"https://joelbondy.github.io/Suruthua/Kulturen/Religion/Goetter_Religion.html",
+    'Skrim':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/Tiere/Skrim/Skrim.html",
     "Snei":"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Gewaesser/Gewaesser.html#snei",
     "Sonne":"https://joelbondy.github.io/Suruthua/Suruthua/Welt.html#sonne",
     'Sonnensytem':"https://joelbondy.github.io/Suruthua/Suruthua/Welt.html#sonnensystem",
