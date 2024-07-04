@@ -1,0 +1,255 @@
+body {
+	background-color: #cceeeb;
+	margin: auto;
+}
+h1#header {
+	border-bottom: 1px solid #a2a9b1;
+	font-weight: normal;
+	margin-top: 0px;
+}
+header {
+	height: 70px;
+	background-color: grey;
+}
+#hauptheader {
+	border-bottom: 1px solid #a2a9b1;
+	text-align: center;
+}
+div#panel {
+	margin-left: 0px;
+	background-color: #005f6a;
+	position: absolute;
+	top: 70px;
+	width: 10em;
+
+}
+div#links {
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 0.25em;
+}
+.header_norm {
+	font-weight: normal;
+}
+.box-header {
+	text-align: center;
+	font-weight: bold;
+	padding: 0px 10px;
+}
+.header {
+	border-bottom: 1px solid #a2a9b1;
+	font-weight: normal;
+	margin-top: 0px;
+	overflow: hidden;
+}
+#topbar {
+	position: absolute;
+	top: 0;
+	margin-left: 10em;
+	height: 5em;
+	background-color: white;
+	width: auto;
+}
+#label_selected {
+	margin-top: 2.8em;
+	padding: 0.5em;
+	border: 1px solid #53292a;
+	border-bottom: 0px;
+	width: 5em;
+}
+ul.blank {
+	list-style-type: none;
+	list-style-image: none;
+	padding-left: 0px;
+	margin-bottom: 0px;
+	margin-top: 10px;
+}
+.contsnum {
+	color: black;
+}
+div.infobox {
+	clear: right;
+	margin: 30px 30px 1em 1em;
+	width: 300px;
+	font-size: 90%;
+	background: #fff;
+	float: right;
+	border: 1px solid #ccc;
+	padding: 2px;
+	overflow: auto;
+}
+a:hover {
+	text-decoration: underline;
+}
+a:visited {
+	color: #0b0080;
+}
+a.hidden {
+	color: white;
+}
+a.hidden:hover{
+	text-decoration: none;
+}
+a.hidden:visited {
+	text-decoration: none;
+	color: white;
+}
+a.hoverbox {
+	color:initial;
+	text-decoration: none;
+}
+a.hoverbox:hover {
+	color:initial;
+	text-decoration: none;
+	cursor:pointer;
+}
+.container {
+    display: flex;
+	flex-direction: column;
+	float:right;
+    color: #202C39;
+	height:50px;
+}
+#searchbar {
+    padding: 15px;
+}
+.resultItem {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    padding: 5px 20px;
+    color: black;
+}
+a.resultItem:visited {
+	color:black;
+}
+.resultItem:hover {
+    background-color:#e6dede;
+	text-decoration: none;
+}
+button.buttontext {
+	background-color: white;
+	border: none;
+	font: inherit;
+}
+.buttontext:hover {
+	cursor:pointer;
+}
+b.Überschrift {
+	font-size: large;
+}
+.box {
+    position: absolute;
+    transform: translate(-50%, -10%);
+    left: 50%;
+    top: 10%;
+    padding: 20px 50px;
+    border-radius: 10px;
+    border: 0.5px solid #53292a;
+    background-color: white;
+
+}   
+.search-box {
+    display: flex;
+    justify-content: space-between;
+}
+.search-box input {
+    padding: 5px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #005f6a;
+}
+#wort1 {
+	position: absolute;
+	margin-top: 4.5cm;
+	margin-left: 8cm;
+}
+#pos1 {
+	position: absolute;
+	margin-top: 5.2cm;
+	margin-left: 8cm;
+	color: darkgrey;
+}
+#uebersetzung1 {
+	position: absolute;
+	margin-top: 6cm;
+	margin-left: 9.5cm;
+}
+#root1{
+	position: absolute;
+	margin-top: 6.8cm;
+	margin-left: 10cm;
+}
+#rel1{
+	position: absolute;
+	margin-top: 7.3cm;
+	margin-left: 10cm;
+}
+#derv1 {
+	position: absolute;
+	margin-top: 7.8cm;
+	margin-left: 10cm;
+}
+#wort2 {
+	position: absolute;
+	margin-top: 8.8cm;
+	margin-left: 8cm;
+}
+#pos2 {
+	position: absolute;
+	margin-top: 9.5cm;
+	margin-left: 8cm;
+	color: darkgrey;
+}
+#uebersetzung2 {
+	position: absolute;
+	margin-top: 10.3cm;
+	margin-left: 9.5cm;
+}
+#root2 {
+	position: absolute;
+	margin-top: 11.1cm;
+	margin-left: 10cm;
+}
+#rel2 {
+	position: absolute;
+	margin-top: 11.6cm;
+	margin-left: 10cm;
+}
+#derv2 {
+	position: absolute;
+	margin-top: 12.1cm;
+	margin-left: 10cm;
+}
+#wort3 {
+	position: absolute;
+	margin-top: 13.1cm;
+	margin-left: 8cm;
+}
+#pos3 {
+	position: absolute;
+	margin-top: 13.8cm;
+	margin-left: 8cm;
+	color: darkgrey;
+}
+#uebersetzung3 {
+	position: absolute;
+	margin-top: 14.6cm;
+	margin-left: 9.5cm;
+}
+#root3 {
+	position: absolute;
+	margin-top: 15.4cm;
+	margin-left: 10cm;
+}
+#rel3 {
+	position: absolute;
+	margin-top: 15.9cm;
+	margin-left: 10cm;
+}
+#derv3 {
+	position: absolute;
+	margin-top: 16.4cm;
+	margin-left: 10cm;
+}
+
