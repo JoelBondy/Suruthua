@@ -138,7 +138,7 @@ const all_pages = {
     "Tag":"https://joelbondy.github.io/Suruthua/Kulturen/Zeitrechnung/Zeitrechnung.html",
     "Tagrut":"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Pilze/Tagrut/Tagrut.html",
     "Thar (Mana)":"https://joelbondy.github.io/Suruthua/Regelwerk/Charakterbogen/Charakterbogen.html#thar",
-    'Thard':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Flora/Thard/Thard.html",
+    'Thard':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Geologie/Geologie.html#thard",
     "Tiere":"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/Tiere/Tiere.html",
     'Triesel':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/Tiere/Triesel/Triesel.html",
     "Trivia Gott":"https://joelbondy.github.io/Suruthua/Kulturen/Religion/Goetter_Religion.html#trivia",
