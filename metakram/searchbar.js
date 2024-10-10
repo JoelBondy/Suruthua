@@ -84,6 +84,7 @@ const all_pages = {
     "Leben":"https://joelbondy.github.io/Suruthua/Regelwerk/Charakterbogen/Charakterbogen.html#leben",
     'Loromoth':"https://joelbondy.github.io/Suruthua/Suruthua/Karte/Kontinente/Loromoth/Loromoth.html",
     'Magie':"https://joelbondy.github.io/Suruthua/Regelwerk/Magie.html",
+    "Maknāx":"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/Tiere/Maknax/Maknax.html",
     'Maru':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Flora/Maru/Maru.html",
     "Massiv":"https://joelbondy.github.io/Suruthua/Suruthua/Welt.html#kontinente",
     "Meerespocke":"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Flora/Meerespocke/Meerespocke.html",
