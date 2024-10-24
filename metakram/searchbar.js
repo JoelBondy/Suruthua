@@ -90,6 +90,7 @@ const all_pages = {
     "Meerespocke":"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Flora/Meerespocke/Meerespocke.html",
     'Mensch':"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Mensch/Mensch/Mensch.html",
     "Menschenvernichtung":"https://joelbondy.github.io/Suruthua/Kulturen/Zeitrechnung/WichtigeDaten.html#mv",
+    'Metzner-Gilde':"https://joelbondy.github.io/Suruthua/Kulturen/Rassen/Avzitil/Avzitil.html#metzner",
     "Minort (Stalbu)":"https://joelbondy.github.io/Suruthua/Suruthua/Karte/Kontinente/Berethao/Berethao.html#stalbu",
     "Mithadium":"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Geologie/Geologie.html#mithadium",
     "Monat":"https://joelbondy.github.io/Suruthua/Kulturen/Zeitrechnung/Zeitrechnung.html",
