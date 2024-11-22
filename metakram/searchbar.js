@@ -128,6 +128,7 @@ const all_pages = {
     "Schlangenrausch":"https://joelbondy.github.io/Suruthua/Kulturen/Waehrung.html#schlangenrausch",
     'Schreiender Triesel':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Flora/Schreiender_Triesel/Schreiender_Triesel.html",
     "Schwarze Löcher":"https://joelbondy.github.io/Suruthua/Suruthua/Welt.html#schwarzloch",
+    "Schuppen (Währung)":"https://joelbondy.github.io/Suruthua/Kulturen/Waehrung.html",
     "Segen":"https://joelbondy.github.io/Suruthua/Kulturen/Religion/Goetter_Religion.html",
     'Skrim':"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Fauna/Tiere/Skrim/Skrim.html",
     "Snei":"https://joelbondy.github.io/Suruthua/Suruthua/Natur/Gewaesser/Gewaesser.html#snei",
