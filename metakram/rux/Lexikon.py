@@ -33,7 +33,7 @@ info = "Befehle:\n'all' = Ganzes Lexikon\n'len' = Anzahl Einträge\n'active' = Z
        "\n'save' = Speichern\n'tschö' = Beenden OHNE speichern\n'give d' = get d" \
        "\n'vowels' = print special vowels\n'abc' = ganzes Alphabet" \
        "\n'meta['vowels']' = paar zahlen [û und â aufgeführt]" \
-       "\na|/u|/d|/p| = ā/ū/ð/ƥ\n+'infoling' = more info"
+       "\na|/u|/d|/p| = ā/ū/ð/ƥ\n+'infolab' = lab info\n+'infoling' = more info"
 info_ling = "Weitere Befehle:\n'b' = Bearbeite den letztgesuchten Eintrag\n'del' = Lösche den letztgesuchten Eintrag" \
             "\n'g' = Bilde grammatikalische Formen des letztgesuchten Eintrags" \
             "\n'pos' = Zeige POS-Tag des letztgesuchten Eintrags" \
@@ -42,21 +42,30 @@ info_ling = "Weitere Befehle:\n'b' = Bearbeite den letztgesuchten Eintrag\n'del'
             "\n'rel[b/n]' = Zeige verwandte Wörter [bearbeiten/ersetzen]" \
             "\n'der[b/n]' = Zeige abgeleitete Wörter [bearbeiten/ersetzen]" \
             "\n'generate[zahl]' = Generiere neue Worte aus dem Alphabet (keine Angabe = 10)" \
-            "\na|/u|/d|/p| = ā/ū/ð/ƥ\n-'info' = Info"
+            "\na|/u|/d|/p| = ā/ū/ð/ƥ\n+'infolab' = lab info\n-'info' = Info"
+info_lab = "Befehle für Label:\n'lablist' = Zeige alle Labels an" \
+            "\n'lab[b/n]' = Zeige Label des Wortes [bearbeiten/ersetzen]" \
+            "\n'find[lab]' = Finde alle Wörter mit Label lab\n'neulab' = Füge neues Label hinzu"
 operator = ["b", "g", "pos", "posb", "posn", "root", "rel", "derv", "rootb", "relb", "dervb", "rootn", "reln", "dervn",
-            "del", "trans", "active", "syn", "add", "notlist", "info", "infoling", "save", "meta"]
+            "del", "trans", "active", "syn", "add", "notlist", "info", "infoling", "infolab", "save", "meta",
+            "generate", "lab", "labb", "labn", "lablist"]
 exceptions = {"ûdar": ["V", ["ûda", "ûdu", "ûdad"], ["udā", "udū", "ûdud"]]}
 # import dict from file
 lex_file = open("rux_lex", "r", encoding="utf-8")
 lex_cont = lex_file.readline()
 unassigned = lex_file.readline()[:-1].split("\\")  # erstelle liste von übersetzungen ohne eintrag
+lab_list = lex_file.readline()[:-1].split("\\")   # erstelle liste von labeleinträgen
 lex_list = lex_cont[:-2].split("\\")  # split aber ignoriere letzten backslash und \n (sonst gibts nen leeren eintrag)
 lex = {}
 for x in lex_list:  # erstelle dict
-    (key, val, pos, his) = x.split(":")  # trenne eintrag und bedeutungen (+pos tag und verwandte wörter)
+    (key, val, pos, his, lab) = x.split(":")  # trenne eintrag und bedeutungen (+pos tag und verwandte wörter)
     (root, rel, der) = his.split(">")  # trenne verwandte wörter in wurzel und ableitungen
-    # erstelle liste von allen bedeutungen  (wort: ([bedeutungen], [pos], [[wurzel], [verwandt], [ableitungen]])
-    lex[key] = val.split(","), pos.split(","), [root.split(","), rel.split(","), der.split(",")]
+    # erstelle liste von allen bedeutungen (wort: ([bedeutungen], [pos], [[wurzel], [verwandt], [ableitungen]])
+    lex[key] = val.split(","), pos.split(","), [root.split(","), rel.split(","), der.split(",")], lab.split(",")
+label = {}
+for x in lab_list:   # erstelle dict mit labels: erklärungen
+    (key, val) = x.split(":")
+    label[key] = val
 lex_file.close()
 
 verbs = [word for word in lex if "V" in lex[word][1]]  # erstelle liste aller verben
@@ -70,15 +79,60 @@ def save():
         for entry in lex:
             f.write(
                 entry + ":" + ",".join(lex[entry][0]) + ":" + ",".join(lex[entry][1]) + ":" + ",".join(lex[entry][2][0])
-                + ">" + ",".join(lex[entry][2][1]) + ">" + ",".join(lex[entry][2][2]) + "\\")
+                + ">" + ",".join(lex[entry][2][1]) + ">" + ",".join(lex[entry][2][2]) + ":"
+                + ",".join(lex[entry][3]) + "\\")
         f.write("\n")
         for word in unassigned:
             f.write(word + "\\")
+        f.write("\n")
+        for entry in label:
+            f.write(entry + ":" + label[entry] + "\\")
     print("Lexikon gesichert:")
     print(str(len(lex)) + " Einträge")
 
 
-# HELPER FUNCTIONS
+# write contents to file for js use
+def extract():
+    rux_grammar = {}
+    with open("rux_lex_corpus.txt", "w", encoding="utf-8") as f:
+        f.write("const lex = {\n")
+        for entry in lex:
+            tag = pos(entry)
+            if any(w in ["N1", "N2", "N3"] for w in lex[entry][1]):
+                tag = ["Nomen"]
+            elif any(w in ["PN1", "PN2", "PN3"] for w in lex[entry][1]):
+                tag = ["Eigenname"]
+            elif any(w in ["DET1", "DET2", "DET3"] for w in lex[entry][1]):
+                tag = ["Artikel"]
+            elif not tag:
+                tag = ['']
+
+            trans = []
+            if not lex[entry][0] == [""]:
+                trans = lex[entry][0]
+
+            f.write(f'"{entry}": [{trans}, {tag}, '
+                    f'[{lex[entry][2][0]}, {lex[entry][2][1]}, {lex[entry][2][2]}]], \n')
+
+            gram, _ = grammar(entry)
+            rux_grammar[entry] = gram
+        f.write("}\n")
+        print("lex extracted")
+
+    with open("rux_lex_grammar.txt", "w", encoding="utf-8") as gram_f:
+        gram_f.write("const gram = {\n")
+        for entry in rux_grammar:
+            gram = []
+            if entry == "ûdar":
+                gram = ['ud', 'ûdan', 'ûda', 'ûdu', 'ûdad', 'udā', 'udū', 'ûdud']
+            elif len(rux_grammar[entry]) > 3:
+                gram = rux_grammar[entry]
+            gram_f.write(f'"{entry}": {gram}, \n')
+        gram_f.write("}\n")
+        print("grammar extracted")
+
+
+# #HELPER FUNCTIONS
 def get_input(prompt, form=""):
     if not form:
         item = input(prompt)
@@ -89,12 +143,12 @@ def get_input(prompt, form=""):
     return item
 
 
-# entferne special vowels
+    # entferne special vowels
 def purify(word):
     return word.replace("ā", "a").replace("â", "a").replace("ū", "u").replace("û", "u")
 
 
-# trenne input in buchstaben/zahlen
+    # trenne input in buchstaben/zahlen
 def separator(text):
     zif = "0123456789"  # definiere ziffern
     string = ""  # buchstaben in input
@@ -111,6 +165,16 @@ def separator(text):
     return string, number
 
 
+# extrahiere label aus input "findxxx"
+def separate_label(ipt):
+    if ipt[-3:].upper() in label:
+        lab = ipt[-3:].upper()
+    else:
+        lab = ""
+
+    return lab
+
+
 def vowel_counter(string):
     count = 0
     for letter in string:
@@ -119,7 +183,7 @@ def vowel_counter(string):
     return count
 
 
-# get last vowel oder gleiche mit check ab
+    # get last vowel oder gleiche mit check ab
 def last_vowel(string, check=""):
     vowel = ""
     for letter in reversed(string):
@@ -133,14 +197,14 @@ def last_vowel(string, check=""):
         return vowel
 
 
-# füge 'd-' zum suffix hinzu, wenn word auf vokal endet
+    # füge 'd-' zum suffix hinzu, wenn word auf vokal endet
 def end_vowel(word):
     if ends_in_vowel(word):
         word = word + "d"
     return word
 
 
-# return last character
+    # return last character
 def ends_in(word):
     if word:
         return word[-1]
@@ -174,7 +238,7 @@ def check_antwort(prompt="Bist du sicher? j/n\n"):
         return False
 
 
-# wenn active eine übersetzung und kein eintrag ist, setze active auf entsprechenden eintrag
+    # wenn active eine übersetzung und kein eintrag ist, setze active auf entsprechenden eintrag
 def swap(active):
     for entry in lex:  # checken, ob der zuvor gesuchte eintrag existiert als übersetzung
         if active in (trans.lower() for trans in lex[entry][0]):
@@ -182,7 +246,7 @@ def swap(active):
     return active
 
 
-# update wortlisten nach tag (nouns/verbs/adjs), wenn neues wort hinzugefügt wird
+    # update wortlisten nach tag (nouns/verbs/adjs), wenn neues wort hinzugefügt wird
 def insert_poslist(postag, word):
     for tag in postag:
         if tag.upper() == "ADJ":
@@ -193,14 +257,14 @@ def insert_poslist(postag, word):
             verbs.append(word)
 
 
-# finde singular (z.B. Eintrag/Einträge)
+    # finde singular (z.B. Eintrag/Einträge)
 def singulizer(word, num):
     if word in meta_dict and num == 1:
         return meta_dict[word]
     return word
 
 
-# PRINTERS
+# #PRINTERS
 def print_entry(word):  # printe eintrag aus lex
     for entry in lex:
         if word == entry or word in (trans.lower() for trans in
@@ -230,6 +294,14 @@ def print_empty(inpt):
         print(f"{len(cont)} {singulizer('Einträge', len(cont))} gefunden")
 
 
+def print_lab_list():
+    lab_list = [lab + ": " + label[lab] for lab in label]
+    if lab_list:
+        print('\n'.join(lab_list))
+    else:
+        print("Keine Labels gefunden")
+
+
 def print_trans(word):
     if word in lex and not lex[word][0] == [""]:  # checke, ob übersetzungen vorhanden sind
         print(", ".join(lex[word][0]))
@@ -237,7 +309,7 @@ def print_trans(word):
         print("Keine Übersetzung gefunden")
 
 
-# print liste an einträgen. item = input (bestimmt wortart)
+    # print liste an einträgen. item = input (bestimmt wortart)
 def print_class(item):
     (klasse, scope) = separator(item)  # trenne input in wort (klasse) und anzahl einträge (scope)
     if scope == -1:  # wenn kein wert angegeben
@@ -333,6 +405,123 @@ def print_pos(word):
         print("Keinen POS-Tag gefunden")
 
 
+def print_lab(word):
+    if word in lex and not lex[word][3] == [""]:
+        print("Label: {" + ", ".join(lex[word][3]) + "}")
+    else:
+        print("Keine Label gefunden")
+
+
+def print_labwords(item):
+    lab, words = find_label(item)
+    if words:
+        print(f"Folgende Worte mit Label '{lab}' gefunden: ")
+        print("\n".join(words))
+    else:
+        print(f"Keine Worte mit Label '{lab}' gefunden")
+
+
+
+    # wenn vowels=False werden û/â als u/a behandelt
+def print_meta(vowels=False):
+    lang, dictlet, dictstart = meta(vowels)
+    # sortiere nach absteigender anzahl
+    dictlet_sorted = sorted(dictlet.items(), key=lambda tup: tup[1], reverse=True)
+    dictstart_sorted = sorted(dictstart.items(), key=lambda tup: tup[1], reverse=True)
+    print("\nHäufigkeit Buchstaben:")
+    for tupp in dictlet_sorted:
+        print(f"{tupp[0]}: {tupp[1]}")
+    print("\nHäufigkeit Anfangsbuchstaben:")
+    for tupp in dictstart_sorted:
+        print(f"{tupp[0]}: {tupp[1]}")
+    print(f"\n{lang} Einträge insgesamt")
+
+
+# #GENERATOR
+cluster = ["kr", "dr"]  # zulässige cons cluster in rux
+
+
+    # random vokal
+def random_vow(mode="all"):
+    if mode == "base":
+        return random.choices(["a", "u", "ū", "ā"], weights=(35, 35, 15, 15))[0]
+    return random.choices(vowels, weights=(35, 35, 10, 10, 5, 5))[0]
+
+
+    # random konsonant
+def random_cons():
+    return random.choices(consonants, weights=(5, 7.5, 7.5, 20, 25, 15, 7.5, 20, 10, 5))[0]
+
+
+    # CC
+def random_cluster():
+    return random.choice(cluster)
+
+
+def vow_check(syl):
+    if syl in vowels:     # wenn vow dann entweder wort = V oder wort = VC
+        random.choice(["", random_cons()])   # [kein con, random con]
+        return syl
+
+
+    # random silbe
+def rand_syl():
+    start = random.choices([vowels, consonants, cluster], weights=(45, 45, 10))[0]
+    if start == vowels:
+        syl = random_vow() + random.choice(["", random_cons()])   # [kein con, random con]
+        return syl  # Entweder V oder VC
+    elif start == cluster:
+        syl = random_cluster()
+    else:
+        syl = random_cons()
+
+    syl += random_vow("base")
+    syl += random.choices(["", random_cons()],weights=(65, 35))[0]
+    return syl
+
+
+    # random silbe die mit einem cons beginnt
+def rand_con_syl():
+    # add random C or random cluster (CC)
+    start = random.choices([consonants, cluster], weights=(95, 5))[0]  # add random C or random cluster (CC)
+    if start == cluster:
+        syl = random_cluster()
+    else:
+        syl = random_cons()
+
+    syl += random_vow()
+    syl += random.choice(["", random_cons()])
+    return syl
+
+
+def generate(eingabe):
+    _, anzahl = separator(eingabe)  # lese anzahl wörter aus dem input heraus
+    # kein wert oder wert 0 auf Standardwert 10 setzen
+    if anzahl < 1:
+        anzahl = 10
+
+    gen_words = []
+    for x in range(anzahl):
+        wort = rand_syl()   # wort ist mind 1 silbe lang
+        # mandatory second syllable for one-letter one-vowel words
+        if wort in vowels:
+            one_syl_weight = 0
+        else:
+            one_syl_weight = 30
+
+        # füge 0-2 silben hinzu, max insg: 3 Silben
+        for x in range(random.choices([0, 1, 2], weights=(one_syl_weight, 50, 20))[0]):
+            # Beginne nächste Silbe mit cons, wenn letzte auf vow endet
+            if wort[-1] in vowels:
+                wort += rand_con_syl()
+            else:
+                wort += rand_syl()
+
+        gen_words.append(wort)
+
+    print("\n".join(gen_words))
+
+    # altes generate
 def generate_words(eingabe):
     _, anzahl = separator(eingabe)  # lese anzahl wörter aus dem input heraus
     # kein wert oder wert 0 auf Standardwert 10 setzen
@@ -358,22 +547,29 @@ def generate_words(eingabe):
     print("\n".join(gen_words))
 
 
-# wenn vowels=False werden û/â als u/a behandelt
-def print_meta(vowels=False):
-    länge, dictlet, dictstart = meta(vowels)
-    # sortiere nach absteigender anzahl
-    dictlet_sorted = sorted(dictlet.items(), key=lambda tup: tup[1], reverse=True)
-    dictstart_sorted = sorted(dictstart.items(), key=lambda tup: tup[1], reverse=True)
-    print("\nHäufigkeit Buchstaben:")
-    for tupp in dictlet_sorted:
-        print(f"{tupp[0]}: {tupp[1]}")
-    print("\nHäufigkeit Anfangsbuchstaben:")
-    for tupp in dictstart_sorted:
-        print(f"{tupp[0]}: {tupp[1]}")
-    print(f"\n{länge} Einträge insgesamt")
+# LABEL
+def create_lab():
+    new_lab = get_input("What label shall be added?: ")
+    if len(new_lab) == 3:
+        new_name = get_input("What does it stand for?: ")
+        label[new_lab.upper()] = new_name
+        print(f"Label '{new_lab}' has been added with the meaning '{new_name}'!")
+    else:
+        print("Ungültige Eingabe")
 
 
-# DICT MANIPULATION
+def find_label(item):
+    lab = separate_label(item)  # separiere das label von input "findxxx"
+    words = []
+    # wenn lab gefunden wurde
+    print(f"Label: {lab}")
+    if lab:
+        # erstelle liste [eintrag: übersetzung1, übersetzung2, eintrag2 usw.] mit worten mit bestimmtem label
+        words = [entry + ": " + ", ".join(lex[entry][0]) for entry in lex if lex[entry][3][0] == lab]
+    return lab, words
+
+
+# #DICT MANIPULATION
 def insert(item):
     if item not in lex or lex[item][0] == [""]:
         print(item)
@@ -382,12 +578,12 @@ def insert(item):
         for poz in tag:
             if poz not in POS:  # füge nur gültige pos tags hinzu
                 tag.remove(poz)
-        lex[item] = word, tag, [[""], [""], [""]]
+        lex[item] = word, tag, [[""], [""], [""]], lab
         insert_poslist(tag, item)  # update verbs/nouns/adjs
     else:
         print(item)
         lex[item] = lex[item][0] + get_input("Bedeutungen: " + ", ".join(lex[item][0]) + ", ", "format"), \
-            lex[item][1], lex[item][2]
+            lex[item][1], lex[item][2], lex[item][3]
 
     # entferne wörter aus liste unassigned, wenn sie zu wort hinzugefügt wurden
     [unassigned.remove(trans) for trans in lex[item][0] if trans in unassigned]
@@ -408,24 +604,49 @@ def delete(item):
         print(f"{item} wurde gelöscht")
 
 
+# bearbeite die Label ('labb') oder überschreibe sie ('labn')
+def add_label(item, word):
+    if word in lex:
+        labs = ""
+        if lex[word][3] == [""] or lex[word][3] == []:
+            print(f"Kein Label gefunden ({word})")
+            labs = get_input("new label: ", "format")
+        elif item == "labb":
+            print(f"Label darf kein 'x' enthalten")
+            print(f"Label von {word}: " + ", ".join([f"{lab} ({label[lab]})" for lab in lex[word][3]]))
+            ###fehler
+            labs = lex[word][3][0] + get_input("added label(s): ", "format")
+        elif item == "labn":
+            print(f"Label von {word}: " + ", ".join([f"{lab} ({label[lab]}" for lab in lex[word][3]]))
+            print("Vorsicht! Eintrag wird überschrieben. 'x' zum abbrechen")
+            labs = get_input("new label(s): ", "format")
+            if "x" in labs:
+                return
+        if labs:
+            lex[word] = lex[word][0], lex[word][1], lex[word][2], [t.upper() for t in labs if t.upper() in label]
+            print("Label(s): " + "/".join(lex[word][3]))
+    else:
+        print("Eintrag konnte nicht gefunden werden")
+
+
 # bearbeite den POS Eintrag ('posb') oder überschreibe ihn ('posn')
 def add_pos(item, word):
     if word in lex:
-        tags = ""
+        ptags = ""
         if lex[word][1] == [""]:
             print(f"Keinen POS Tag gefunden ({word})")
-            tags = get_input("new POS: ", "format")
+            ptags = get_input("new POS: ", "format")
         elif item == "posb":
-            print(f"POS von {word}: " + ", ".join([f"{tag} ({POS[tag]})" for tag in lex[word][1]]))
-            tags = lex[word][1] + get_input("added POS: ", "format")
+            print(f"POS von {word}: " + ", ".join([f"{ptag} ({POS[ptag]})" for ptag in lex[word][1]]))
+            ptags = lex[word][1] + get_input("added POS: ", "format")
         elif item == "posn":
-            print(f"POS von {word}: " + ", ".join([f"{tag} ({POS[tag]}" for tag in lex[word][1]]))
+            print(f"POS von {word}: " + ", ".join([f"{ptag} ({POS[ptag]}" for ptag in lex[word][1]]))
             print("Vorsicht! Eintrag wird überschrieben. 'x' zum abbrechen")
-            tags = get_input("new POS: ", "format")
-            if "x" in tags:
+            ptags = get_input("new POS: ", "format")
+            if "x" in ptags:
                 return
-        if tags:
-            lex[word] = lex[word][0], [t.upper() for t in tags if t.upper() in POS], lex[word][2]
+        if ptags:
+            lex[word] = lex[word][0], [t.upper() for t in ptags if t.upper() in POS], lex[word][2], lex[word][3]
             print("POS Tag(s): " + "/".join(lex[word][1]))
     else:
         print("Eintrag konnte nicht gefunden werden")
@@ -532,7 +753,7 @@ def add_derv(item, word):
             lex[word][2][2] = inpt
 
 
-# GET INFO
+# #GET INFO
 def checkerito(item):
     if check_lex(item):
         print_entry(item)
@@ -542,7 +763,7 @@ def checkerito(item):
         print("Nischt jefunden!")
 
 
-# finde anzahl {scope} worte in lex, die noch keine übersetzung haben
+    # finde anzahl {scope} worte in lex, die noch keine übersetzung haben
 def search_empty(scope):
     lex_notrans = []
     for entry in lex:
@@ -588,7 +809,7 @@ def pos(word):
     return tags
 
 
-# finde synonyme
+    # finde synonyme
 def synonyms(word):
     syn = []
     if word in lex:
@@ -622,7 +843,7 @@ def meta(vowels: bool):
     return len(lex), letter_counter, start_counter
 
 
-# GRAMMAR
+# #GRAMMAR
 def print_grammar(gramlist, klasse):
     if gramlist == [] or klasse == "":
         print("Keine Grammatik verfügbar")
@@ -630,7 +851,7 @@ def print_grammar(gramlist, klasse):
         if gramlist[0]:
             print(f"Nominalisierung: {gramlist[0]}")
         print(f"Imperativ: {gramlist[1]}! {gramlist[2]}!\n")
-        print(f"Präsens:\t\tVergangenheit:\n{gramlist[3]}\t\t\t{gramlist[6]}\n{gramlist[4]}\t\t\t"
+        print(f"Präsens: \t\tVergangenheit: \n{gramlist[3]}\t\t\t{gramlist[6]}\n{gramlist[4]}\t\t\t"
               f"{gramlist[7]}\n{gramlist[5]}\t\t\t{gramlist[8]}")
     elif klasse == "N":
         print(f"Nominativ: {gramlist[3]} / {gramlist[1]}")
@@ -644,15 +865,19 @@ def print_grammar(gramlist, klasse):
         print("/".join(gramlist))
 
 
-# bilde alle grammatikalischen formen und ermittle die klasse
+    # bilde alle grammatikalischen formen und ermittle die klasse
 def grammar(word):
     table = []
     klasse = ""
     if word in lex:
         # verben
-        if len(word) > 3 and "V" in lex[word][1]:
-            table = grammar_verbs(word)
-            klasse = "V"
+        if "V" in lex[word][1]:
+            if word == "dar":
+                table = special_verb(word)
+                klasse = "V"
+            else:
+                table = grammar_verbs(word)
+                klasse = "V"
         # nomen
         elif any(item in lex[word][1] for item in POS_noun):  # enthält 'liste pos' ein noun tag?
             table = grammar_nouns(word)
@@ -686,6 +911,11 @@ def grammar_verbs(verb):
     return ret
 
 
+def special_verb(verb):
+    if verb == "dar":
+        return ["da'ul", "dad", "dadun", "da", "du", "dad", "dā", "dū", "dud"]
+
+
 # verben (nominalisierung)
 def verbs_nominal(lemma):
     nom = ""
@@ -702,7 +932,7 @@ def verbs_nominal(lemma):
     return nom
 
 
-# verben (imperativ)
+    # verben (imperativ)
 def verbs_imp(lemma):
     singular = lemma
     plural = lemma
@@ -729,7 +959,7 @@ def verbs_imp(lemma):
     return singular, plural
 
 
-# verben (konjugation)
+    # verben (konjugation)
 def verbs_conj(lemma):
     lemma = end_vowel(lemma)
     conj = [lemma + "a", lemma + "u", lemma + "ad", lemma + "ā", lemma + "ū", lemma + "ud"]
@@ -751,7 +981,7 @@ def verbs_conj(lemma):
     return conj
 
 
-# nomen
+    # nomen
 def grammar_nouns(noun):
     lemma = end_vowel(noun)  # füge d hinzu, wenn auf vokal endet
     decl = []
@@ -807,6 +1037,8 @@ def lexikon():
                 print(info)
             case "infoling":  # zeige restliche befehle
                 print(info_ling)
+            case "infolab":
+                print(info_lab) # zeige lab befehle an
             case "all":  # zeige ganzes lexikon an
                 print(lex)
             case item if "words" in item:  # zeige (x) einträge in rux
@@ -870,6 +1102,18 @@ def lexikon():
                     print_related(item, active)
                 else:  # 'dervb' fügt neue abgeleitete wörter hinzu, 'dervn' ersetzt sie
                     edit_derv(item, active)
+            case item if "lab" in item:
+                active = swap(active)
+                if item == "lablist":
+                    print_lab_list()
+                elif item == "lab":
+                    print_lab(active)
+                elif item == "neulab":
+                    create_lab()
+                else:
+                    add_label(item, active)
+            case item if item.startswith("find"):
+                print_labwords(item)
             case "add":
                 insert_notlist(active)
             case "save":
@@ -879,7 +1123,9 @@ def lexikon():
             case "metavowels":
                 print_meta(True)
             case item if "generate" in item:
-                generate_words(item)
+                generate(item)
+            case "extract":
+                extract()
             case _:  # wenn wort noch nicht vorhanden oder ohne übersetzung ist
                 checkerito(item)
 
