@@ -51,7 +51,7 @@ operator = ["b", "g", "pos", "posb", "posn", "root", "rel", "derv", "rootb", "re
             "generate", "lab", "labb", "labn", "lablist"]
 exceptions = {"ûdar": ["V", ["ûda", "ûdu", "ûdad"], ["udā", "udū", "ûdud"]]}
 # import dict from file
-lex_file = open("rux_lex", "r", encoding="utf-8")
+lex_file = open("rux_lex.txt", "r", encoding="utf-8")
 lex_cont = lex_file.readline()
 unassigned = lex_file.readline()[:-1].split("\\")  # erstelle liste von übersetzungen ohne eintrag
 lab_list = lex_file.readline()[:-1].split("\\")   # erstelle liste von labeleinträgen
@@ -75,7 +75,7 @@ adjs = [word for word in lex if "ADJ" in lex[word][1]]  # erstelle liste aller a
 
 
 def save():
-    with open("rux_lex", "w", encoding="utf-8") as f:
+    with open("rux_lex.txt", "w", encoding="utf-8") as f:
         for entry in lex:
             f.write(
                 entry + ":" + ",".join(lex[entry][0]) + ":" + ",".join(lex[entry][1]) + ":" + ",".join(lex[entry][2][0])
