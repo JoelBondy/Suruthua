@@ -1,0 +1,314 @@
+<!doctype html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+		<title>Rux</title>
+		<link rel="stylesheet" type="text/css" href="../../../metakram/stylesheet.css">
+		<link rel="shortcut icon" href="../../../Bilder/logo.png" type="image/x-icon">
+
+	</head>
+	<body>
+		<a href="../../../Hauptseite.html"><img src="../../../Bilder/logobunttransparent.png" style="width: 152px;height: 145px;position: absolute;" alt="Suruthua Logo"></a>
+		<b><a href="../../../Hauptseite.html" style="margin-left: 5em; margin-top:10em;position:absolute;">Hauptseite</a></b>
+		<b><a href="../../../metakram/GesammelteWerke.html" style="margin-left: 5em; margin-top:11.5em;position:absolute;">Schriften</a></b>
+		<b><a href="../../../metakram/rux/rux_lex.html" style="margin-left: 2.2em; margin-top:17em;position:absolute;">Rux-Wörterbuch</a></b>
+
+
+		<div class="container">
+			<input type="text" id="searchbar" onkeyup="search()" placeholder="Such was...">
+			<div id="results"></div>
+		</div>
+
+		<div id="content">
+			<h1 id="header">Rux</h1>
+
+			<p>
+                Rux ist die Sprache der <a href="../../Rassen/Guqual/Guqual.html" title="Guqual">Guqual</a> und damit die älteste
+                <a href="../Sprachen.html" title="Sprachen in Suruthua">Sprache Suruthuas</a>.
+                Alle anderen Sprachen waren zunächst Dialekte von Rux, die sich über die Zeit aber veränderten
+                und zu eigenen Sprachen entwickelten. Durch diese Entwicklung ist es Rux-Sprechern nicht ohne Weiteres möglich,
+                die anderen Sprachen zu verstehen. Miri-laka, die Sprache der <a href="../../Rassen/Myzar/Myzar.html" title="Myzar">Myzari</a>,
+                bildet da jedoch eine Ausnahme, da es keine Myzari mehr gibt und sich die Sprache daher nicht mehr weiterentwickelt hat.
+            </p>
+			<div id="contents">
+				<div class="box-header">Inhaltsverzeichnis</div>
+				<ul class="blank">
+					<li><a href="#">
+						<span class="contsnum">1</span>
+						
+					</a></li>
+				</ul>
+			</div>
+
+            <h2 id="rux" class="header">Phonetisches Inventar</h2>
+            <p>
+                <table style="width: 40%;">
+                    <tr>
+                        <th></th>
+                        <th colspan="2">Bilabial</th>
+                        <th colspan="2">Dental</th>
+                        <th colspan="2">Alveolar</th>
+                        <th colspan="2">Velar</th>
+                        <th colspan="2">Uvular</th>
+                        <th colspan="2">Pharyngeal</th>
+                        <th colspan="2">Glottal</th>
+                    </tr>
+                    <tr>
+                        <th>Plosive</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: center;">d</td>
+                        <td>k</td>
+                        <td>g</td>
+                        <td>q</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>&#660;</td>
+                    </tr>
+                    <tr>
+                        <th>Nasal</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: center;">n</td>
+                    </tr>
+                    <tr>
+                        <th>Tap/Flap</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: center;">&#638;</td>
+                    </tr>
+                    <tr>
+                        <th>Fricative</th>
+                        <td>&#632;</td>
+                        <td></td>
+                        <td>&theta;</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: center;">&#295;</td>
+                        <td >&#661;</td>
+                    </tr>
+                    <tr>
+                        <th>Lateral<br>Approx.</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>l</td>
+                    </tr>
+                </table>
+
+                <p>
+                    Der stimmhafte pharyngale Frikativ [&#661;] kommt nur in Verbindung mit einem der beiden Vokale
+                    (/&#661;u/ oder /&#661;a/) vor.
+                    Diese Kombination wird als jeweils eigener Vokal behandelt, sodass Rux insgesamt vier Vokale zählt.
+                    Der glottale Plosiv [&#660;] tritt bei Vokalfolgen auf (in der Umschrift durch ein Apostroph getrennt: Guqu'al)
+                    und trennt die beiden Vokale, sodass es auf Rux keine Diphtonge gibt.
+                </p>
+
+
+
+                <h3>Umschrift</h3>
+                <table style="width: 15%;">
+                    <tr>
+                        <th class="border">Buchstabe</th>
+                        <th class="border">Laut</th>
+                    </tr>
+                    <tr>
+                        <td class="border">ð</td>
+                        <td class="border">&theta;</td>
+                    </tr>
+                    <tr>
+                        <td class="border">ā</td>
+                        <td class="border">&#661;a</td>
+                    </tr>
+                    <tr>
+                        <td class="border">n</td>
+                        <td class="border">n</td>
+                    </tr>
+                    <tr>
+                        <td class="border">d</td>
+                        <td class="border">d</td>
+                    </tr>
+                    <tr>
+                        <td class="border">r</td>
+                        <td class="border">&#638;</td>
+                    </tr>
+                    <tr>
+                        <td class="border">u</td>
+                        <td class="border">u</td>
+                    </tr>
+                    <tr>
+                        <td class="border">g</td>
+                        <td class="border">g</td>
+                    </tr>
+                    <tr>
+                        <td class="border">ƥ</td>
+                        <td class="border">&#632;</td>
+                    </tr>
+                    <tr>
+                        <td class="border">k</td>
+                        <td class="border">k</td>
+                    </tr>
+                    <tr>
+                        <td class="border">a</td>
+                        <td class="border">a</td>
+                    </tr>
+                    <tr>
+                        <td class="border">l</td>
+                        <td class="border">l</td>
+                    </tr>
+                    <tr>
+                        <td class="border">x</td>
+                        <td class="border">&#295;</td>
+                    </tr>
+                    <tr>
+                        <td class="border">ū</td>
+                        <td class="border">&#661;u</td>
+                    </tr>
+                    <tr>
+                        <td class="border">q</td>
+                        <td class="border">q</td>
+                    </tr>
+                    <tr>
+                        <td class="border">'</td>
+                        <td class="border">&#660;</td>
+                    </tr>
+                </table>
+            </p>
+
+            <h2 id="drasken" class="header">Nomen</h2>
+            <p>
+                Die Nomen teilen sich in drei Nominalklassen ein.
+
+                <h3>Klasse 1</h3>
+                <p>
+                    Die erste Nominalklasse umfasst belebte Objekte, in die sich die Guqual verwandeln können.
+                    Hierzu zählen neben den anderen Rassen auch Körperteile, Namen und Nomen, die eine Person represäntieren.
+                    <ul>
+                        <li>xur - Person, (Lebe-)Wesen</li>
+                        <li>ðuru - Leben</li>
+                        <li>kun - Körper</li>
+                        <li>duna - Auge</li>
+                        <li>kuna'ul - Besitzer</li>
+                        <li>lûqur - <a href="../../Rassen/Vadonier/Vadonier.html" title="Vadonier">Vadonier</a></li>
+                        <li>akalan - Akalan (Name)</li>
+                    </ul>
+                </p>
+
+                <h3>Klasse 2</h3>
+                <p>
+                    Die zweite Nominalklasse umfasst belebte Objekte, in die sich die Guqual nicht verwandeln können.
+                    Neben Pflanzen und Tieren gehören hierzu auch andere naturbezogene Konzepte wie Wasser und Luft
+                    und generell abstraktere Konzepte wie Zeit und Sprache.
+                    <ul>
+                        <li>âdar - Baum, Holz</li>
+                        <li>lâraquk - <a href="../../../Suruthua/Natur/Fauna/Tiere/Triesel/Triesel.html" title="Triesel">Triesel</a></li>
+                        <li>ūrna - Luft, Himmel, Gott</li>
+                        <li>lugrux - Sprache der Vadonier</li>
+                        <li>kûlu - Licht</li>
+                        <li>dal - Tag, Umlauf</li>
+                    </ul>
+                </p>
+
+                <h3>Klasse 3</h3>
+                <p>
+                    Die dritte Nominalklasse umfasst alle anderen Nomen, also solche, die unbelebt sind. Dies umfasst nicht nur Objekte,
+                    sondern auch abstraktere Konzepte, denen keine "Lebendigkeit" zugesagt wird.
+                    <ul>
+                        <li>xug - Haus</li>
+                        <li>nalda - Fackel, Lampe</li>
+                        <li>ruqalun - Loch, Grube, Einkerbung</li>
+                        <li>kaðan - Kraft, Gewalt, Stärke</li>
+                    </ul>
+                </p>
+
+                <h3>Plural</h3>
+                <p>
+                    Der Plural wird durch das Suffix -an/-un in Vokalinharmonie zum letzten Vokal des Wortstammes gebildet.
+                    Lautet der letzte Vokal des Wortstammes also a oder ā, so wird -un angehängt und umgekehrt. Die gutturalen Vokale
+                    repräsentieren ihr nicht-gutturales Äquivalent. Ist der Stamm einsilbig, wird unabhängig vom Vokal immer -an angehängt.
+                    Endet der Wortstamm auf einen Vokal, so wird ein "d" eingefügt.
+                    <ul>
+                        <li>g<u>a</u>l -> gal<b><u>a</u>n</b> (Monate)</li>
+                        <li>r<u>u</u>x -> rux<b><u>a</u>n</b> (Sprachen)</li>
+                        <li>qan<u>a</u>k -> qanak<b><u>u</u>n</b> (Ebenen, Stufen)</li>
+                        <li>guld<u>ū</u>r -> guldūr<b><u>a</u>n</b> (Pflanzen)</li>
+                        <li>kun<u>a</u> -> kuna<b>d<u>u</u>n</b> (Nasen)</li>
+                        <li>lagr<u>u</u> -> lagru<b>d<u>a</u>n</b> (Finger)</li>
+                    </ul>
+                </p>
+
+                <h3>Pronomen</h3>
+                <p>
+                    Rux hat sechs Pronomen, in der dritten Person Singular (er/sie/es) wird kein Geschlecht unterschieden.
+                    <table style="width: 15%;">
+                        <tr>
+                            <th>Person</th>
+                            <th>Rux</th>
+                            <th>Deutsch</th>
+                        </tr>
+                        <tr>
+                            <td>1. Sg.</td>
+                            <td>kā</td>
+                            <td>Ich</td>
+                        </tr>
+                        <tr>
+                            <td>2. Sg.</td>
+                            <td>la</td>
+                            <td>Du</td>
+                        </tr>
+                        <tr>
+                            <td>3. Sg.</td>
+                            <td>rā</td>
+                            <td>Er/Sie/Es</td>
+                        </tr>
+                        <tr>
+                            <td>1. Pl.</td>
+                            <td>kān</td>
+                            <td>Wir</td>
+                        </tr>
+                        <tr>
+                            <td>2. Pl.</td>
+                            <td>lan</td>
+                            <td>Ihr</td>
+                        </tr>
+                        <tr>
+                            <td>3. Pl.</td>
+                            <td>rān</td>
+                            <td>Sie</td>
+                        </tr>
+                    </table>
+                </p>
+
+                <h3>Artikel</h3>
+                <p>
+                </p>
+            </p>
+
+            <h2 id="verb" class="header">Verben</h2>
+            <p>
+                Die infinite Verbform endet auf -dar bzw. -dur in Vokalinharmonie zum letzten Vokal des Stammes.
+                Also gundar (ein Kind bekommen), aber dandur (aufwachen, bewusst sein).
+            </p>
+
+
+			
+		</div>
+		<script src="../../metakram/searchbar.js"></script>
+	</body>
+</html>
